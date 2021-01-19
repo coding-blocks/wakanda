@@ -1,7 +1,9 @@
+require('dotenv').config();
+import config from './config';
 import app from './app';
 
 ;(async () => {
-  app.listen(5566, '0.0.0.0', () => {
-    console.log("Server started on 5566");
+  app.listen(config.APP.PORT, config.APP.HOST, () => {
+    console.log(`Server started on ${config.APP.HOST}:${config.APP.PORT}`);
   });
 })()

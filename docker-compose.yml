@@ -1,0 +1,9 @@
+version: '3'
+services:
+  wakanda:
+    image: codingblocks/wakanda
+    build: .
+    ports:
+      - "5566:80"
+    env_file:
+      - .env

@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build:backend": "webpack -c ./backend/webpack.config.js",
+    "start:backend": "node dist/backend/main.js",
     "build:frontend": "webpack -c ./frontend/webpack.config.js",
     "dev:frontend": "webpack serve -c ./frontend/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "typeorm": "^0.2.30",
