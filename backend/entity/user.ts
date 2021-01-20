@@ -1,16 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
-export interface UserAttributes {
-  id: number;
-  oneauth_id: string;
-  name: string;
-  email: string;
-  username: string;
-  role: string;
-}
-
 @Entity('users')
-class User implements UserAttributes {
+class User {
   @PrimaryGeneratedColumn()
   id: number;
 
