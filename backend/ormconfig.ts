@@ -1,19 +1,7 @@
 require('dotenv').config();
 import config from './config';
 import { ConnectionOptions } from 'typeorm';
-let entities = [];
-if ((require as any).context != null) {
-  const entityContext = (require as any).context('../../wakanda/backend/entity/', true, /\.ts$/);
-  entities = entityContext
-    .keys()
-    .map((modulePath) => entityContext(modulePath))
-    .reduce((result, migrationModule) => {
-      result.concat(
-        Object.keys(migrationModule).map((key) => migrationModule[key]),
-        [],
-      );
-    });
-}
+import * as entities from './entity';
 
 export default {
   ...config.DB,
