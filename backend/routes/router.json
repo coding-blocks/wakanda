@@ -1,0 +1,16 @@
+{
+  "path": "",
+  "children": [
+    {
+      "path": "ping"
+    },
+    {
+      "path": "foo",
+      "children": [
+        {
+          "path": "bar"
+        }
+      ]
+    }
+  ]
+}
