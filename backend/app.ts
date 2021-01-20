@@ -2,6 +2,7 @@ import Express from 'express';
 import { createConnection } from 'typeorm';
 require('dotenv').config();
 import config from './config';
+import ormconfig from './ormconfig';
 
 const app = Express();
 
@@ -10,20 +11,7 @@ app.use((req, res) => {
 });
 
 async function start() {
-  await createConnection({
-    ...config.DB,
-    type: 'postgres',
-    synchronize: true,
-    logging: false,
-    entities: ['entity/**/*.ts'],
-    migrations: ['migration/**/*.ts'],
-    subscribers: ['subscriber/**/*.ts'],
-    cli: {
-      entitiesDir: 'entity',
-      migrationsDir: 'migration',
-      subscribersDir: 'subscriber',
-    },
-  });
+  await createConnection(ormconfig);
 }
 
 start();

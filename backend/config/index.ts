@@ -8,6 +8,6 @@ export default {
     password: process.env.DB_PASS || 'wakanda',
     database: process.env.DB_NAME || 'wakanda',
     host: process.env.DB_HOST || '127.0.0.1',
-    port: Number(process.env.DB_PORT) || 3306,
+    port: Number(process.env.DB_PORT) || 5432,
   },
 };

@@ -7,7 +7,8 @@
     "build:backend": "webpack -c ./backend/webpack.config.js",
     "start:backend": "node dist/backend/main.js",
     "build:frontend": "webpack -c ./frontend/webpack.config.js",
-    "dev:frontend": "webpack serve -c ./frontend/webpack.config.js"
+    "dev:frontend": "webpack serve -c ./frontend/webpack.config.js",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "passport": "^0.4.1",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^9.1.1",
     "typeorm": "^0.2.30",
     "uuid": "^8.3.2"
   },
