@@ -7,7 +7,9 @@
     "build:backend": "webpack -c ./backend/webpack.config.js",
     "start:backend": "node dist/backend/main.js",
     "build:frontend": "webpack -c ./frontend/webpack.config.js",
-    "dev:frontend": "webpack serve -c ./frontend/webpack.config.js"
+    "dev:frontend": "webpack serve -c ./frontend/webpack.config.js",
+    "typeorm": "ts-node --project ./backend/tsconfig.json ./node_modules/typeorm/cli.js --config ./backend/ormconfig.ts",
+    "migration": "yarn typeorm migration:run"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "passport": "^0.4.1",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^9.1.1",
     "typeorm": "^0.2.30",
     "uuid": "^8.3.2"
   },
