@@ -1,13 +1,14 @@
 require('dotenv').config();
 import config from './config';
 import { ConnectionOptions } from 'typeorm';
+import User from './entity/user';
 
 export default {
   ...config.DB,
   type: 'postgres',
-  synchronize: true,
+  synchronize: false,
   logging: false,
-  entities: ['entity/**/*.ts'],
+  entities: [User],
   migrations: ['migration/**/*.ts'],
   subscribers: ['subscriber/**/*.ts'],
   cli: {

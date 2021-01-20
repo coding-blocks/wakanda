@@ -1,7 +1,6 @@
 import Express from 'express';
 import { createConnection } from 'typeorm';
 require('dotenv').config();
-import config from './config';
 import ormconfig from './ormconfig';
 
 const app = Express();
