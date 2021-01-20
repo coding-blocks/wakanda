@@ -11,8 +11,8 @@ export default {
   migrations: ['migration/**/*.ts'],
   subscribers: ['subscriber/**/*.ts'],
   cli: {
-    entitiesDir: 'entity',
-    migrationsDir: 'migration',
-    subscribersDir: 'subscriber',
+    entitiesDir: 'backend/entity',
+    migrationsDir: 'backend/migration',
+    subscribersDir: 'backend/subscriber',
   },
 } as ConnectionOptions;
