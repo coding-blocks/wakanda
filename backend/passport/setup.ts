@@ -29,7 +29,7 @@ passport.use(
       clientSecret: config.ONEAUTH.CLIENT_SECRET,
       callbackURL: config.ONEAUTH.REDIRECT_URL,
     },
-    async (accessToken, refreshToken, profile: OneauthUser, done) => {
+    async (_accessToken, _refreshToken, profile: OneauthUser, done) => {
       try {
         const user = await upsertUser(profile);
         return done(null, user);
