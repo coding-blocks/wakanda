@@ -1,6 +1,6 @@
 import { User } from 'entity';
 import { getCustomRepository } from 'typeorm';
-import { UserRepository } from 'repositories/user';
+import UserRepository from 'repositories/user';
 import { OneauthUser } from '../services/oneauth';
 import { UserRole } from 'entity/user';
 
@@ -21,20 +21,17 @@ export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
 });
 
 export const upsertUser = async (oneauthUser: OneauthUser): Promise<User> => {
-  const dbUser = await getCustomRepository(UserRepository).findOne({
+  const dbUser = await UserRepository.findOne({
     where: {
       oneauth_id: oneauthUser.id,
     },
   });
 
   if (dbUser) {
-    await getCustomRepository(UserRepository).update(
-      dbUser.id,
-      oneauthUserToUpdateOpts(oneauthUser),
-    );
+    await UserRepository.update(dbUser.id, oneauthUserToUpdateOpts(oneauthUser));
 
-    return getCustomRepository(UserRepository).findOne(dbUser.id);
+    return UserRepository.findOne(dbUser.id);
   }
 
-  return getCustomRepository(UserRepository).create(oneauthUserToCreateOpts(oneauthUser));
+  return UserRepository.create(oneauthUserToCreateOpts(oneauthUser));
 };

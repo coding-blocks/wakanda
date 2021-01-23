@@ -5,7 +5,7 @@ import { User } from '../entity/user';
 import { OneauthUser } from '../services/oneauth';
 import { upsertUser } from '../utils/user';
 import { getCustomRepository } from 'typeorm';
-import { UserRepository } from '../repositories/user';
+import UserRepository from '../repositories/user';
 
 passport.serializeUser((user: User, done) => {
   return done(null, user.id);
@@ -13,7 +13,7 @@ passport.serializeUser((user: User, done) => {
 
 passport.deserializeUser(async (userId: number, done) => {
   try {
-    const user = await getCustomRepository(UserRepository).findOne(userId);
+    const user = await UserRepository.findOne(userId);
     done(null, user);
   } catch (err) {
     done(err);
