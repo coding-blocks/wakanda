@@ -3,7 +3,7 @@ import { Strategy as OneauthStrategy } from 'passport-oneauth';
 import config from '../config';
 import { User } from '../entity/user';
 import { OneauthUser } from '../services/oneauth';
-import { upsertUser } from '~/utils/user';
+import { upsertUser } from '../utils/user';
 import { getCustomRepository } from 'typeorm';
 import { UserRepository } from '../repositories/user';
 
