@@ -1,6 +1,5 @@
-import { EntityRepository, getConnection, Repository } from 'typeorm';
+import { getConnection, EntityRepository, getCustomRepository, Repository } from 'typeorm';
 import { User } from '../entity/User';
-
 @EntityRepository(User)
 class UserRepository extends Repository<User> {
   findByName(firstName: string) {
@@ -8,4 +7,4 @@ class UserRepository extends Repository<User> {
   }
 }
 
-export default getConnection().getCustomRepository(UserRepository);
+export default UserRepository;

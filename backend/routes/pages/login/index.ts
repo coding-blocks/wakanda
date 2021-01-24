@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import passport from 'passport/setup';
+import passport from '../../../passport/setup';
 
 const router = Router();
 

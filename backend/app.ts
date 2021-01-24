@@ -1,7 +1,7 @@
 import * as path from 'path';
 import Express from 'express';
 import { getDirRouter } from './utils/router';
-import passport from 'passport';
+import passport from './passport/setup';
 
 const app = Express();
 
