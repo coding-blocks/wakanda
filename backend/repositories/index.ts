@@ -1,5 +1,4 @@
 import { Connection, getConnection } from 'typeorm';
-import { User } from '~/entity';
 import UserRepository from './user';
 
 export class Repositories {

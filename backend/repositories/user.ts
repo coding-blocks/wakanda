@@ -1,5 +1,5 @@
-import { getConnection, EntityRepository, getCustomRepository, Repository } from 'typeorm';
-import { User } from '../entity/User';
+import { EntityRepository, Repository } from 'typeorm';
+import { User } from '../entity/user';
 @EntityRepository(User)
 class UserRepository extends Repository<User> {
   findByName(firstName: string) {

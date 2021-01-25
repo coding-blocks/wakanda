@@ -9,7 +9,7 @@ export default {
   type: 'postgres',
   synchronize: false,
   logging: false,
-  entities: [path.join(__dirname, 'entity/*.{js,ts}')],
+  entities: [path.join(__dirname, 'entity/**/*.{js,ts}')],
   migrations: [path.join(__dirname, 'migration/**/*.{js,ts}')],
   subscribers: [path.join(__dirname, 'subscriber/**/*.{js,ts}')],
   cli: {
