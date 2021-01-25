@@ -42,5 +42,5 @@ export class UserTask {
 
   @OneToOne(() => Submission)
   @JoinColumn()
-  Submission: Submission;
+  submission: Submission;
 }
