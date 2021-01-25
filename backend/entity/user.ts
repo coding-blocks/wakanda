@@ -1,5 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-@Entity('users')
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
+import { UserTask } from './user-task';
+
+export enum UserRole {
+  ADMIN = 'admin',
+  AMBASSADOR = 'ambassador',
+  DEFAULT = 'default',
+}
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -16,6 +30,19 @@ export class User {
   @Column()
   username: string;
 
-  @Column()
-  role: string;
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.DEFAULT,
+  })
+  role: UserRole;
+
+  @OneToMany(() => UserTask, (userTask) => userTask.user)
+  userTasks: UserTask[];
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
