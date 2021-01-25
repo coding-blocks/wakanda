@@ -33,5 +33,5 @@ export const upsertUser = async (oneauthUser: OneauthUser): Promise<User> => {
     return Repositories.getInstance().user.findOne(dbUser.id);
   }
 
-  return Repositories.getInstance().user.create(oneauthUserToCreateOpts(oneauthUser));
+  return Repositories.getInstance().user.save(oneauthUserToCreateOpts(oneauthUser));
 };
