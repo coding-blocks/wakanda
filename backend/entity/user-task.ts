@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { Task } from './task';
 import { User } from './user';
+import { Submission } from './submission';
 
 @Entity()
 export class UserTask {
@@ -37,4 +39,8 @@ export class UserTask {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
+
+  @OneToOne(() => Submission)
+  @JoinColumn()
+  Submission: Submission;
 }

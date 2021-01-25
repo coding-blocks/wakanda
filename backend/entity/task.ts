@@ -28,10 +28,10 @@ export class Task {
   @Column()
   points: number;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @Column({ type: 'timestamp' })
   startDate: Date;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @Column({ type: 'timestamp' })
   endDate: Date;
 
   @Column({
