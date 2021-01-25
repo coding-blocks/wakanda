@@ -14,7 +14,7 @@ export enum TaskStatus {
   TO_REVIEW = 'review',
   COMPLETED = 'completed',
 }
-@Entity('tasks')
+@Entity()
 export class Task {
   @PrimaryGeneratedColumn()
   id: number;

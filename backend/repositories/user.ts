@@ -11,6 +11,11 @@ class UserRepository extends Repository<User> {
     if (!user) throw new Error('ERR_USER_NOT_FOUND');
     return user;
   }
+
+  async findAll(): Promise<User[]> {
+    // TODO: handle pagination
+    return await this.find();
+  }
 }
 
 export default UserRepository;

@@ -10,7 +10,7 @@ import {
 import { Task } from './task';
 import { User } from './user';
 
-@Entity('userTasks')
+@Entity()
 export class UserTask {
   @PrimaryGeneratedColumn()
   id: number;

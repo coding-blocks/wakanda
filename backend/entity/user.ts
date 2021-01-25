@@ -13,7 +13,7 @@ export enum UserRole {
   AMBASSADOR = 'ambassador',
   DEFAULT = 'default',
 }
-@Entity('users')
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
