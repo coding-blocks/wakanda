@@ -16,6 +16,6 @@ export default {
     CLIENT_SECRET:
       process.env.ONEAUTH_CLIENT_SECRET ||
       'btJtphsJfQgsgGtGWQnvFa0IKTgUjQK1XkgKY1sBE8aLIqNLR6Pg08ElJsBtujyq',
-    REDIRECT_URL: process.env.ONEAUTH_REDIRECT_URL || 'http://dev.wakanda/pages/login/callback',
+    REDIRECT_URL: process.env.ONEAUTH_REDIRECT_URL || 'http://localhost:5566/pages/login/callback',
   },
 };

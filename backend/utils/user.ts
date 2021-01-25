@@ -2,7 +2,7 @@ import { User } from 'entity';
 import UserRepository from '../repositories/user';
 import { OneauthUser } from '../services/oneauth';
 import { UserRole } from '../entity/user';
-import { getCustomRepository } from 'typeorm';
+import { Repositories } from '../repositories/index';
 
 export const oneauthUserToUpdateOpts = (oneauthUser: OneauthUser) => ({
   name: oneauthUser.name,
@@ -21,20 +21,17 @@ export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
 });
 
 export const upsertUser = async (oneauthUser: OneauthUser): Promise<User> => {
-  const dbUser = await getCustomRepository(UserRepository).findOne({
+  const dbUser = await Repositories.getInstance().user.findOne({
     where: {
       oneauth_id: oneauthUser.id,
     },
   });
 
   if (dbUser) {
-    await getCustomRepository(UserRepository).update(
-      dbUser.id,
-      oneauthUserToUpdateOpts(oneauthUser),
-    );
+    await Repositories.getInstance().user.update(dbUser.id, oneauthUserToUpdateOpts(oneauthUser));
 
-    return getCustomRepository(UserRepository).findOne(dbUser.id);
+    return Repositories.getInstance().user.findOne(dbUser.id);
   }
 
-  return getCustomRepository(UserRepository).create(oneauthUserToCreateOpts(oneauthUser));
+  return Repositories.getInstance().user.create(oneauthUserToCreateOpts(oneauthUser));
 };

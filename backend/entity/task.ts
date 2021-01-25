@@ -4,7 +4,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { UserTask } from './user-task';
 
 export enum TaskStatus {
   SCHEDULED = 'scheduled',
@@ -13,7 +15,7 @@ export enum TaskStatus {
   COMPLETED = 'completed',
 }
 @Entity('tasks')
-export class Taks {
+export class Task {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -38,6 +40,9 @@ export class Taks {
     default: TaskStatus.SCHEDULED,
   })
   status: TaskStatus;
+
+  @OneToMany(() => UserTask, (userTask) => userTask.task)
+  userTasks: UserTask[];
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

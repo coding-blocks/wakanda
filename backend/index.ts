@@ -9,7 +9,7 @@ import { getConnection } from 'typeorm';
 
 (async () => {
   await createConnection(ormconfig);
-  console.log(getConnection().entityMetadatas);
+  console.log(getConnection().isConnected);
   app.listen(config.APP.PORT, config.APP.HOST, () => {
     console.log(`Server started on ${config.APP.HOST}:${config.APP.PORT}`);
   });
