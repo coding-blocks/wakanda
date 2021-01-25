@@ -2,6 +2,8 @@ export default {
   APP: {
     PORT: Number(process.env.APP_PORT) || 5566,
     HOST: process.env.APP_HOST || '0.0.0.0',
+    COOKIE_SECRET: process.env.COOKIE_SECRET || 'bleh',
+    COOKIE_NAME: process.env.COOKIE_NAME || 'wakanda',
   },
   DB: {
     username: process.env.DB_USER || 'wakanda',
@@ -12,10 +14,10 @@ export default {
   },
   ONEAUTH: {
     URL: process.env.ONEAUTH_URL || 'https://account.codingblocks.com',
-    CLIENT_ID: process.env.ONEAUTH_CLIENT_ID || '5038332966',
+    CLIENT_ID: process.env.ONEAUTH_CLIENT_ID || '5926292294',
     CLIENT_SECRET:
       process.env.ONEAUTH_CLIENT_SECRET ||
-      'btJtphsJfQgsgGtGWQnvFa0IKTgUjQK1XkgKY1sBE8aLIqNLR6Pg08ElJsBtujyq',
+      'axRpoUZa3fDIKFxWkm1sdMH22PavApG9gjYR6MVSMmDWtphuYtYt5MiIBCBob17J',
     REDIRECT_URL: process.env.ONEAUTH_REDIRECT_URL || 'http://localhost:5566/pages/login/callback',
   },
 };
