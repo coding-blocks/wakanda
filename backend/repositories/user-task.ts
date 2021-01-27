@@ -1,4 +1,4 @@
-import { UserTask } from '../entity/user-task';
+import { UserTask } from '../entity';
 import { EntityRepository, Repository } from 'typeorm';
 @EntityRepository(UserTask)
 class UserTaskRepository extends Repository<UserTask> {

@@ -1,7 +1,7 @@
 import passport, { use } from 'passport';
 import { Strategy as OneauthStrategy } from 'passport-oneauth';
 import config from '../config';
-import { User } from '../entity/user';
+import { User } from '../entity';
 import { OneauthUser } from '../services/oneauth';
 import { upsertUser } from '../utils/user';
 import { Repositories } from '../repositories/index';
