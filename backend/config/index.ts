@@ -20,4 +20,10 @@ export default {
       'axRpoUZa3fDIKFxWkm1sdMH22PavApG9gjYR6MVSMmDWtphuYtYt5MiIBCBob17J',
     REDIRECT_URL: process.env.ONEAUTH_REDIRECT_URL || 'http://localhost:5566/pages/login/callback',
   },
+  MINIO: {
+    ENDPOINT: process.env.MINIO_ENDPOINT || 'minio-i.codingblocks.com',
+    ACCESS_KEY: process.env.MINIO_ACCESS_KEY || 'bleh',
+    SECRET_KEY: process.env.MINIO_SECRET_KEY || 'bleh',
+    BUCKET_NAME: process.env.MINIO_BUCKET_NAME || 'amoeba',
+  },
 };
