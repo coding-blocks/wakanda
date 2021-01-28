@@ -15,7 +15,7 @@ export class SubmissionAsset {
   @Column()
   submissionId: number;
 
-  @ManyToOne(() => Submission)
+  @ManyToOne(() => Submission, (submission) => submission.submissionAsset)
   @JoinColumn({ name: 'submissionId' })
   submission: Submission;
 }

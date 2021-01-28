@@ -1,6 +1,8 @@
 import * as path from 'path';
 import Express from 'express';
+import bodyParser from 'body-parser';
 import session from 'express-session';
+import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { getDirRouter } from './utils/router';
 import passport from './passport/setup';
@@ -8,8 +10,9 @@ import config from './config';
 
 const app = Express();
 
+app.use(morgan('tiny'));
+app.use(bodyParser.json());
 app.use(cookieParser());
-
 app.use(
   session({
     secret: config.APP.COOKIE_SECRET,

@@ -53,4 +53,7 @@ export class UserTask {
   @OneToOne(() => Submission)
   @JoinColumn()
   submission: Submission;
+
+  @Column({ default: 0 })
+  assignedPoints: number;
 }

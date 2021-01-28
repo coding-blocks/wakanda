@@ -46,6 +46,6 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  assignedPoints: number;
+  @Column({ default: 0 })
+  totalPoints: number;
 }

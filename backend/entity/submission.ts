@@ -11,6 +11,8 @@ export class Submission {
   @Column({ type: 'timestamp' })
   submittedAt: Date;
 
-  @OneToMany(() => SubmissionAsset, (submissionAsset) => submissionAsset.submission)
+  @OneToMany(() => SubmissionAsset, (submissionAsset) => submissionAsset.submission, {
+    cascade: true,
+  })
   submissionAsset: SubmissionAsset[];
 }

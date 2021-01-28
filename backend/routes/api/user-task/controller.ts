@@ -32,8 +32,13 @@ class UserController {
   }
 
   async handleUpdateDraft(req: Request, res: Response) {
+    const payload = req.body;
     const taskId = req.params.id;
-    res.json(await Repositories.getInstance().userTask.findById(Number(taskId)));
+    const submission = await Repositories.getInstance().submission.saveWithAssets(req, payload);
+
+    const userTask = await Repositories.getInstance().userTask.findById(Number(taskId));
+    userTask.submission = submission;
+    res.json(await Repositories.getInstance().userTask.save(userTask));
   }
 }
 
