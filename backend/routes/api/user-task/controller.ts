@@ -19,7 +19,7 @@ class UserController {
     res.json(
       await Repositories.getInstance().userTask.find({
         where: {
-          userId: req.user.id,
+          // userId: req.user.id,
         },
         relations: ['task'],
       }),

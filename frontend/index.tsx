@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './app';
 
 const ReactApp: React.FC = () => {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <Provider store={store}>
+      <App />
+    </Provider>
   );
 };
 

@@ -8,7 +8,7 @@ router.get(
   '/callback',
   passport.authenticate('oneauth', {
     failureRedirect: '/',
-    successReturnToOrRedirect: '/',
+    successReturnToOrRedirect: 'http://codingblocks.wakanda/',
   }),
 );
 
