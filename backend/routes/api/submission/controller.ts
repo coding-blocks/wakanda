@@ -1,15 +1,29 @@
+import { SubmissionStatus } from 'entity/user-task';
 import { Request, Response } from 'express';
 import { Repositories } from '../../../repositories/index';
 
 class SubmissionController {
-  async handleSubmission(req: Request, res: Response) {
+  async handleDraft(req: Request, res: Response) {
     const payload = req.body.data;
     const taskId: any = req.body.scope.id;
     const submission = await Repositories.getInstance().submission.saveWithAssets(req, payload);
 
     const userTask = await Repositories.getInstance().userTask.findByTaskId(Number(taskId));
     userTask.submission = submission;
-    res.json(await Repositories.getInstance().userTask.save(userTask));
+    await Repositories.getInstance().userTask.save(userTask);
+
+    res.json(await Repositories.getInstance().task.findById(req, taskId));
+  }
+
+  async handleSubmission(req: Request, res: Response) {
+    const status = req.body.status;
+    const id = req.params.id;
+
+    const userTask = await Repositories.getInstance().userTask.findById(Number(id));
+    userTask.status = status;
+    await Repositories.getInstance().userTask.save(userTask);
+
+    res.json(await Repositories.getInstance().userTask.findById(Number(id)));
   }
 }
 

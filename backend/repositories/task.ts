@@ -12,19 +12,11 @@ class TaskRepository extends Repository<Task> {
       .getOne();
   }
 
-  async findByTaskId(req, taskId: number): Promise<Task> {
-    return await this.createQueryBuilder('task')
-      .innerJoinAndSelect('task.userTask', 'userTask')
-      .leftJoinAndSelect('userTask.submission', 'submission')
-      .where('userTask.taskId=:id', { id: taskId })
-      .where('userTask.userId=:id', { id: req.user.id })
-      .getOne();
-  }
-
   async findUserTasks(req): Promise<Task[]> {
     return await this.createQueryBuilder('task')
       .innerJoinAndSelect('task.userTask', 'userTask')
       .leftJoinAndSelect('userTask.submission', 'submission')
+      .leftJoinAndSelect('submission.submissionAsset', 'submissionAssets')
       .where('userTask.userId=:id', { id: req.user.id })
       .getMany();
   }

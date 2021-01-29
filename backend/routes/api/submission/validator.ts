@@ -9,4 +9,10 @@ export default {
     }),
     'body',
   ),
+  SUBMIT: toRequestValidator(
+    Joi.object({
+      status: Joi.string().valid('review', 'draft').required(),
+    }),
+    'body',
+  ),
 };
