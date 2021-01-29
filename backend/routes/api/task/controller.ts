@@ -3,12 +3,14 @@ import { Repositories } from '../../../repositories/index';
 
 class TaskController {
   async handleActiveTasks(req: Request, res: Response) {
-    res.json(await Repositories.getInstance().task.findUserTasks(req));
+    const userId = req.user.id;
+    res.json(await Repositories.getInstance().task.findUserTasks(userId));
   }
 
   async handleGetCurrent(req: Request, res: Response) {
     const taskId = req.params.id;
-    res.json(await Repositories.getInstance().task.findById(req, Number(taskId)));
+    const userId = req.user.id;
+    res.json(await Repositories.getInstance().task.findById(userId, Number(taskId)));
   }
 }
 

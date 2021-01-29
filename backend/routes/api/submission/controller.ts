@@ -6,13 +6,14 @@ class SubmissionController {
   async handleDraft(req: Request, res: Response) {
     const payload = req.body.data;
     const taskId: any = req.body.scope.id;
-    const submission = await Repositories.getInstance().submission.saveWithAssets(req, payload);
+    const userId: any = req.user.id;
+    const submission = await Repositories.getInstance().submission.saveWithAssets(payload);
 
     const userTask = await Repositories.getInstance().userTask.findByTaskId(Number(taskId));
     userTask.submission = submission;
     await Repositories.getInstance().userTask.save(userTask);
 
-    res.json(await Repositories.getInstance().task.findById(req, taskId));
+    res.json(await Repositories.getInstance().task.findById(userId, taskId));
   }
 
   async handleSubmission(req: Request, res: Response) {

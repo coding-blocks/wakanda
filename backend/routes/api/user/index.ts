@@ -6,6 +6,4 @@ const router = Router();
 
 router.get('/me', isAuthenticated, controller.handleGetMe);
 
-router.get('/', controller.handleGetAll);
-
 export default router;
