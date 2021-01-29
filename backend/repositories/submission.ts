@@ -2,10 +2,10 @@ import { Submission } from '../entity';
 import { EntityRepository, Repository } from 'typeorm';
 @EntityRepository(Submission)
 class SubmissionRepository extends Repository<Submission> {
-  async saveWithAssets(req, payload): Promise<Submission> {
+  async saveWithAssets(payload: Submission): Promise<Submission> {
     return this.save({
       ...payload,
-      submittedAt: '2021-01-27T05:16:23.000Z',
+      submittedAt: new Date(),
     });
   }
 }
