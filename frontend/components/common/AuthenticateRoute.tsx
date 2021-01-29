@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 export const AuthenticatedRoute: React.FC<any> = ({ children, ...props }) => {
-  const isAuthenticated = useSelector((state) => state.currentUser.isAuthenticated);
+  const isAuthenticated = useSelector((state: any) => state.currentUser.isAuthenticated);
 
   return (
     <Route

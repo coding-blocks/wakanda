@@ -3,7 +3,9 @@ import { Repositories } from '../../../repositories/index';
 
 class UserController {
   async handleGetMe(req: Request, res: Response) {
-    res.json(await Repositories.getInstance().user.findOne(req.user.id));
+    res.json({
+      data: await Repositories.getInstance().user.findOne(req.user.id),
+    });
   }
 }
 

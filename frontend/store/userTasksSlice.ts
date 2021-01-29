@@ -25,8 +25,8 @@ export const activeTasksSlice = createSlice({
 });
 
 export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async () => {
-  const tasks = await client.get('/api/user-task');
-  return tasks.data;
+  const tasks = await client.get('/task');
+  return tasks.data.data;
 });
 
 type RootState = ReturnType<typeof store.getState>;

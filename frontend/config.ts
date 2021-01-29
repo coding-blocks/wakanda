@@ -1,5 +1,5 @@
 export default {
   API: {
-    HOST: process.env.HOST ?? 'http://localhost:5566/',
+    HOST: process.env.HOST ?? 'http://codingblocks.wakanda/api',
   },
 };

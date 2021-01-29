@@ -39,22 +39,21 @@ const TaskAccordian = (props) => {
   if (props.showContent) return <div>{props.children}</div>;
   return null;
 };
-export const TaskCard: React.FC<any> = ({ userTask }) => {
+export const TaskCard: React.FC<any> = ({ task }) => {
   const [showContent, setShowContent] = useState(false);
   const handleAccordianClick = () => setShowContent(!showContent);
 
-  const strt = dateFormater(userTask.task.start);
   return (
     <div className="card br-10 bg-white my-4">
       <div className="row p-3">
         <div className="col-10">
           <div className="font-sm med-grey mb-2">Task</div>
-          <h3 className="font-xl">{userTask.task.name}</h3>
+          <h3 className="font-xl">{task.name}</h3>
         </div>
 
         <div className="col-2">
           <div className="d-flex justify-content-end">
-            <h3>{userTask.task.points}</h3>
+            <h3>{task.points}</h3>
           </div>
         </div>
       </div>
@@ -62,9 +61,7 @@ export const TaskCard: React.FC<any> = ({ userTask }) => {
       <div className="row p-3">
         <div className="col">
           <div className="card-md">Duration</div>
-          <div>{`${dateFormater(userTask.task.startDate)} - ${dateFormater(
-            userTask.task.endDate,
-          )}`}</div>
+          <div>{`${dateFormater(task.startDate)} - ${dateFormater(task.endDate)}`}</div>
         </div>
         <div className="col">
           <div className="d-flex justify-content-end">
@@ -78,7 +75,7 @@ export const TaskCard: React.FC<any> = ({ userTask }) => {
       </div>
 
       <TaskAccordian showContent={showContent}>
-        <ReactMarkdown>{userTask.task.description}</ReactMarkdown>
+        <ReactMarkdown>{task.description}</ReactMarkdown>
       </TaskAccordian>
     </div>
   );

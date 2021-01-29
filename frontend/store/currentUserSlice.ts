@@ -13,7 +13,8 @@ const currentUserSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase('currentUser/load/fulfiled', (state, action: any) => {
+    builder.addCase('currentUser/load/fulfilled', (state, action: any) => {
+      console.log(action);
       state.status = 'succeeded';
       state.user = action.payload;
       state.isAuthenticated = true;
@@ -21,9 +22,9 @@ const currentUserSlice = createSlice({
   },
 });
 
-const loadUser = createAsyncThunk('currentUser/load', async () => {
+export const loadUser = createAsyncThunk('currentUser/load', async () => {
   const user = await client.get('/user/me');
-  return user.data;
+  return user.data.data;
 });
 
 export default currentUserSlice.reducer;

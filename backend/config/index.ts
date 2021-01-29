@@ -18,7 +18,8 @@ export default {
     CLIENT_SECRET:
       process.env.ONEAUTH_CLIENT_SECRET ||
       'axRpoUZa3fDIKFxWkm1sdMH22PavApG9gjYR6MVSMmDWtphuYtYt5MiIBCBob17J',
-    REDIRECT_URL: process.env.ONEAUTH_REDIRECT_URL || 'http://localhost:5566/pages/login/callback',
+    REDIRECT_URL:
+      process.env.ONEAUTH_REDIRECT_URL || 'http://codingblocks.wakanda/pages/login/callback',
   },
   MINIO: {
     ENDPOINT: process.env.MINIO_ENDPOINT || 'minio-i.codingblocks.com',

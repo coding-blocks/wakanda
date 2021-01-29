@@ -9,7 +9,7 @@ import { LeaderBoard } from '../components/LeaderBoard';
 
 const CAPortal: React.FC = () => {
   const dispatch = useDispatch();
-  const activeTasksStatus = useSelector((state) => state.userTasks.status);
+  const activeTasksStatus = useSelector((state: any) => state.userTasks.status);
   const activeTasks = useSelector(selectAllActiveTasks);
 
   useEffect(() => {
@@ -20,8 +20,8 @@ const CAPortal: React.FC = () => {
 
   let showActiveTasks;
   if (activeTasksStatus === 'succeeded') {
-    showActiveTasks = activeTasks.map((userTask) => {
-      return <TaskCard key={userTask.id} userTask={userTask} />;
+    showActiveTasks = activeTasks.map((task: any) => {
+      return <TaskCard key={task.id} task={task} />;
     });
   }
 
