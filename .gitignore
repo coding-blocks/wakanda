@@ -83,3 +83,6 @@ dist/
 
 # env files
 .env
+
+# tmp files
+backend/tmp/

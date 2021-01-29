@@ -7,7 +7,7 @@ class UserTaskRepository extends Repository<UserTask> {
   }
 
   findByTaskId(id: number) {
-    return this.findOne({ where: { taskId: id } });
+    return this.findOne({ where: { taskId: id }, relations: ['task', 'submission'] });
   }
 
   async findById(id: number): Promise<UserTask> {
@@ -16,11 +16,6 @@ class UserTaskRepository extends Repository<UserTask> {
     });
     if (!userTask) throw new Error('ERR_USER_TASK_NOT_FOUND');
     return userTask;
-  }
-
-  async findAll(): Promise<UserTask[]> {
-    // TODO: handle pagination
-    return await this.find();
   }
 }
 
