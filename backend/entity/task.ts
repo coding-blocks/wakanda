@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
+import { UserTask } from './user-task';
 
 @Entity()
 export class Task {
@@ -32,4 +33,7 @@ export class Task {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
+
+  @OneToMany(() => UserTask, (userTask) => userTask.task)
+  userTask: UserTask;
 }

@@ -1,12 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-export enum SubmissionStatus {
-  SCHEDULED = 'scheduled',
-  IN_PROGRESS = 'progress',
-  TO_REVIEW = 'review',
-  COMPLETED = 'completed',
-}
-
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { SubmissionAsset } from './submission-asset';
 @Entity()
 export class Submission {
   @PrimaryGeneratedColumn()
@@ -15,13 +8,11 @@ export class Submission {
   @Column('text')
   description: string;
 
-  @Column({
-    type: 'enum',
-    enum: SubmissionStatus,
-    default: SubmissionStatus.SCHEDULED,
-  })
-  status: SubmissionStatus;
-
   @Column({ type: 'timestamp' })
   submittedAt: Date;
+
+  @OneToMany(() => SubmissionAsset, (submissionAsset) => submissionAsset.submission, {
+    cascade: true,
+  })
+  submissionAsset: SubmissionAsset[];
 }

@@ -12,13 +12,16 @@ import { Task } from './task';
 import { User } from './user';
 import { Submission } from './submission';
 
+export enum SubmissionStatus {
+  DRAFT = 'draft',
+  TO_REVIEW = 'review',
+  ACCEPTED = 'accepted',
+  REJECTED = 'rejected',
+}
 @Entity()
 export class UserTask {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
-  description: string;
 
   @Column()
   userId: number;
@@ -40,7 +43,17 @@ export class UserTask {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
+  @Column({
+    type: 'enum',
+    enum: SubmissionStatus,
+    default: SubmissionStatus.DRAFT,
+  })
+  status: SubmissionStatus;
+
   @OneToOne(() => Submission)
   @JoinColumn()
   submission: Submission;
+
+  @Column({ default: 0 })
+  assignedPoints: number;
 }

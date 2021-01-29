@@ -9,7 +9,7 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
   throw new ApiError(
     {
       title: 'Unauthenticated',
-      detail: 'You need to login inorder to this page.',
+      detail: 'You need to login inorder to view this page.',
     },
     401,
   );

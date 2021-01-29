@@ -8,7 +8,7 @@ export default {
   name: 'default',
   type: 'postgres',
   synchronize: false,
-  logging: false,
+  logging: true,
   entities: [path.join(__dirname, 'entity/**/*.{js,ts}')],
   migrations: [path.join(__dirname, 'migration/**/*.{js,ts}')],
   subscribers: [path.join(__dirname, 'subscriber/**/*.{js,ts}')],

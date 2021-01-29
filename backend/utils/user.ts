@@ -1,5 +1,4 @@
 import { User } from 'entity';
-import UserRepository from '../repositories/user';
 import { OneauthUser } from '../services/oneauth';
 import { UserRole } from '../entity/user';
 import { Repositories } from '../repositories/index';
