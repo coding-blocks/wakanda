@@ -14,7 +14,6 @@ const currentUserSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase('currentUser/load/fulfilled', (state, action: any) => {
-      console.log(action);
       state.status = 'succeeded';
       state.user = action.payload;
       state.isAuthenticated = true;
