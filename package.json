@@ -6,7 +6,7 @@
   "scripts": {
     "build:backend": "tsc --project backend/tsconfig.json",
     "start:backend": "node dist/backend/index.js",
-    "build:frontend": "webpack -w -c ./frontend/webpack.config.js",
+    "build:frontend": "webpack -c ./frontend/webpack.config.js",
     "dev:frontend": "webpack serve -c ./frontend/webpack.config.js",
     "typeorm": "ts-node --project ./backend/tsconfig.json ./node_modules/typeorm/cli.js --config ./backend/ormconfig.ts",
     "migration": "yarn typeorm migration:run"
