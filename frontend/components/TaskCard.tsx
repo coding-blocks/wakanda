@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-
+import { SubmissionModal } from './SubmissionModal';
+// move this to utils
 function ordinal_suffix_of(i) {
   const j = i % 10;
   const k = i % 100;
@@ -39,9 +40,12 @@ const TaskAccordian = (props) => {
   if (props.showContent) return <div>{props.children}</div>;
   return null;
 };
+
 export const TaskCard: React.FC<any> = ({ task }) => {
   const [showContent, setShowContent] = useState(false);
   const handleAccordianClick = () => setShowContent(!showContent);
+
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
 
   return (
     <div className="card br-10 bg-white my-4">
@@ -65,7 +69,9 @@ export const TaskCard: React.FC<any> = ({ task }) => {
         </div>
         <div className="col">
           <div className="d-flex justify-content-end">
-            <button className="btn btn-primary">Submit</button>
+            <button className="btn btn-primary" onClick={() => setShowSubmitModal(true)}>
+              Submit
+            </button>
           </div>
         </div>
       </div>
@@ -77,6 +83,8 @@ export const TaskCard: React.FC<any> = ({ task }) => {
       <TaskAccordian showContent={showContent}>
         <ReactMarkdown>{task.description}</ReactMarkdown>
       </TaskAccordian>
+
+      <SubmissionModal setShow={setShowSubmitModal} show={showSubmitModal} />
     </div>
   );
 };

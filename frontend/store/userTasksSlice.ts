@@ -21,6 +21,9 @@ export const activeTasksSlice = createSlice({
       state.status = 'succeeded';
       activeTasksAdapter.upsertMany(state, action.payload);
     });
+    builder.addCase('task/saveSubmission/fulfilled', (state, action) => {
+      // wait for better structured post response
+    });
   },
 });
 
@@ -28,6 +31,23 @@ export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async
   const tasks = await client.get('/task');
   return tasks.data.data;
 });
+
+export const saveSubmission: any = createAsyncThunk(
+  'task/saveSubmission',
+  async ({ userTaskId, submission }: any) => {
+    const saveTask = await client.post(`/submission`, {
+      scope: {
+        model: 'task',
+        id: userTaskId,
+      },
+      data: {
+        ...submission,
+      },
+    });
+    console.log(saveTask.data);
+    return saveTask;
+  },
+);
 
 type RootState = ReturnType<typeof store.getState>;
 

@@ -29,6 +29,7 @@
     "passport-oneauth": "^1.3.0",
     "pg": "^8.5.1",
     "react-markdown": "^5.0.3",
+    "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^9.1.1",

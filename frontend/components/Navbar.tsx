@@ -1,12 +1,11 @@
 import React from 'react';
 
-const Navbar: React.FC = () => {
+export const Navbar: React.FC = () => {
   return (
-    <nav>
-      <ul>
-        <li>hello</li>
-      </ul>
-    </nav>
+    <div className="row p-3 justify-content-between">
+      <div className=""></div>
+      <div className=""></div>
+    </div>
   );
 };
 

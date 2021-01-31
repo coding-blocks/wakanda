@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthenticatedRoute from './components/common/AuthenticatedRoute';
@@ -7,15 +7,19 @@ import CAPortal from './pages/CAPortal';
 import RedirectToLogin from './pages/RedirectToLogin';
 import { loadUser } from './store/currentUserSlice';
 
-export default () => {
+export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.currentUser.user);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
 
   React.useEffect(() => {
-    dispatch(loadUser());
+    const userload = async () => {
+      const userRequest = await dispatch(loadUser());
+      setIsUserLoaded(true);
+    };
+    userload();
   }, []);
 
-  // if (!user) return <div>Login</div>;
+  if (!isUserLoaded) return null;
 
   return (
     <Router>
@@ -33,3 +37,5 @@ export default () => {
     </Router>
   );
 };
+
+export default App;
