@@ -7,7 +7,7 @@ export const oneauthUserToUpdateOpts = (oneauthUser: OneauthUser) => ({
   name: oneauthUser.name,
   email: oneauthUser.email,
   username: oneauthUser.username,
-  // photo: oneauthUser.photo,
+  photo: oneauthUser.photo,
 });
 
 export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
@@ -15,7 +15,7 @@ export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
   name: oneauthUser.name,
   email: oneauthUser.email,
   username: oneauthUser.username,
-  // photo: oneauthUser.photo,
+  photo: oneauthUser.photo,
   role: UserRole.DEFAULT,
 });
 

@@ -9,10 +9,7 @@ export const Useroverview: React.FC = () => {
       <div className="d-flex my-2 py-5 bg-white card br-10 justify-content-between">
         <div className="my-auto">
           <div className="d-flex">
-            <img
-              className="s-80X80 round my-auto mx-2"
-              src="https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png"
-            />
+            <img className="s-80X80 round my-auto mx-2" src={user.photo} />
             <div className="ml-4 my-auto">
               <h4 className="mx-auto extra-bold font-mdxl mb-2">{user.name}</h4>
               <span className="font-sm med-grey">Amity International College</span>
