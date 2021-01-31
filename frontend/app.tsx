@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthenticatedRoute from './components/common/AuthenticatedRoute';
 import { Baselayout } from './layouts/base';
-import CAPortal from './pages/CAPortal';
-import RedirectToLogin from './pages/RedirectToLogin';
 import { loadUser } from './store/currentUserSlice';
+import Dashboard from './pages/dashboard';
+import Index from './pages';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,14 +24,16 @@ export const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <AuthenticatedRoute exact path="/">
+        <AuthenticatedRoute exact path="/dashboard">
           <Baselayout>
-            <CAPortal />
+            <Dashboard />
           </Baselayout>
         </AuthenticatedRoute>
 
-        <Route exact path="/redirectToLogin">
-          <RedirectToLogin />
+        <Route exact path="/">
+          <Baselayout>
+            <Index />
+          </Baselayout>
         </Route>
       </Switch>
     </Router>

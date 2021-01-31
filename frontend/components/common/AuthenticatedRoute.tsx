@@ -14,7 +14,7 @@ export const AuthenticatedRoute: React.FC<any> = ({ children, ...props }) => {
         ) : (
           <Redirect
             to={{
-              pathname: '/redirectToLogin',
+              pathname: '/',
               state: { from: location },
             }}
           />
