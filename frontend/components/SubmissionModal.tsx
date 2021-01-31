@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
+import Modal from './common/Modal';
 import { useDispatch } from 'react-redux';
 import { saveSubmission } from '../store/userTasksSlice';
 
@@ -24,12 +24,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
   };
 
   return (
-    <Modal
-      isOpen={props.show}
-      onRequestClose={() => {
-        props.setShow(false);
-      }}
-    >
+    <Modal show={props.show} setShow={props.setShow}>
       <div className="row p-3">
         <div className="col-10">
           <div className="font-sm med-grey mb-2">Task</div>
