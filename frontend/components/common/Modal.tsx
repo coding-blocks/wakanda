@@ -18,7 +18,7 @@ export default (props) => {
         },
       }}
     >
-      <div className="card br-10 bg-white p-4 container">{...props.children}</div>
+      <div className="card br-10 bg-white container">{...props.children}</div>
     </Modal>
   );
 };

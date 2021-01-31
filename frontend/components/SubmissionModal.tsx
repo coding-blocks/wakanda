@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Modal from './common/Modal';
 import { useDispatch } from 'react-redux';
 import { saveSubmission } from '../store/userTasksSlice';
+import { dateFormater } from '../utils/datetime';
 
 export const SubmissionModal: React.FC<any> = (props) => {
+  const { task } = props;
   const [files, setFiles] = useState(null);
   const [submissionDescription, setSubmissionDescription] = useState('');
   const [uploadState, setUploadState] = useState('');
@@ -25,37 +27,57 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
   return (
     <Modal show={props.show} setShow={props.setShow}>
-      <div className="row p-3">
-        <div className="col-10">
-          <div className="font-sm med-grey mb-2">Task</div>
-          <h3 className="font-xl">hello</h3>
+      <div className="px-5 py-4">
+        <div className="row">
+          <div className="col-10">
+            <div className="font-sm med-grey mb-2">Task</div>
+            <h3 className="font-xl">{task.name}</h3>
+          </div>
+
+          <div className="col-2">
+            <div className="d-flex justify-content-end">
+              <h3>{task.points}</h3>
+            </div>
+          </div>
         </div>
 
-        <div className="col-2">
-          <div className="d-flex justify-content-end">
-            <h3>20</h3>
+        <div className="row mt-4">
+          <div className="col">
+            <div className="font-5">Duration</div>
+            <div className="font-mds orange">{`${dateFormater(task.startDate)} - ${dateFormater(
+              task.endDate,
+            )}`}</div>
           </div>
         </div>
       </div>
 
-      <div className="row p-3">
-        <div className="col">
-          <div className="card-md">Duration</div>
-          <div>{`21st - 31st`}</div>
-        </div>
-      </div>
+      <div className="divider-h"></div>
 
-      <form onSubmit={handleSubmit}>
-        <label>Describe what you did in the task</label>
-        <input
-          type="textarea"
-          className="mx-3"
-          value={submissionDescription}
-          onChange={(e) => setSubmissionDescription(e.target.value)}
-        />
-        <input type="file" className="mx-3" multiple onChange={fileChangeHandler} />
-        <input type="submit" className="mx-3" value="Submit For Review" />
-      </form>
+      <div className="px-5 py-4">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col">
+              <label>Describe what you did in the task</label>
+              <textarea
+                placeholder="Add a Note"
+                className="underline-input w-100 mt-3 bg-light-grey br-5 p-4"
+                value={submissionDescription}
+                onChange={(e) => setSubmissionDescription(e.target.value)}
+              ></textarea>
+            </div>
+          </div>
+          <div className="row mt-5">
+            <div className="col">
+              <input type="file" multiple onChange={fileChangeHandler} />
+            </div>
+          </div>
+          <div className="row mt-5">
+            <div className="col d-flex justify-content-end">
+              <button className="button-solid button-orange">Submit For Review</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 };
