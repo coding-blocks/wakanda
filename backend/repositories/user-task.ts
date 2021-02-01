@@ -1,5 +1,5 @@
-import { UserTask } from '../entity';
-import { EntityRepository, Repository } from 'typeorm';
+import { UserTask, Submission } from '../entity';
+import { EntityManager, EntityRepository, getRepository, Repository, Transaction } from 'typeorm';
 @EntityRepository(UserTask)
 class UserTaskRepository extends Repository<UserTask> {
   findByUserId(id: number) {
@@ -16,6 +16,25 @@ class UserTaskRepository extends Repository<UserTask> {
     });
     if (!userTask) throw new Error('ERR_USER_TASK_NOT_FOUND');
     return userTask;
+  }
+
+  createSubmissionForTask(id: number, submission: Submission) {
+    return this.manager.transaction(async (entityManager: EntityManager) => {
+      const submissionRepository = entityManager.getRepository(Submission);
+      const userTaskRepository = entityManager.getCustomRepository(UserTaskRepository);
+
+      console.log('params', submission);
+      const userSubmission = await submissionRepository.save({
+        ...submission,
+        submittedAt: new Date(),
+      });
+      const userTask = await userTaskRepository.findByTaskId(id);
+      userTask.submission = userSubmission;
+
+      await userTaskRepository.save(userTask);
+
+      return userTask;
+    });
   }
 }
 

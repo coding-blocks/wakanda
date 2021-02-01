@@ -9,13 +9,13 @@ export class SubmissionAsset {
   @Column('text')
   url: string;
 
-  @Column()
+  @Column({ nullable: true })
   type: string;
 
   @Column()
   submissionId: number;
 
-  @ManyToOne(() => Submission, (submission) => submission.submissionAsset)
+  @ManyToOne(() => Submission, (submission) => submission.submissionAssets)
   @JoinColumn({ name: 'submissionId' })
   submission: Submission;
 }

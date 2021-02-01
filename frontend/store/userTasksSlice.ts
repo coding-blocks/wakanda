@@ -34,11 +34,11 @@ export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async
 
 export const saveSubmission: any = createAsyncThunk(
   'task/saveSubmission',
-  async ({ userTaskId, submission }: any) => {
+  async ({ taskId, submission }: any) => {
     const saveTask = await client.post(`/submission`, {
       scope: {
         model: 'task',
-        id: userTaskId,
+        id: taskId,
       },
       data: {
         ...submission,

@@ -19,10 +19,12 @@ export const SubmissionModal: React.FC<any> = (props) => {
   const handleSubmit = async (e) => {
     const saveSubmissionRequest = await dispatch(
       saveSubmission({
-        userTaskId: task.userTask.id,
+        taskId: task.id,
         submission: {
           description: submissionDescription,
-          assets: files,
+          submissionAssets: files.map((file) => ({
+            url: file,
+          })),
         },
       }),
     );

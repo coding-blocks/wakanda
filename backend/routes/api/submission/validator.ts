@@ -4,9 +4,7 @@ import Joi from 'joi';
 export default {
   POST: toRequestValidator(
     Joi.object({
-      scope: Joi.object({
-        status: Joi.string().valid('review', 'draft').required(),
-      }).required(),
+      scope: Joi.object().required(),
       data: Joi.object().required(),
     }),
     'body',
