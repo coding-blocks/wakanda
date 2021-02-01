@@ -13,7 +13,8 @@ export const FileUploader: React.FC<any> = (props) => {
   const handleUpload = async (e) => {
     const { data: response } = await client.post('/minio/presignedUrl');
     const presignedUrl = response.data.url;
-    await axios.put(presignedUrl, {
+    await fetch(presignedUrl, {
+      method: 'PUT',
       body: file,
     });
     props.setValue((filesArray) => filesArray.concat(presignedUrl.split('?')[0]));

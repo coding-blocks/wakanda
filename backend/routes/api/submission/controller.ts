@@ -13,6 +13,35 @@ class SubmissionController {
     res.json(await Repositories.submission.findById(userTask.submission.id));
   }
 
+  async handleQueryById(req: Request, res: Response) {
+    const id = req.params.id;
+
+    const submission = await Repositories.submission.findOne(id, {
+      relations: ['submissionAssets'],
+    });
+
+    res.json({
+      data: submission,
+    });
+  }
+
+  async handleUpdateById(req: Request, res: Response) {
+    const id = req.params.id;
+    const payload = req.body.data;
+
+    await Repositories.submission.update(
+      {
+        id: Number(id),
+      },
+      payload,
+    );
+    const submission = await Repositories.submission.findOne(id);
+
+    res.json({
+      data: submission,
+    });
+  }
+
   async handleUpdateSubmissionStatus(req: Request, res: Response) {
     const status = req.body.status;
     const id = req.params.id;

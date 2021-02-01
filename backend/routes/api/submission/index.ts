@@ -7,6 +7,8 @@ const router = Router();
 
 router.use(isAuthenticated);
 router.post('/', validator.POST, controller.handleCreateSubmission);
+router.get('/:id', controller.handleQueryById);
+router.patch('/:id', controller.handleUpdateById);
 router.post('/:id/status', validator.SUBMIT, controller.handleUpdateSubmissionStatus);
 
 export default router;
