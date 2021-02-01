@@ -22,7 +22,7 @@ export const activeTasksSlice = createSlice({
       activeTasksAdapter.upsertMany(state, action.payload);
     });
     builder.addCase('task/saveSubmission/fulfilled', (state, action) => {
-      // wait for better structured post response
+      // TODO:depending upon structure of response
     });
   },
 });
