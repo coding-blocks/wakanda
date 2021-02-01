@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Modal from './common/Modal';
+import { FileUploader } from './common/FileUploader';
 import { useDispatch } from 'react-redux';
 import { saveSubmission } from '../store/userTasksSlice';
 import { dateFormater } from '../utils/datetime';
 
 export const SubmissionModal: React.FC<any> = (props) => {
   const { task } = props;
-  const [files, setFiles] = useState(null);
+  const [files, setFiles] = useState([]);
   const [submissionDescription, setSubmissionDescription] = useState('');
   const [uploadState, setUploadState] = useState('');
   const dispatch = useDispatch();
@@ -17,11 +18,23 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const saveSubmissionRequest = await dispatch(
-      saveSubmission({
-        userTaskId: 1,
-        submission: { description: submissionDescription },
-      }),
+    // const saveSubmissionRequest = await dispatch(
+    //   saveSubmission({
+    //     userTaskId: 1,
+    //     submission: { description: submissionDescription },
+    //   }),
+    // );
+  };
+
+  const FilesUploader = () => {
+    const currentFiles = files.map((file) => {
+      return <FileUploader value={file} />;
+    });
+    return (
+      <div className="">
+        {currentFiles}
+        <FileUploader setFiles={setFiles} />
+      </div>
     );
   };
 
@@ -68,7 +81,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
           </div>
           <div className="row mt-5">
             <div className="col">
-              <input type="file" multiple onChange={fileChangeHandler} />
+              <FilesUploader />
             </div>
           </div>
           <div className="row mt-5">
