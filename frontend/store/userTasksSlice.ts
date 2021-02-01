@@ -44,7 +44,6 @@ export const saveSubmission: any = createAsyncThunk(
         ...submission,
       },
     });
-    console.log(saveTask.data);
     return saveTask;
   },
 );
