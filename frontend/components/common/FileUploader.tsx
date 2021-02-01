@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import client from '../../services/api';
-import { cli } from 'webpack';
 
 export const FileUploader: React.FC<any> = (props) => {
   const [file, setFile] = useState();
@@ -11,13 +10,13 @@ export const FileUploader: React.FC<any> = (props) => {
     setFile(files[0]);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (e) => {
     const { data: response } = await client.post('/minio/presignedUrl');
-    const presignedUrl = response.data;
+    const presignedUrl = response.data.url;
     await axios.put(presignedUrl, {
       body: file,
     });
-    // props.setFiles( presignedUrl.split('?')[0])
+    props.setValue((filesArray) => filesArray.concat(presignedUrl.split('?')[0]));
   };
 
   if (url) {

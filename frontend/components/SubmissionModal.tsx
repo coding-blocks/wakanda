@@ -17,13 +17,15 @@ export const SubmissionModal: React.FC<any> = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // const saveSubmissionRequest = await dispatch(
-    //   saveSubmission({
-    //     userTaskId: 1,
-    //     submission: { description: submissionDescription },
-    //   }),
-    // );
+    const saveSubmissionRequest = await dispatch(
+      saveSubmission({
+        userTaskId: task.userTask.id,
+        submission: {
+          description: submissionDescription,
+          assets: files,
+        },
+      }),
+    );
   };
 
   const FilesUploader = () => {
@@ -33,7 +35,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
     return (
       <div className="">
         {currentFiles}
-        <FileUploader setFiles={setFiles} />
+        <FileUploader setValue={setFiles} />
       </div>
     );
   };
@@ -67,29 +69,29 @@ export const SubmissionModal: React.FC<any> = (props) => {
       <div className="divider-h"></div>
 
       <div className="px-5 py-4">
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col">
-              <label>Describe what you did in the task</label>
-              <textarea
-                placeholder="Add a Note"
-                className="underline-input w-100 mt-3 bg-light-grey br-5 p-4"
-                value={submissionDescription}
-                onChange={(e) => setSubmissionDescription(e.target.value)}
-              ></textarea>
-            </div>
+        <div className="row">
+          <div className="col">
+            <label>Describe what you did in the task</label>
+            <textarea
+              placeholder="Add a Note"
+              className="underline-input w-100 mt-3 bg-light-grey br-5 p-4"
+              value={submissionDescription}
+              onChange={(e) => setSubmissionDescription(e.target.value)}
+            ></textarea>
           </div>
-          <div className="row mt-5">
-            <div className="col">
-              <FilesUploader />
-            </div>
+        </div>
+        <div className="row mt-5">
+          <div className="col">
+            <FilesUploader />
           </div>
-          <div className="row mt-5">
-            <div className="col d-flex justify-content-end">
-              <button className="button-solid button-orange">Submit For Review</button>
-            </div>
+        </div>
+        <div className="row mt-5">
+          <div className="col d-flex justify-content-end">
+            <button className="button-solid button-orange" onClick={handleSubmit}>
+              Submit For Review
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     </Modal>
   );
