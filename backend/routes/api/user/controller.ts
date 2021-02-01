@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { Repositories } from '../../../repositories/index';
+import Repositories from '../../../repositories/index';
 
 class UserController {
   async handleGetMe(req: Request, res: Response) {
     res.json({
-      data: await Repositories.getInstance().user.findOne(req.user.id),
+      data: await Repositories.user.findOne(req.user.id),
     });
   }
 }
