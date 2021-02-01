@@ -31,7 +31,6 @@ app.use(passport.session());
 app.use(getDirRouter(path.join(__dirname, 'routes')));
 
 app.use((err, req, res, next) => {
-  console.log(err);
   res.status(err.statusCode || 500).json({
     errors: [
       {

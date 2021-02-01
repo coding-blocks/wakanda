@@ -26,5 +26,6 @@ export default {
     ACCESS_KEY: process.env.MINIO_ACCESS_KEY || 'bleh',
     SECRET_KEY: process.env.MINIO_SECRET_KEY || 'bleh',
     BUCKET_NAME: process.env.MINIO_BUCKET_NAME || 'amoeba',
+    USE_SSL: process.env.NODE_ENV === 'production',
   },
 };

@@ -7,14 +7,12 @@ import { upsertUser } from '../utils/user';
 import { Repositories } from '../repositories/index';
 
 passport.serializeUser((user: User, done) => {
-  console.log('serialize', user);
   return done(null, user.id);
 });
 
 passport.deserializeUser(async (userId: number, done) => {
   try {
     const user = await Repositories.getInstance().user.findOne(userId);
-    console.log(user);
     done(null, user);
   } catch (err) {
     done(err);

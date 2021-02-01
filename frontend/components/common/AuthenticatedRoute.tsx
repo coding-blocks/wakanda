@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom';
 
 export const AuthenticatedRoute: React.FC<any> = ({ children, ...props }) => {
   const isAuthenticated = useSelector((state: any) => state.currentUser.isAuthenticated);
-  console.log(isAuthenticated);
   return (
     <Route
       {...props}
