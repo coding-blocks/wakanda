@@ -1,45 +1,30 @@
 import React, { useState } from 'react';
 import Modal from './common/Modal';
-import { FileUploader } from './common/FileUploader';
+import { createSubmission, saveSubmission } from '../store/userTasksSlice';
 import { useDispatch } from 'react-redux';
-import { saveSubmission } from '../store/userTasksSlice';
+import { SubmissionEditor } from './forms/SubmissionEditor';
 import { dateFormater } from '../utils/datetime';
 
 export const SubmissionModal: React.FC<any> = (props) => {
   const { task } = props;
-  const [files, setFiles] = useState([]);
-  const [submissionDescription, setSubmissionDescription] = useState('');
-  const [uploadState, setUploadState] = useState('');
+  const [submission, setSubmission] = useState(
+    props.task.userTask[0].submission ?? { description: '' },
+  );
   const dispatch = useDispatch();
 
-  const fileChangeHandler = (e) => {
-    setFiles(e.target.files);
-  };
-
   const handleSubmit = async (e) => {
-    const saveSubmissionRequest = await dispatch(
-      saveSubmission({
+    if (task.userTask[0]?.submission?.id) {
+      const saveSubmissionRequest = await dispatch(saveSubmission(submission));
+      return saveSubmissionRequest;
+    }
+
+    const createSubmissionRequest = await dispatch(
+      createSubmission({
         taskId: task.id,
-        submission: {
-          description: submissionDescription,
-          submissionAssets: files.map((file) => ({
-            url: file,
-          })),
-        },
+        submission,
       }),
     );
-  };
-
-  const FilesUploader = () => {
-    const currentFiles = files.map((file) => {
-      return <FileUploader value={file} />;
-    });
-    return (
-      <div className="">
-        {currentFiles}
-        <FileUploader setValue={setFiles} />
-      </div>
-    );
+    return createSubmissionRequest;
   };
 
   return (
@@ -70,29 +55,13 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
       <div className="divider-h"></div>
 
-      <div className="px-5 py-4">
-        <div className="row">
-          <div className="col">
-            <label>Describe what you did in the task</label>
-            <textarea
-              placeholder="Add a Note"
-              className="underline-input w-100 mt-3 bg-light-grey br-5 p-4"
-              value={submissionDescription}
-              onChange={(e) => setSubmissionDescription(e.target.value)}
-            ></textarea>
-          </div>
-        </div>
-        <div className="row mt-5">
-          <div className="col">
-            <FilesUploader />
-          </div>
-        </div>
-        <div className="row mt-5">
-          <div className="col d-flex justify-content-end">
-            <button className="button-solid button-orange" onClick={handleSubmit}>
-              Submit For Review
-            </button>
-          </div>
+      <SubmissionEditor taskId={task.id} submission={submission} setSubmission={setSubmission} />
+
+      <div className="row mt-5">
+        <div className="col d-flex justify-content-end">
+          <button className="button-solid button-orange" onClick={handleSubmit}>
+            Submit For Review
+          </button>
         </div>
       </div>
     </Modal>
