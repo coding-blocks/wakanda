@@ -5,6 +5,7 @@ import validator from './validator';
 
 const router = Router();
 
+router.use(isAuthenticated);
 router.post('/', validator.POST, controller.handleDraft);
 router.post('/:id/status', validator.SUBMIT, controller.handleSubmission);
 

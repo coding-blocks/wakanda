@@ -4,7 +4,7 @@ import TaskRepository from './task';
 import SubmissionRepository from './submission';
 import UserTaskRepository from './user-task';
 
-export class Repositories {
+class Repositories {
   private connection: Connection;
 
   constructor(name = 'default') {
@@ -30,3 +30,5 @@ export class Repositories {
     return new Repositories();
   }
 }
+
+export default Repositories.getInstance();

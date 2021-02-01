@@ -1,7 +1,7 @@
 import { User } from 'entity';
 import { OneauthUser } from '../services/oneauth';
 import { UserRole } from '../entity/user';
-import { Repositories } from '../repositories/index';
+import Repositories from '../repositories/index';
 
 export const oneauthUserToUpdateOpts = (oneauthUser: OneauthUser) => ({
   name: oneauthUser.name,
@@ -20,17 +20,17 @@ export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
 });
 
 export const upsertUser = async (oneauthUser: OneauthUser): Promise<User> => {
-  const dbUser = await Repositories.getInstance().user.findOne({
+  const dbUser = await Repositories.user.findOne({
     where: {
       oneauth_id: oneauthUser.id,
     },
   });
 
   if (dbUser) {
-    await Repositories.getInstance().user.update(dbUser.id, oneauthUserToUpdateOpts(oneauthUser));
+    await Repositories.user.update(dbUser.id, oneauthUserToUpdateOpts(oneauthUser));
 
-    return Repositories.getInstance().user.findOne(dbUser.id);
+    return Repositories.user.findOne(dbUser.id);
   }
 
-  return Repositories.getInstance().user.save(oneauthUserToCreateOpts(oneauthUser));
+  return Repositories.user.save(oneauthUserToCreateOpts(oneauthUser));
 };

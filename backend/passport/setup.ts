@@ -4,7 +4,7 @@ import config from '../config';
 import { User } from '../entity';
 import { OneauthUser } from '../services/oneauth';
 import { upsertUser } from '../utils/user';
-import { Repositories } from '../repositories/index';
+import Repositories from '../repositories/index';
 
 passport.serializeUser((user: User, done) => {
   return done(null, user.id);
@@ -12,7 +12,8 @@ passport.serializeUser((user: User, done) => {
 
 passport.deserializeUser(async (userId: number, done) => {
   try {
-    const user = await Repositories.getInstance().user.findOne(userId);
+    const user = await Repositories.user.findOne(userId);
+    console.log(user);
     done(null, user);
   } catch (err) {
     done(err);
