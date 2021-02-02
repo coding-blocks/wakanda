@@ -18,6 +18,7 @@ export interface OneauthUser {
   role: string;
   verifiedemail: string;
   verifiedmobile: string;
+  college: string;
 }
 
 class OneauthService {
@@ -50,7 +51,6 @@ class OneauthService {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
     return response.data;
   }
 }

@@ -55,4 +55,14 @@ export class User {
 
   @Column({ default: 0 })
   totalPoints: number;
+
+  @Column({
+    nullable: true,
+  })
+  caCode: string;
+
+  @Column({
+    nullable: true,
+  })
+  college: string;
 }

@@ -8,6 +8,7 @@ export const oneauthUserToUpdateOpts = (oneauthUser: OneauthUser) => ({
   email: oneauthUser.email,
   username: oneauthUser.username,
   photo: oneauthUser.photo,
+  college: oneauthUser.college,
 });
 
 export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
@@ -17,6 +18,7 @@ export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
   username: oneauthUser.username,
   photo: oneauthUser.photo,
   role: UserRole.DEFAULT,
+  college: oneauthUser.college,
 });
 
 export const upsertUser = async (oneauthUser: OneauthUser): Promise<User> => {
