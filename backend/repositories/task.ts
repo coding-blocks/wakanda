@@ -7,7 +7,7 @@ class TaskRepository extends Repository<Task> {
     return await this.createQueryBuilder('task')
       .innerJoinAndSelect('task.userTask', 'userTask')
       .leftJoinAndSelect('userTask.submission', 'submission')
-      .leftJoinAndSelect('submission.submissionAsset', 'submissionAssets')
+      .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('id=:id', { id: taskId })
       .where('userTask.userId=:id', { id: userId })
       .getOne();
@@ -17,6 +17,8 @@ class TaskRepository extends Repository<Task> {
     return await this.createQueryBuilder('task')
       .innerJoinAndSelect('task.userTask', 'userTask')
       .leftJoinAndSelect('userTask.submission', 'submission')
+      // Todo: Remove this from here
+      .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('userTask.userId=:id', { id: userId })
       .getMany();
   }
