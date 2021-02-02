@@ -18,7 +18,7 @@ export const SubmissionEditor: React.FC<any> = (props) => {
     return (
       <div className="">
         {currentFiles}
-        <FileUploader setValue={setFiles} />
+        <FileUploader setValue={setFiles} disabled={props.disabled} />
       </div>
     );
   };
@@ -34,10 +34,11 @@ export const SubmissionEditor: React.FC<any> = (props) => {
               className="underline-input w-100 mt-3 bg-light-grey br-5 p-4"
               value={props.submission.description}
               onChange={onDescriptionChange}
+              disabled={props.disabled}
             ></textarea>
           </div>
         </div>
-        <div className="row mt-5">
+        <div className="row mt-3">
           <div className="col">
             <FilesUploader />
           </div>

@@ -81,14 +81,27 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
       <div className="divider-h"></div>
 
-      <SubmissionEditor taskId={task.id} submission={submission} setSubmission={setSubmission} />
+      <SubmissionEditor
+        taskId={task.id}
+        submission={submission}
+        setSubmission={setSubmission}
+        disabled={task.userTask[0].status === 'review'}
+      />
 
       <div className="row mt-5 px-5 py-4">
         <div className="col d-flex justify-content-around">
-          <button className="button-dashed button-green" onClick={handleSave}>
+          <button
+            className="button-dashed button-green"
+            onClick={handleSave}
+            disabled={task.userTask[0].status === 'review'}
+          >
             Save
           </button>
-          <button className="button-solid button-orange" onClick={handleSubmit}>
+          <button
+            className="button-solid button-orange"
+            onClick={handleSubmit}
+            disabled={task.userTask[0].status === 'review'}
+          >
             Submit For Review
           </button>
         </div>

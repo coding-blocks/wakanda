@@ -39,14 +39,20 @@ export const TaskCard: React.FC<any> = ({ task }) => {
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
+              <div className="my-auto mx-3">
+                {task.userTask[0].status
+                  ? task.userTask[0].status === 'review'
+                    ? 'Under Review'
+                    : null
+                  : null}
+              </div>
               <button
                 className="button-solid button-orange"
                 onClick={() => setShowSubmitModal(true)}
-                disabled={task.userTask[0].status === 'review'}
               >
                 {task.userTask[0].status
                   ? task.userTask[0].status === 'review'
-                    ? 'In-review'
+                    ? 'View Submission'
                     : 'Submit'
                   : 'Submit'}
               </button>

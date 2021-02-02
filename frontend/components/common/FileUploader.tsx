@@ -26,14 +26,16 @@ export const FileUploader: React.FC<any> = (props) => {
 
   return (
     <div className="d-flex justify-content-between">
-      <input type="file" className="" onChange={onFileChange} />
-      <button
-        className="button-dashed button-orange p-2 mt-1"
-        style={{ fontSize: '0.85rem' }}
-        onClick={handleUpload}
-      >
-        Upload
-      </button>
+      {!props.disabled && <input type="file" className="" onChange={onFileChange} />}
+      {!!file && (
+        <button
+          className="button-dashed button-orange p-2 mt-1"
+          style={{ fontSize: '0.85rem' }}
+          onClick={handleUpload}
+        >
+          Upload
+        </button>
+      )}
     </div>
   );
 };
