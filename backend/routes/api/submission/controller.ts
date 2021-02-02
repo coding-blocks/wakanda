@@ -28,7 +28,7 @@ class SubmissionController {
   async handleUpdateById(req: Request, res: Response) {
     const id = req.params.id;
     const payload = req.body.data;
-
+    console.log(id, payload);
     await Repositories.submission.update(
       {
         id: Number(id),

@@ -52,7 +52,9 @@ export const saveSubmission: any = createAsyncThunk(
   'task/saveSubmission',
   async (submission: any) => {
     const saveTask = await client.patch(`/submission/${submission.id}`, {
-      submission,
+      data: {
+        ...submission,
+      },
     });
   },
 );
