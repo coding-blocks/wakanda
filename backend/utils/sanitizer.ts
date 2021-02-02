@@ -8,7 +8,5 @@ export const generateSanitizeduser = (data: User[]) => {
     username,
     totalPoints,
   }));
-  console.log(data);
-  console.log(newData);
   return newData;
 };
