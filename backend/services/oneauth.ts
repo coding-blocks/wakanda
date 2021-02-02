@@ -7,10 +7,22 @@ interface IOneauthParams {
   REDIRECT_URL: string;
 }
 
+export interface College {
+  id: number;
+  name: string;
+}
+export interface Demographic {
+  id: number;
+  otherCollege?: string | null;
+  collegeId: number;
+  college: College;
+}
+
 export interface OneauthUser {
   id: string;
   username: string;
-  name: string;
+  firstname: string;
+  lastname: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';
   photo: string;
   email: string;
@@ -18,7 +30,7 @@ export interface OneauthUser {
   role: string;
   verifiedemail: string;
   verifiedmobile: string;
-  college: string;
+  demographic: Demographic;
 }
 
 class OneauthService {
@@ -47,6 +59,9 @@ class OneauthService {
 
   async fetchUser(accessToken: string): Promise<OneauthUser> {
     const response = await this.axios.get('/api/users/me', {
+      params: {
+        include: 'demographic',
+      },
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

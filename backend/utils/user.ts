@@ -4,21 +4,21 @@ import { UserRole } from '../entity/user';
 import Repositories from '../repositories/index';
 
 export const oneauthUserToUpdateOpts = (oneauthUser: OneauthUser) => ({
-  name: oneauthUser.name,
+  name: oneauthUser.firstname + ' ' + oneauthUser.lastname,
   email: oneauthUser.email,
   username: oneauthUser.username,
   photo: oneauthUser.photo,
-  college: oneauthUser.college,
+  college: oneauthUser.demographic.college.name,
 });
 
 export const oneauthUserToCreateOpts = (oneauthUser: OneauthUser) => ({
   oneauth_id: oneauthUser.id,
-  name: oneauthUser.name,
+  name: oneauthUser.firstname + ' ' + oneauthUser.lastname,
   email: oneauthUser.email,
   username: oneauthUser.username,
   photo: oneauthUser.photo,
   role: UserRole.DEFAULT,
-  college: oneauthUser.college,
+  college: oneauthUser.demographic.college.name,
 });
 
 export const upsertUser = async (oneauthUser: OneauthUser): Promise<User> => {

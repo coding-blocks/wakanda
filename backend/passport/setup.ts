@@ -27,10 +27,12 @@ passport.use(
       clientID: config.ONEAUTH.CLIENT_ID,
       clientSecret: config.ONEAUTH.CLIENT_SECRET,
       callbackURL: config.ONEAUTH.REDIRECT_URL,
+      include: ['demographic'],
     },
-    async (_accessToken, _refreshToken, profile: OneauthUser, done) => {
+    async (_accessToken, _refreshToken, profile: any, done) => {
+      const oneauthUser: OneauthUser = profile._json;
       try {
-        const user = await upsertUser(profile);
+        const user = await upsertUser(oneauthUser);
         return done(null, user);
       } catch (e) {
         done(e);
