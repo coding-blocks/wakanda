@@ -1,8 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 export const Useroverview: React.FC = () => {
   const user = useSelector((state: any) => state.currentUser.user);
+
+  const copyCaCode = () => {
+    // TODO
+  };
 
   return (
     <div>
@@ -23,7 +29,14 @@ export const Useroverview: React.FC = () => {
               <div className="d-flex justify-content-end mb-2">
                 <span className="align-self-end font-sm med-grey">CA code</span>
               </div>
-              <h4 className="extra-bold font-mdxl">{user.caCode}</h4>
+              <div className="d-flex justify-content-between align-items-center">
+                <h4 className="extra-bold font-mdxl mr-3" id="ca-code">
+                  {user.caCode}
+                </h4>
+                <div className="pointer" onClick={() => copyCaCode()}>
+                  <FontAwesomeIcon icon={faCopy} size="lg" />
+                </div>
+              </div>
             </div>
           </div>
         )}
