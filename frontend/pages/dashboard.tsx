@@ -21,7 +21,11 @@ const CAPortal: React.FC = () => {
   let showActiveTasks;
   if (activeTasksStatus === 'succeeded') {
     showActiveTasks = activeTasks.map((task: any) => {
-      return <TaskCard key={task.id} task={task} />;
+      return (
+        <div className="mb-4">
+          <TaskCard key={task.id} task={task} />
+        </div>
+      );
     });
   }
 
@@ -29,9 +33,11 @@ const CAPortal: React.FC = () => {
     <div>
       <Useroverview />
       <div className="row">
-        <div className="col-8">{showActiveTasks}</div>
-        <div className="col-4">
-          <UserStats />
+        <div className="col-8 my-4">{showActiveTasks}</div>
+        <div className="col-4 my-4">
+          <div className="mb-4">
+            <UserStats />
+          </div>
           <LeaderBoard />
         </div>
       </div>

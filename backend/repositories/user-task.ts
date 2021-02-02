@@ -23,7 +23,6 @@ class UserTaskRepository extends Repository<UserTask> {
       const submissionRepository = entityManager.getRepository(Submission);
       const userTaskRepository = entityManager.getCustomRepository(UserTaskRepository);
 
-      console.log('params', submission);
       const userSubmission = await submissionRepository.save({
         ...submission,
         submittedAt: new Date(),

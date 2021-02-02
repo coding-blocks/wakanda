@@ -13,7 +13,6 @@ passport.serializeUser((user: User, done) => {
 passport.deserializeUser(async (userId: number, done) => {
   try {
     const user = await Repositories.user.findOne(userId);
-    console.log(user);
     done(null, user);
   } catch (err) {
     done(err);

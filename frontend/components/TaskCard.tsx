@@ -15,7 +15,7 @@ export const TaskCard: React.FC<any> = ({ task }) => {
   const [showSubmitModal, setShowSubmitModal] = useState(false);
 
   return (
-    <div className="card br-10 bg-white my-4 p-0">
+    <div className="card br-10 bg-white p-0">
       <div className="px-5 py-4">
         <div className="row">
           <div className="col-10">
