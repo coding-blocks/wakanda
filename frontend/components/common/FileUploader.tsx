@@ -21,19 +21,25 @@ export const FileUploader: React.FC<any> = (props) => {
   };
 
   if (url) {
-    return <a href={url}>{url}</a>;
+    return (
+      <div className="row">
+        <a href={url}>{url}</a>
+      </div>
+    );
   }
 
   return (
     <div className="d-flex justify-content-between">
       <input type="file" className="" onChange={onFileChange} />
-      <button
-        className="button-dashed button-orange p-2 mt-1"
-        style={{ fontSize: '0.85rem' }}
-        onClick={handleUpload}
-      >
-        Upload
-      </button>
+      {!!file && (
+        <button
+          className="button-dashed button-orange p-2 mt-1"
+          style={{ fontSize: '0.85rem' }}
+          onClick={handleUpload}
+        >
+          Upload
+        </button>
+      )}
     </div>
   );
 };
