@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Modal from './common/Modal';
-import { createSubmission, saveSubmission } from '../store/userTasksSlice';
+import {
+  createSubmission,
+  saveSubmission,
+  patchAndSubmitForReview,
+  createAndSubmitForReview,
+} from '../store/userTasksSlice';
 import { useDispatch } from 'react-redux';
 import { SubmissionEditor } from './forms/SubmissionEditor';
 import { dateFormater } from '../utils/datetime';
@@ -12,7 +17,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
   );
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  const handleSave = async (e) => {
     if (task.userTask[0]?.submission?.id) {
       const saveSubmissionRequest = await dispatch(saveSubmission(submission));
       return saveSubmissionRequest;
@@ -20,6 +25,21 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
     const createSubmissionRequest = await dispatch(
       createSubmission({
+        taskId: task.id,
+        submission,
+      }),
+    );
+    return createSubmissionRequest;
+  };
+
+  const handleSubmit = async () => {
+    if (task.userTask[0]?.submission?.id) {
+      const submitForReviewRequest = await dispatch(patchAndSubmitForReview(submission));
+      return submitForReviewRequest;
+    }
+
+    const createSubmissionRequest = await dispatch(
+      createAndSubmitForReview({
         taskId: task.id,
         submission,
       }),
@@ -57,8 +77,11 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
       <SubmissionEditor taskId={task.id} submission={submission} setSubmission={setSubmission} />
 
-      <div className="row mt-5">
-        <div className="col d-flex justify-content-end">
+      <div className="row mt-5 px-5 py-4">
+        <div className="col d-flex justify-content-around">
+          <button className="button-dashed button-green" onClick={handleSave}>
+            Save
+          </button>
           <button className="button-solid button-orange" onClick={handleSubmit}>
             Submit For Review
           </button>

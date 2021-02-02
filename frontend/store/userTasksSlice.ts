@@ -32,10 +32,10 @@ export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async
   return tasks.data.data;
 });
 
-export const saveSubmission: any = createAsyncThunk(
-  'task/saveSubmission',
+export const createSubmission: any = createAsyncThunk(
+  'task/creatSubmission',
   async ({ taskId, submission }: any) => {
-    const saveTask = await client.post(`/submission`, {
+    const createTask = await client.post(`/submission`, {
       scope: {
         model: 'task',
         id: taskId,
@@ -44,7 +44,42 @@ export const saveSubmission: any = createAsyncThunk(
         ...submission,
       },
     });
-    return saveTask;
+    return createTask;
+  },
+);
+
+export const saveSubmission: any = createAsyncThunk(
+  'task/saveSubmission',
+  async (submission: any) => {
+    const saveTask = await client.patch(`/submission/${submission.id}`, {
+      submission,
+    });
+  },
+);
+
+export const patchAndSubmitForReview = createAsyncThunk(
+  'task/submitSubmissionForReview',
+  async (submission: any) => {
+    const submitSubmissionForReview = await client.patch(`/submission/${submission.id}`, {
+      submission,
+    });
+    return submitSubmissionForReview.data;
+  },
+);
+
+export const createAndSubmitForReview = createAsyncThunk(
+  'task/submitSubmisionForReview',
+  async ({ taskId, submission }: any) => {
+    const createAndSubmitTaskForReview = await client.post('/submission', {
+      scope: {
+        model: 'task',
+        id: taskId,
+        status: 'review',
+      },
+      data: {
+        ...submission,
+      },
+    });
   },
 );
 
