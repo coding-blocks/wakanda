@@ -40,6 +40,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
           submission,
         }),
       );
+      window.location.reload();
       return submitForReviewRequest;
     }
 
@@ -50,6 +51,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
         submission,
       }),
     );
+    window.location.reload();
     return createSubmissionRequest;
   };
 
