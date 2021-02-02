@@ -34,13 +34,19 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
   const handleSubmit = async () => {
     if (task.userTask[0]?.submission?.id) {
-      const submitForReviewRequest = await dispatch(patchAndSubmitForReview(submission));
+      const submitForReviewRequest = await dispatch(
+        patchAndSubmitForReview({
+          userTaskId: task.userTask[0].id,
+          submission,
+        }),
+      );
       return submitForReviewRequest;
     }
 
     const createSubmissionRequest = await dispatch(
       createAndSubmitForReview({
         taskId: task.id,
+        userTaskId: task.userTask[0].id,
         submission,
       }),
     );

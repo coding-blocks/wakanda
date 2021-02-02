@@ -2,6 +2,12 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import store from '../store/index';
 import client from '../services/api';
 
+const submissionToReviewStatus = (userTaskId) => {
+  return client.post(`/submission/${userTaskId}/status`, {
+    status: 'review',
+  });
+};
+
 const activeTasksAdapter = createEntityAdapter();
 
 const activeTasksInitialState = activeTasksAdapter.getInitialState({
@@ -60,18 +66,21 @@ export const saveSubmission: any = createAsyncThunk(
 );
 
 export const patchAndSubmitForReview = createAsyncThunk(
-  'task/submitSubmissionForReview',
-  async (submission: any) => {
+  'task/patchAndSubmitSubmissionForReview',
+  async ({ userTaskId, submission }: any) => {
     const submitSubmissionForReview = await client.patch(`/submission/${submission.id}`, {
-      submission,
+      data: {
+        ...submission,
+      },
     });
+    await submissionToReviewStatus(userTaskId);
     return submitSubmissionForReview.data;
   },
 );
 
 export const createAndSubmitForReview = createAsyncThunk(
-  'task/submitSubmisionForReview',
-  async ({ taskId, submission }: any) => {
+  'task/creatandSubmitSubmisionForReview',
+  async ({ taskId, userTaskId, submission }: any) => {
     const createAndSubmitTaskForReview = await client.post('/submission', {
       scope: {
         model: 'task',
@@ -82,6 +91,8 @@ export const createAndSubmitForReview = createAsyncThunk(
         ...submission,
       },
     });
+    await submissionToReviewStatus(userTaskId);
+    return createAndSubmitForReview.data;
   },
 );
 

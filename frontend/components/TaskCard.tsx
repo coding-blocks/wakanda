@@ -42,8 +42,13 @@ export const TaskCard: React.FC<any> = ({ task }) => {
               <button
                 className="button-solid button-orange"
                 onClick={() => setShowSubmitModal(true)}
+                disabled={task.userTask[0].status === 'review'}
               >
-                Submit
+                {task.userTask[0].status
+                  ? task.userTask[0].status === 'review'
+                    ? 'In-review'
+                    : 'Submit'
+                  : 'Submit'}
               </button>
             </div>
           </div>
