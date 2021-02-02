@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import passport from '../../../passport/setup';
+import config from '../../../config';
 
 const router = Router();
 
@@ -8,7 +9,7 @@ router.get(
   '/callback',
   passport.authenticate('oneauth', {
     failureRedirect: '/',
-    successReturnToOrRedirect: 'http://codingblocks.wakanda/',
+    successReturnToOrRedirect: config.APP.PUBLIC_URL,
   }),
 );
 

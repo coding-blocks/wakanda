@@ -1,5 +1,6 @@
 export default {
   APP: {
+    PUBLIC_URL: process.env.PUBLIC_URL || 'http://codingblocks.wakanda',
     PORT: Number(process.env.APP_PORT) || 5566,
     HOST: process.env.APP_HOST || '0.0.0.0',
     COOKIE_SECRET: process.env.COOKIE_SECRET || 'bleh',
