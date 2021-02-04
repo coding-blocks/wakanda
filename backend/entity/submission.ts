@@ -12,7 +12,7 @@ export class Submission {
   submittedAt: Date;
 
   @OneToMany(() => SubmissionAsset, (submissionAsset) => submissionAsset.submission, {
-    cascade: ['insert'],
+    cascade: ['insert', 'update'],
   })
   submissionAssets: SubmissionAsset[];
 }

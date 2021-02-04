@@ -9,6 +9,12 @@ class TaskController {
     });
   }
 
+  async handleAllTasks(req: Request, res: Response) {
+    res.json({
+      data: await Repositories.task.find(),
+    });
+  }
+
   async handleGetCurrent(req: Request, res: Response) {
     const taskId = req.params.id;
     const userId = req.user.id;

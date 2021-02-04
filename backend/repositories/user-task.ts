@@ -1,5 +1,6 @@
 import { UserTask, Submission } from '../entity';
 import { EntityManager, EntityRepository, getRepository, Repository, Transaction } from 'typeorm';
+import { object } from 'joi';
 @EntityRepository(UserTask)
 class UserTaskRepository extends Repository<UserTask> {
   findByUserId(id: number) {
@@ -8,6 +9,17 @@ class UserTaskRepository extends Repository<UserTask> {
 
   findByTaskId(id: number) {
     return this.findOne({ where: { taskId: id }, relations: ['task', 'submission'] });
+  }
+
+  findBySubmissionId(id: number) {
+    return this.findOne({
+      where: {
+        submission: {
+          id,
+        },
+      },
+      relations: ['task', 'submission'],
+    });
   }
 
   async findById(id: number): Promise<UserTask> {
