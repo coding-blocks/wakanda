@@ -40,7 +40,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
           submission,
         }),
       );
-      window.location.reload();
+      // window.location.reload(); can also dispatch fetchTasks thunk
       return submitForReviewRequest;
     }
 
@@ -51,7 +51,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
         submission,
       }),
     );
-    window.location.reload();
+    // window.location.reload(); can also dispatch fetchTasks thunk
     return createSubmissionRequest;
   };
 

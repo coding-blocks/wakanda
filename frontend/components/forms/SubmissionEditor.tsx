@@ -2,12 +2,27 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FileUploader } from '../common/FileUploader';
 export const SubmissionEditor: React.FC<any> = (props) => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([]); // can depriciate this
   const dispatch = useDispatch();
+
+  const setSubmissionFiles = (newFile) => {
+    setFiles((prevFiles) => prevFiles.concat(newFile));
+    props.setSubmission((state) => {
+      return {
+        ...state,
+        submissionAssets: state.submissionAssets
+          ? state.submissionAssets.concat(newFile)
+          : [newFile],
+      };
+    });
+  };
 
   const onDescriptionChange = (e) => {
     props.setSubmission((submission) => {
-      return { ...submission, description: e.target.value };
+      return {
+        ...submission,
+        description: e.target.value,
+      };
     });
   };
 
@@ -18,7 +33,7 @@ export const SubmissionEditor: React.FC<any> = (props) => {
     return (
       <div className="">
         {currentFiles}
-        <FileUploader setValue={setFiles} disabled={props.disabled} />
+        <FileUploader setValue={setSubmissionFiles} disabled={props.disabled} />
       </div>
     );
   };

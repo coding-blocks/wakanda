@@ -4,6 +4,7 @@ import client from '../../services/api';
 
 export const FileUploader: React.FC<any> = (props) => {
   const [file, setFile] = useState();
+  const [uploadStatus, setUploadStatus] = useState('');
   const url = props.value;
   const onFileChange = (e) => {
     const files = e.target.files;
@@ -13,19 +14,25 @@ export const FileUploader: React.FC<any> = (props) => {
   const handleUpload = async (e) => {
     const { data: response } = await client.post('/minio/presignedUrl');
     const presignedUrl = response.data.url;
+    setUploadStatus('uploading');
     await fetch(presignedUrl, {
       method: 'PUT',
       body: file,
     });
-    props.setValue((filesArray) => filesArray.concat(presignedUrl.split('?')[0]));
+    props.setValue(presignedUrl.split('?')[0]);
   };
 
   if (url) {
-    return <a href={url}>{url}</a>;
+    return (
+      <div className="row">
+        <a href={url}>{url}</a>
+      </div>
+    );
   }
 
   return (
     <div className="d-flex justify-content-between">
+      {uploadStatus}
       {!props.disabled && <input type="file" className="" onChange={onFileChange} />}
       {!!file && (
         <button
