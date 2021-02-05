@@ -1,10 +1,9 @@
-import { Request, Response, Router } from 'express';
-import { ce } from '../../../utils/app';
+import { Router } from 'express';
 import { isAuthenticated } from '../../../middlewares/authentication';
 import controller from './controller';
 
 const router = Router();
 
-router.get('/me', isAuthenticated, ce(controller.handleGetMe));
+router.get('/me', isAuthenticated, controller.handleGetMe);
 
 export default router;

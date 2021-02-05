@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
+import AsyncHandler from '../../../decorators/async-handler';
 import { ApiError } from '../../../base/errors/api-error';
 
 class SubmissionPolicy {
+  @AsyncHandler()
   async updateById(req: Request, res: Response, next: NextFunction) {
     const userTask = await Repositories.userTask.findBySubmissionId(Number(req.params.id));
     if (userTask.status !== 'draft') {
@@ -17,6 +19,7 @@ class SubmissionPolicy {
     return next();
   }
 
+  @AsyncHandler()
   async belongsToUser(req: Request, res: Response, next: NextFunction) {
     const userTask = await Repositories.userTask.findBySubmissionId(Number(req.params.id));
     if (userTask.userId !== req.user.id) {

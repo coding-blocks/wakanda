@@ -1,8 +1,10 @@
 import { BaseSerializer } from 'base/serializer';
+import AsyncHandler from '../../../decorators/async-handler';
 import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 
 class SubmissionController {
+  @AsyncHandler()
   async handleCreateSubmission(req: Request, res: Response) {
     const payload = req.body.data;
     const scope: any = req.body.scope;
@@ -24,6 +26,7 @@ class SubmissionController {
     });
   }
 
+  @AsyncHandler()
   async handleUpdateById(req: Request, res: Response) {
     const id = Number(req.params.id);
     const payload = req.body.data;

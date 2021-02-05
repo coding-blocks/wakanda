@@ -1,24 +1,18 @@
-import { Request, Response, Router } from 'express';
-import { ce } from '../../../utils/app';
+import { Router } from 'express';
 import controller from './controller';
 import policies from './policies';
 import validator from './validator';
 
 const router = Router();
 
-router.post('/', validator.POST, ce(controller.handleCreateSubmission));
-router.get('/:id', ce(policies.belongsToUser), ce(controller.handleQueryById));
-router.patch(
-  '/:id',
-  ce(policies.belongsToUser),
-  ce(policies.updateById),
-  ce(controller.handleUpdateById),
-);
+router.post('/', validator.POST, controller.handleCreateSubmission);
+router.get('/:id', policies.belongsToUser, controller.handleQueryById);
+router.patch('/:id', policies.belongsToUser, policies.updateById, controller.handleUpdateById);
 router.post(
   '/:id/status',
   validator.SUBMIT,
-  ce(policies.belongsToUser),
-  ce(controller.handleUpdateSubmissionStatus),
+  policies.belongsToUser,
+  controller.handleUpdateSubmissionStatus,
 );
 
 export default router;
