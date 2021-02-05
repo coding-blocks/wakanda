@@ -7,8 +7,18 @@ import validator from './validator';
 const router = Router();
 
 router.post('/', validator.POST, ce(controller.handleCreateSubmission));
-router.get('/:id', ce(controller.handleQueryById));
-router.patch('/:id', ce(policies.updateById), ce(controller.handleUpdateById));
-router.post('/:id/status', validator.SUBMIT, ce(controller.handleUpdateSubmissionStatus));
+router.get('/:id', ce(policies.belongsToUser), ce(controller.handleQueryById));
+router.patch(
+  '/:id',
+  ce(policies.belongsToUser),
+  ce(policies.updateById),
+  ce(controller.handleUpdateById),
+);
+router.post(
+  '/:id/status',
+  validator.SUBMIT,
+  ce(policies.belongsToUser),
+  ce(controller.handleUpdateSubmissionStatus),
+);
 
 export default router;
