@@ -32,13 +32,9 @@ class SubmissionController {
     const id = Number(req.params.id);
     const payload = req.body.data;
 
-    await Repositories.submission.update(
-      {
-        id,
-      },
-      payload,
-    );
     const submission = await Repositories.submission.findOne(id);
+    Repositories.submission.merge(submission, payload);
+    await Repositories.submission.save(submission);
 
     res.json({
       data: submission,
