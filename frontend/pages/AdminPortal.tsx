@@ -1,29 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchActiveTasks, selectAllActiveTasks } from '../store/userTasksSlice';
+import React from 'react';
 
-import { Useroverview } from '../components/UserOverview';
-import { TaskCard } from '../components/TaskCard';
-import { UserStats } from '../components/UserStats';
-import { LeaderBoard } from '../components/LeaderBoard';
+import { useTask } from '../utils/asynctask';
+import api from '../services/api';
+import AllTaskCard from '../components/AllTaskCard';
 
-const CAPortal: React.FC = () => {
-  const dispatch = useDispatch();
-  const activeTasksStatus = useSelector((state: any) => state.userTasks.status);
-  const activeTasks = useSelector(selectAllActiveTasks);
+const AdminPanel: React.FC = () => {
+  const { value: tasks, isActive } = useTask(async () => {
+    return api.get('task/tasks');
+  }, true);
 
-  useEffect(() => {
-    if (activeTasksStatus === 'idle') {
-      dispatch(fetchActiveTasks());
-    }
-  }, [activeTasksStatus, dispatch]);
-
-  let showActiveTasks;
-  if (activeTasksStatus === 'succeeded') {
-    showActiveTasks = activeTasks.map((task: any) => {
+  let showTasks;
+  if (!isActive) {
+    showTasks = tasks.data.data.map((task: any) => {
       return (
         <div className="mb-4">
-          <TaskCard key={task.id} task={task} />
+          <AllTaskCard key={task.id} task={task} />
         </div>
       );
     });
@@ -31,18 +22,13 @@ const CAPortal: React.FC = () => {
 
   return (
     <div>
-      <Useroverview />
-      <div className="row">
-        <div className="col-8 my-4">{showActiveTasks}</div>
-        <div className="col-4 my-4">
-          <div className="mb-4">
-            <UserStats />
-          </div>
-          <LeaderBoard />
-        </div>
+      {isActive}
+      <div>{showTasks}</div>
+      <div className="d-flex justify-content-end">
+        <button className="button-solid button-orange"> Create New Task</button>
       </div>
     </div>
   );
 };
 
-export default CAPortal;
+export default AdminPanel;

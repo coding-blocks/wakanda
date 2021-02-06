@@ -37,6 +37,12 @@ export const App: React.FC = () => {
           </Baselayout>
         </AuthenticatedRoute>
 
+        <AuthenticatedRoute exact path="/admin/add">
+          <Baselayout>
+            <Admin />
+          </Baselayout>
+        </AuthenticatedRoute>
+
         <Route exact path="/">
           <Baselayout>
             <Index />
