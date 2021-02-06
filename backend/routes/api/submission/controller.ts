@@ -1,18 +1,20 @@
 import { BaseSerializer } from 'base/serializer';
+import AsyncHandler from '../../../decorators/async-handler';
 import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 
 class SubmissionController {
+  @AsyncHandler()
   async handleCreateSubmission(req: Request, res: Response) {
     const payload = req.body.data;
     const scope: any = req.body.scope;
-    const userId: any = req.user.id;
 
     const userTask = await Repositories.userTask.createSubmissionForTask(scope.id, payload);
 
     res.json(await Repositories.submission.findById(userTask.submission.id));
   }
 
+  @AsyncHandler()
   async handleQueryById(req: Request, res: Response) {
     const id = req.params.id;
 
@@ -25,13 +27,14 @@ class SubmissionController {
     });
   }
 
+  @AsyncHandler()
   async handleUpdateById(req: Request, res: Response) {
-    const id = req.params.id;
+    const id = Number(req.params.id);
     const payload = req.body.data;
-    console.log(id, payload);
+
     await Repositories.submission.update(
       {
-        id: Number(id),
+        id,
       },
       payload,
     );

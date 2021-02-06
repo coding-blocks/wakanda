@@ -5,6 +5,7 @@ import AuthenticatedRoute from './components/common/AuthenticatedRoute';
 import { Baselayout } from './layouts/base';
 import { loadUser } from './store/currentUserSlice';
 import Dashboard from './pages/dashboard';
+import Admin from './pages/AdminPortal';
 import Index from './pages';
 
 export const App: React.FC = () => {
@@ -27,6 +28,18 @@ export const App: React.FC = () => {
         <AuthenticatedRoute exact path="/dashboard">
           <Baselayout>
             <Dashboard />
+          </Baselayout>
+        </AuthenticatedRoute>
+
+        <AuthenticatedRoute exact path="/admin">
+          <Baselayout>
+            <Admin />
+          </Baselayout>
+        </AuthenticatedRoute>
+
+        <AuthenticatedRoute exact path="/admin/add">
+          <Baselayout>
+            <Admin />
           </Baselayout>
         </AuthenticatedRoute>
 

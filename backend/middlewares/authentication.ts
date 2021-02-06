@@ -25,6 +25,6 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
       title: 'Unauthorized',
       detail: 'You are not authorized to view this page.',
     },
-    401,
+    403,
   );
 };

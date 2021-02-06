@@ -1,11 +1,11 @@
 import { Request, Response, Router } from 'express';
-import { ce } from '../../../utils/app';
-import { isAuthenticated } from '../../../middlewares/authentication';
+import { isAdmin } from '../../../middlewares/authentication';
 import controller from './controller';
 
 const router = Router();
 
-router.get('/', isAuthenticated, ce(controller.handleActiveTasks));
-router.get('/:id', ce(controller.handleGetCurrent));
+router.get('/', controller.handleActiveTasks);
+router.get('/tasks', isAdmin, controller.handleAllTasks);
+router.get('/:id', controller.handleGetCurrent);
 
 export default router;

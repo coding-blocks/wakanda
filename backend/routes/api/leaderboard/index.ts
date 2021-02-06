@@ -1,9 +1,8 @@
-import { Request, Response, Router } from 'express';
-import { ce } from '../../../utils/app';
+import { Router } from 'express';
 import controller from './controller';
 
 const router = Router();
 
-router.get('/', ce(controller.handleLeaderboard));
+router.get('/', controller.handleLeaderboard);
 
 export default router;

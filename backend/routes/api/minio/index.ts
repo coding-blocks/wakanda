@@ -1,11 +1,9 @@
 import { Router } from 'express';
-
-import { isAuthenticated } from '../../../middlewares/authentication';
 import controller from './controller';
+import limiter from '../../../services/ratelimiter';
 
 const router = Router();
 
-router.use(isAuthenticated);
-router.post('/presignedUrl', controller.POSTPreseignUrl);
+router.post('/presignedUrl', limiter, controller.POSTPreseignUrl);
 
 export default router;

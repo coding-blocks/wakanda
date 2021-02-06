@@ -1,15 +1,18 @@
-import { Request, Response, Router } from 'express';
-import { ce } from '../../../utils/app';
-import { isAuthenticated } from '../../../middlewares/authentication';
+import { Router } from 'express';
 import controller from './controller';
+import policies from './policies';
 import validator from './validator';
 
 const router = Router();
 
-router.use(isAuthenticated);
-router.post('/', validator.POST, ce(controller.handleCreateSubmission));
-router.get('/:id', ce(controller.handleQueryById));
-router.patch('/:id', ce(controller.handleUpdateById));
-router.post('/:id/status', validator.SUBMIT, ce(controller.handleUpdateSubmissionStatus));
+router.post('/', validator.POST, controller.handleCreateSubmission);
+router.get('/:id', policies.belongsToUser, controller.handleQueryById);
+router.patch('/:id', policies.belongsToUser, policies.updateById, controller.handleUpdateById);
+router.post(
+  '/:id/status',
+  validator.SUBMIT,
+  policies.belongsToUser,
+  controller.handleUpdateSubmissionStatus,
+);
 
 export default router;
