@@ -14,6 +14,7 @@ class SubmissionController {
     res.json(await Repositories.submission.findById(userTask.submission.id));
   }
 
+  @AsyncHandler()
   async handleQueryById(req: Request, res: Response) {
     const id = req.params.id;
 
