@@ -4,6 +4,6 @@ import limiter from '../../../services/ratelimiter';
 
 const router = Router();
 
-router.post('/presignedUrl', limiter, controller.POSTPreseignUrl);
+router.post('/presignedUrl', limiter(), controller.POSTPreseignUrl);
 
 export default router;
