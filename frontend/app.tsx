@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthenticatedRoute from './components/common/AuthenticatedRoute';
 import { Baselayout } from './layouts/base';
+import AdminLayout from './layouts/admin';
 import { loadUser } from './store/currentUserSlice';
 import Dashboard from './pages/dashboard';
-import Admin from './pages/AdminPortal';
+import Admin from './pages/admin';
 import Index from './pages';
 
 export const App: React.FC = () => {
@@ -31,16 +32,10 @@ export const App: React.FC = () => {
           </Baselayout>
         </AuthenticatedRoute>
 
-        <AuthenticatedRoute exact path="/admin">
-          <Baselayout>
+        <AuthenticatedRoute path="/admin">
+          <AdminLayout>
             <Admin />
-          </Baselayout>
-        </AuthenticatedRoute>
-
-        <AuthenticatedRoute exact path="/admin/add">
-          <Baselayout>
-            <Admin />
-          </Baselayout>
+          </AdminLayout>
         </AuthenticatedRoute>
 
         <Route exact path="/">
