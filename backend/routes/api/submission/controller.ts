@@ -11,7 +11,9 @@ class SubmissionController {
 
     const userTask = await Repositories.userTask.createSubmissionForTask(scope.id, payload);
 
-    res.json(await Repositories.submission.findById(userTask.submission.id));
+    res.json({
+      data: await Repositories.submission.findById(userTask.submission.id),
+    });
   }
 
   @AsyncHandler()
