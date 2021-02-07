@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './common/Modal';
-import {
-  createSubmission,
-  saveSubmission,
-  patchAndSubmitForReview,
-  createAndSubmitForReview,
-} from '../store/userTasksSlice';
+import { saveSubmission, submitForReview } from '../store/userTasksSlice';
 import { useDispatch } from 'react-redux';
 import { SubmissionEditor } from './forms/SubmissionEditor';
 import { dateFormater } from '../utils/datetime';
@@ -13,46 +8,20 @@ import { dateFormater } from '../utils/datetime';
 export const SubmissionModal: React.FC<any> = (props) => {
   const { task } = props;
   const [submission, setSubmission] = useState(
-    props.task.userTask[0].submission ?? { description: '' },
+    props.task.userTask[0].submission ?? { description: '', submissionAssets: [] },
   );
   const dispatch = useDispatch();
 
-  const handleSave = async (e) => {
-    if (task.userTask[0]?.submission?.id) {
-      const saveSubmissionRequest = await dispatch(saveSubmission(submission));
-      return saveSubmissionRequest;
-    }
-
-    const createSubmissionRequest = await dispatch(
-      createSubmission({
-        taskId: task.id,
-        submission,
-      }),
-    );
-    return createSubmissionRequest;
+  const handleSave = async () => {
+    const saveSubmissionRequest = await dispatch(saveSubmission({ taskId: task.id, submission }));
+    setSubmission(saveSubmissionRequest.data.data);
+    return saveSubmissionRequest;
   };
 
-  const handleSubmit = async () => {
-    if (task.userTask[0]?.submission?.id) {
-      const submitForReviewRequest = await dispatch(
-        patchAndSubmitForReview({
-          userTaskId: task.userTask[0].id,
-          submission,
-        }),
-      );
-      // window.location.reload(); can also dispatch fetchTasks thunk
-      return submitForReviewRequest;
-    }
-
-    const createSubmissionRequest = await dispatch(
-      createAndSubmitForReview({
-        taskId: task.id,
-        userTaskId: task.userTask[0].id,
-        submission,
-      }),
-    );
-    // window.location.reload(); can also dispatch fetchTasks thunk
-    return createSubmissionRequest;
+  const handleSubmitForReview = async () => {
+    const submitForReviewRequest = await dispatch(submitForReview({ taskId: task.id, submission }));
+    setSubmission(submitForReviewRequest.data.data);
+    return submitForReviewRequest;
   };
 
   return (
@@ -93,16 +62,16 @@ export const SubmissionModal: React.FC<any> = (props) => {
       <div className="row mt-5 px-5 py-4">
         <div className="col d-flex justify-content-around">
           <button
-            className="button-dashed button-green"
+            className="button-dashed button-orange"
             onClick={handleSave}
-            disabled={task.userTask[0].status === 'review'}
+            disabled={task.userTask[0].status !== 'draft'}
           >
             Save
           </button>
           <button
             className="button-solid button-orange"
-            onClick={handleSubmit}
-            disabled={task.userTask[0].status === 'review'}
+            onClick={handleSubmitForReview}
+            disabled={task.userTask[0].status !== 'draft'}
           >
             Submit For Review
           </button>

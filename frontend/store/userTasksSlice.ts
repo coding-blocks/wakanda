@@ -2,12 +2,6 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import store from '../store/index';
 import client from '../services/api';
 
-const submissionToReviewStatus = (userTaskId) => {
-  return client.post(`/submission/${userTaskId}/status`, {
-    status: 'review',
-  });
-};
-
 const activeTasksAdapter = createEntityAdapter();
 
 const activeTasksInitialState = activeTasksAdapter.getInitialState({
@@ -38,9 +32,18 @@ export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async
   return tasks.data.data;
 });
 
-export const createSubmission: any = createAsyncThunk(
-  'task/creatSubmission',
+export const saveSubmission: any = createAsyncThunk(
+  'task/saveSubmission',
   async ({ taskId, submission }: any) => {
+    if (submission.id) {
+      const saveTask = await client.patch(`/submission/${submission.id}`, {
+        data: {
+          ...submission,
+        },
+      });
+      return saveTask;
+    }
+
     const createTask = await client.post(`/submission`, {
       scope: {
         model: 'task',
@@ -54,45 +57,13 @@ export const createSubmission: any = createAsyncThunk(
   },
 );
 
-export const saveSubmission: any = createAsyncThunk(
-  'task/saveSubmission',
-  async (submission: any) => {
-    const saveTask = await client.patch(`/submission/${submission.id}`, {
-      data: {
-        ...submission,
-      },
-    });
-  },
-);
-
-export const patchAndSubmitForReview = createAsyncThunk(
-  'task/patchAndSubmitSubmissionForReview',
-  async ({ userTaskId, submission }: any) => {
-    const submitSubmissionForReview = await client.patch(`/submission/${submission.id}`, {
-      data: {
-        ...submission,
-      },
-    });
-    await submissionToReviewStatus(userTaskId);
-    return submitSubmissionForReview.data;
-  },
-);
-
-export const createAndSubmitForReview = createAsyncThunk(
+export const submitForReview: any = createAsyncThunk(
   'task/creatandSubmitSubmisionForReview',
-  async ({ taskId, userTaskId, submission }: any) => {
-    const createAndSubmitTaskForReview = await client.post('/submission', {
-      scope: {
-        model: 'task',
-        id: taskId,
-        status: 'review',
-      },
-      data: {
-        ...submission,
-      },
+  async ({ submission }: any) => {
+    const submissionForReview = await client.post(`/submission/${submission.id}/status`, {
+      status: 'review',
     });
-    await submissionToReviewStatus(userTaskId);
-    return createAndSubmitForReview.data;
+    return submissionForReview;
   },
 );
 
