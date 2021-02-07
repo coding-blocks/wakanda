@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { useTask } from '../utils/asynctask';
+import { useTask } from '../hooks/task';
 import api from '../services/api';
 import AllTaskCard from '../components/AllTaskCard';
 
 const AdminPanel: React.FC = () => {
   const { value: tasks, isActive } = useTask(async () => {
-    return api.get('task/tasks');
+    return api.get('task/');
   }, true);
 
   let showTasks;

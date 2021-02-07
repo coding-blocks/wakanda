@@ -22,6 +22,7 @@ class TaskController {
   async handleGetCurrent(req: Request, res: Response) {
     const taskId = req.params.id;
     const userId = req.user.id;
+
     res.json({
       data: await Repositories.task.findById(userId, Number(taskId)),
     });

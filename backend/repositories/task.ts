@@ -20,6 +20,7 @@ class TaskRepository extends Repository<Task> {
       // Todo: Remove this from here
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('userTask.userId=:id', { id: userId })
+      .where(`userTask.status in ('draft', 'review')`)
       .getMany();
   }
 }

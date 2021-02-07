@@ -36,7 +36,7 @@ export const fetchTask = createAsyncThunk('activeTasks/fetchTask', async ({ task
 });
 
 export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async () => {
-  const tasks = await client.get('/task');
+  const tasks = await client.get('/task/active');
   return tasks.data.data;
 });
 

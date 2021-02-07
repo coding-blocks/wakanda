@@ -5,12 +5,12 @@ import validator from './validator';
 
 const router = Router();
 
-router.get('/', controller.handleActiveTasks);
-router.get('/:id', controller.handleGetCurrent);
+router.get('/', isAdmin, controller.handleAllTasks);
+router.get('/active', controller.handleActiveTasks);
+router.get('/:id', validator.GETById, controller.handleGetCurrent);
 
-router.get('/tasks', isAdmin, controller.handleAllTasks);
 router.post('/', isAdmin, validator.POST, controller.handleCreateTask);
-router.patch('/id', isAdmin, validator.POST, controller.handleUpdateById);
-router.delete('/id', isAdmin, validator.POST, controller.handleDeleteById);
+router.patch('/:id', isAdmin, validator.GETById, validator.POST, controller.handleUpdateById);
+router.delete('/:id', isAdmin, validator.GETById, validator.POST, controller.handleDeleteById);
 
 export default router;

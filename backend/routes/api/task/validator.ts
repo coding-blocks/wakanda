@@ -15,4 +15,10 @@ export default {
     }),
     'body',
   ),
+  GETById: toRequestValidator(
+    Joi.object({
+      id: Joi.number().required(),
+    }),
+    'params',
+  ),
 };
