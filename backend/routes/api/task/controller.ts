@@ -26,6 +26,36 @@ class TaskController {
       data: await Repositories.task.findById(userId, Number(taskId)),
     });
   }
+
+  @AsyncHandler()
+  async handleCreateTask(req: Request, res: Response) {
+    const payload = req.body.data;
+
+    const task = await Repositories.task.save(payload);
+
+    res.json({ data: task });
+  }
+
+  @AsyncHandler()
+  async handleUpdateById(req: Request, res: Response) {
+    const id = Number(req.params.id);
+    const payload = req.body.data;
+
+    const task = await Repositories.task.findOne(id);
+    Repositories.task.merge(task, payload);
+    await Repositories.task.save(task);
+
+    res.json({ data: task });
+  }
+
+  @AsyncHandler()
+  async handleDeleteById(req: Request, res: Response) {
+    const id = Number(req.params.id);
+
+    await Repositories.task.delete(id);
+
+    res.status(204);
+  }
 }
 
 export default new TaskController();
