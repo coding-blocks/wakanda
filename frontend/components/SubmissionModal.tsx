@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Modal from './common/Modal';
-import { saveSubmission, submitForReview } from '../store/userTasksSlice';
+import { fetchTask, saveSubmission, submitForReview } from '../store/userTasksSlice';
 import { useDispatch } from 'react-redux';
 import { SubmissionEditor } from './forms/SubmissionEditor';
 import { dateFormater } from '../utils/datetime';
+import Button from './common/Button';
 
 export const SubmissionModal: React.FC<any> = (props) => {
   const { task } = props;
@@ -14,13 +15,14 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
   const handleSave = async () => {
     const saveSubmissionRequest = await dispatch(saveSubmission({ taskId: task.id, submission }));
-    setSubmission(saveSubmissionRequest.data.data);
+    setSubmission(saveSubmissionRequest.payload);
     return saveSubmissionRequest;
   };
 
   const handleSubmitForReview = async () => {
     const submitForReviewRequest = await dispatch(submitForReview({ taskId: task.id, submission }));
-    setSubmission(submitForReviewRequest.data.data);
+    setSubmission(submitForReviewRequest.payload);
+    await dispatch(fetchTask({ taskId: task.id }));
     return submitForReviewRequest;
   };
 
@@ -61,20 +63,20 @@ export const SubmissionModal: React.FC<any> = (props) => {
 
       <div className="row mt-5 px-5 py-4">
         <div className="col d-flex justify-content-around">
-          <button
+          <Button
             className="button-dashed button-orange"
-            onClick={handleSave}
+            action={handleSave}
             disabled={task.userTask[0].status !== 'draft'}
-          >
-            Save
-          </button>
-          <button
+            activeText="Saving"
+            text="Save"
+          />
+          <Button
             className="button-solid button-orange"
-            onClick={handleSubmitForReview}
+            action={handleSubmitForReview}
             disabled={task.userTask[0].status !== 'draft'}
-          >
-            Submit For Review
-          </button>
+            activeText="Submitting"
+            text="Submit For Review"
+          />
         </div>
       </div>
     </Modal>

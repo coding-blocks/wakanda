@@ -24,7 +24,15 @@ export const activeTasksSlice = createSlice({
     builder.addCase('task/saveSubmission/fulfilled', (state, action) => {
       // TODO:depending upon structure of response
     });
+    builder.addCase('activeTasks/fetchTask/fulfilled', (state, action: any) => {
+      activeTasksAdapter.upsertOne(state, action.payload);
+    });
   },
+});
+
+export const fetchTask = createAsyncThunk('activeTasks/fetchTask', async ({ taskId }: any) => {
+  const task = await client.get(`/task/${taskId}`);
+  return task.data.data;
 });
 
 export const fetchActiveTasks = createAsyncThunk('activeTasks/fetchTasks', async () => {
@@ -41,7 +49,7 @@ export const saveSubmission: any = createAsyncThunk(
           ...submission,
         },
       });
-      return saveTask;
+      return saveTask.data.data;
     }
 
     const createTask = await client.post(`/submission`, {
@@ -53,7 +61,7 @@ export const saveSubmission: any = createAsyncThunk(
         ...submission,
       },
     });
-    return createTask;
+    return createTask.data.data;
   },
 );
 
@@ -63,7 +71,7 @@ export const submitForReview: any = createAsyncThunk(
     const submissionForReview = await client.post(`/submission/${submission.id}/status`, {
       status: 'review',
     });
-    return submissionForReview;
+    return submissionForReview.data.data;
   },
 );
 

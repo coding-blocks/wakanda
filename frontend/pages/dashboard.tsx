@@ -22,8 +22,8 @@ const CAPortal: React.FC = () => {
   if (activeTasksStatus === 'succeeded') {
     showActiveTasks = activeTasks.map((task: any) => {
       return (
-        <div className="mb-4">
-          <TaskCard key={task.id} task={task} />
+        <div className="mb-4" key={task.id}>
+          <TaskCard task={task} />
         </div>
       );
     });

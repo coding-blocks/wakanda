@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useTask } from '../../hooks/task';
 import client from '../../services/api';
 
 export const FileUploader: React.FC<any> = (props) => {
+  const url = props.value;
+
   const [file, setFile] = useState();
   const [uploadStatus, setUploadStatus] = useState('');
-  const url = props.value;
-  const onFileChange = (e) => {
-    const files = e.target.files;
-    setFile(files[0]);
-  };
 
-  const handleUpload = async (e) => {
+  const { trigger, isActive } = useTask(async () => {
     const { data: response } = await client.post('/minio/presignedUrl');
     const presignedUrl = response.data.url;
     setUploadStatus('uploading');
@@ -20,6 +17,11 @@ export const FileUploader: React.FC<any> = (props) => {
       body: file,
     });
     props.setValue(presignedUrl.split('?')[0]);
+  });
+
+  const onFileChange = (e) => {
+    const files = e.target.files;
+    setFile(files[0]);
   };
 
   if (url) {
@@ -38,9 +40,10 @@ export const FileUploader: React.FC<any> = (props) => {
         <button
           className="button-dashed button-orange p-2 mt-1"
           style={{ fontSize: '0.85rem' }}
-          onClick={handleUpload}
+          onClick={trigger}
+          disabled={isActive}
         >
-          Upload
+          {isActive ? 'Uploading' : 'Upload'}
         </button>
       )}
     </div>

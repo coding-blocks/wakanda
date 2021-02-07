@@ -39,13 +39,15 @@ export const LeaderBoard = () => {
         ) : (
           <table className="w-100">
             <thead className="font-sm bold">
-              <td className="pb-3">Rank</td>
-              <td className="pb-3">User</td>
-              <td className="pb-3">Star</td>
+              <tr>
+                <th className="pb-3">Rank</th>
+                <th className="pb-3">User</th>
+                <th className="pb-3">Star</th>
+              </tr>
             </thead>
             <tbody>
               {leaderboard.map((row, i) => (
-                <LeaderboardRow row={row} i={i} />
+                <LeaderboardRow row={row} i={i} key={i} />
               ))}
             </tbody>
           </table>

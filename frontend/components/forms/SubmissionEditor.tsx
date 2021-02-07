@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { FileUploader } from '../common/FileUploader';
+
 export const SubmissionEditor: React.FC<any> = (props) => {
-  const [files, setFiles] = useState([]); // can depriciate this
-  const dispatch = useDispatch();
+  const { submission } = props;
+  const files = (submission.submissionAssets || []).map((asset) => asset.url);
 
   const setSubmissionFiles = (newFile) => {
-    setFiles((prevFiles) => prevFiles.concat(newFile));
     props.setSubmission((state) => {
       return {
         ...state,
         submissionAssets: state.submissionAssets
-          ? state.submissionAssets.concat(newFile)
+          ? state.submissionAssets.concat({ url: newFile })
           : [newFile],
       };
     });
   };
 
   const onDescriptionChange = (e) => {
-    props.setSubmission((submission) => {
+    props.setSubmission((state) => {
       return {
-        ...submission,
+        ...state,
         description: e.target.value,
       };
     });
   };
 
   const FilesUploader = () => {
-    const currentFiles = files.map((file) => {
-      return <FileUploader value={file} />;
+    const currentFiles = files.map((file, i) => {
+      return <FileUploader value={file} key={i} />;
     });
     return (
       <div className="">
