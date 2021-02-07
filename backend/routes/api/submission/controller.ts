@@ -46,14 +46,16 @@ class SubmissionController {
   @AsyncHandler()
   async handleUpdateSubmissionStatus(req: Request, res: Response) {
     const status = req.body.status;
-    const id = req.params.id; // submissionId
+    const id = Number(req.params.id); // submissionId
 
-    const userTask = await Repositories.userTask.findById(Number(id));
+    const userTask = await Repositories.userTask.findBySubmissionId(id);
     userTask.status = status;
     await Repositories.userTask.save(userTask);
 
     // return submission
-    res.json(await Repositories.userTask.findById(Number(id)));
+    res.json({
+      data: await Repositories.submission.findById(id),
+    });
   }
 }
 
