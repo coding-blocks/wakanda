@@ -10,7 +10,6 @@ export default (props) => {
       </div>
       <div className="col-8">
         <input
-          {...props}
           className="underline-input pb-4 font-sm bold w-100"
           type="text"
           onChange={(e) => onChange(e.target.value)}
