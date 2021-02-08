@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTask } from '../../hooks/task';
-import api from '../../services/api';
+import { useTask } from '../../../hooks/task';
+import api from '../../../services/api';
 import { Link, useParams } from 'react-router-dom';
-import AdminTaskCard from '../../components/AdminTaskCard';
+import AdminTaskCard from '../../../components/AdminTaskCard';
 
 const AdminPanel: React.FC = () => {
   const { id } = useParams();
@@ -25,18 +25,16 @@ const AdminPanel: React.FC = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center">
-        <div className="flex-1 bg-white br-25">
-          <input
-            placeholder="What do you want to learn?"
-            type="text"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
-            className="input-search w-100 p-3"
-          />
-        </div>
+      <div className="flex-1 bg-light-grey br-25">
+        <input
+          placeholder="What do you want to learn?"
+          type="text"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+          className="input-search w-100 p-3"
+        />
       </div>
       <div>
         {tasks.map((task, i) => (

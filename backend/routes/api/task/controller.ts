@@ -30,6 +30,12 @@ class TaskController {
     const taskId = req.params.id;
     const userId = req.user.id;
 
+    if (req.user.role === 'admin') {
+      return res.json({
+        data: await Repositories.task.findOne(taskId),
+      });
+    }
+
     res.json({
       data: await Repositories.task.findById(userId, Number(taskId)),
     });

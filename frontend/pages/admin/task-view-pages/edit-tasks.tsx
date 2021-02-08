@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Form, { BaseFormField } from '../../components/common/BaseForm';
-import Button from '../../components/common/Button';
+import Form, { BaseFormField } from '../../../components/common/BaseForm';
+import Button from '../../../components/common/Button';
 import { useParams, Link } from 'react-router-dom';
-import client from '../../services/api';
+import client from '../../../services/api';
 
 export const EditTasks: React.FC<any> = () => {
   const { id } = useParams();
@@ -53,26 +53,10 @@ export const EditTasks: React.FC<any> = () => {
       label: 'End Date',
       type: 'datetime',
     },
-    {
-      name: 'users',
-      label: 'Assigned Users',
-      type: 'multiselect',
-    },
   ];
   return (
-    <div className="">
-      <Link
-        className="button-solid button-orange"
-        to={{ pathname: `/admin/tasks/${id}/submissions` }}
-      >
-        View Submissions
-      </Link>
-      <div className="">
-        <h3>Edit Task</h3>
-      </div>
-      <div className="mt-4">
-        <Form fields={fields} model={task} setModel={setTask} />
-      </div>
+    <div>
+      <Form fields={fields} model={task} setModel={setTask} />
 
       <div className="d-flex justify-content-end mt-4 ">
         <Button
