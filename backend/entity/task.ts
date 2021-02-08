@@ -34,6 +34,8 @@ export class Task {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @OneToMany(() => UserTask, (userTask) => userTask.task)
-  userTask: UserTask;
+  @OneToMany(() => UserTask, (userTask) => userTask.task, {
+    cascade: ['insert', 'update'],
+  })
+  userTask: UserTask[];
 }
