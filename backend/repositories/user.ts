@@ -15,7 +15,7 @@ class UserRepository extends Repository<User> {
   async updatePoints(points: number, id: number) {
     return await this.createQueryBuilder()
       .update(User)
-      .set({ totalPoints: () => `totalPoints + ${points}` })
+      .set({ totalPoints: () => `"totalPoints" + ${points}` })
       .where('id = :id', { id })
       .execute();
   }

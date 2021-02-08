@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { dateFormater } from '../utils/datetime';
 import { Link } from 'react-router-dom';
+import { SubmissionModal } from './AdminSubmissionModal';
 
 export const AdminSubmissionCard: React.FC<any> = ({ task }) => {
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
+
   return (
     <div className="card br-10 bg-white p-0">
       <div className="px-5 py-4">
@@ -26,16 +29,21 @@ export const AdminSubmissionCard: React.FC<any> = ({ task }) => {
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
-              <Link
+              <button
                 className="button-solid button-orange"
-                to={{ pathname: `/admin/tasks/${task.id}` }}
+                onClick={() => setShowSubmitModal(true)}
               >
                 Open Submission
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <SubmissionModal
+        setShow={setShowSubmitModal}
+        show={showSubmitModal}
+        id={task.submission.id}
+      />
     </div>
   );
 };
