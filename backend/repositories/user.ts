@@ -12,6 +12,14 @@ class UserRepository extends Repository<User> {
     return user;
   }
 
+  async updatePoints(points: number, id: number) {
+    return await this.createQueryBuilder()
+      .update(User)
+      .set({ totalPoints: () => `totalPoints + ${points}` })
+      .where('id = :id', { id })
+      .execute();
+  }
+
   async findAll(): Promise<User[]> {
     // TODO: handle pagination
     return await this.find();

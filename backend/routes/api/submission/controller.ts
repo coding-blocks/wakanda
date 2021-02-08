@@ -50,7 +50,8 @@ class SubmissionController {
 
     const userTask = await Repositories.userTask.findBySubmissionId(id);
     userTask.status = status;
-    await Repositories.userTask.save(userTask);
+    userTask.assignedPoints = req.body.points || 0;
+    await Repositories.userTask.saveSubmissionStatus(userTask);
 
     // return submission
     res.json({

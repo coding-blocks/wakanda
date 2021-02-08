@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToOne,
+  PrimaryColumn,
 } from 'typeorm';
 import { Task } from './task';
 import { User } from './user';
@@ -20,17 +21,14 @@ export enum SubmissionStatus {
 }
 @Entity()
 export class UserTask {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+  @PrimaryColumn()
   userId: number;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
   user: User;
 
-  @Column()
+  @PrimaryColumn()
   taskId: number;
 
   @ManyToOne(() => Task)

@@ -21,6 +21,9 @@ class SubmissionPolicy {
 
   @AsyncHandler()
   async belongsToUser(req: Request, res: Response, next: NextFunction) {
+    if (req.user.role === 'admin') {
+      return next();
+    }
     const userTask = await Repositories.userTask.findBySubmissionId(Number(req.params.id));
     if (userTask.userId !== req.user.id) {
       throw new ApiError(

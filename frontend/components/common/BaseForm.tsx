@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Text from './form-components/Text';
-import Datetime from './form-components/Datetime';
+import Datetime from './form-components/DateTime';
 import TextArea from './form-components/TextArea';
 
 const FieldMap = {
