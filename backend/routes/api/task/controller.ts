@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 import AsyncHandler from '../../../decorators/async-handler';
+import { ILike } from 'typeorm';
 
 class TaskController {
   @AsyncHandler()
@@ -13,8 +14,14 @@ class TaskController {
 
   @AsyncHandler()
   async handleAllTasks(req: Request, res: Response) {
+    const query = req.query.q || '';
+
     res.json({
-      data: await Repositories.task.find(),
+      data: await Repositories.task.find({
+        where: {
+          name: ILike(`%${query}%`),
+        },
+      }),
     });
   }
 
