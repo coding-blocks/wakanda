@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Form, { BaseFormField } from '../../components/common/BaseForm';
 import Button from '../../components/common/Button';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import client from '../../services/api';
 
 export const EditTasks: React.FC<any> = () => {
@@ -61,6 +61,12 @@ export const EditTasks: React.FC<any> = () => {
   ];
   return (
     <div className="">
+      <Link
+        className="button-solid button-orange"
+        to={{ pathname: `/admin/tasks/${id}/submissions` }}
+      >
+        View Submissions
+      </Link>
       <div className="">
         <h3>Edit Task</h3>
       </div>

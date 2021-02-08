@@ -9,6 +9,12 @@ class TaskController {
     const userTask = await Repositories.userTask.save(payload);
     res.json({ data: userTask });
   }
+
+  async handleGetTasks(req: Request, res: Response) {
+    const id = Number(req.params.id);
+    const userTask = await Repositories.userTask.findAllUserTasks(id);
+    res.json({ data: userTask });
+  }
 }
 
 export default new TaskController();
