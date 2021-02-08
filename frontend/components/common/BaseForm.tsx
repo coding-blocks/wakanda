@@ -3,18 +3,20 @@ import React from 'react';
 import Text from './form-components/Text';
 import Datetime from './form-components/DateTime';
 import TextArea from './form-components/TextArea';
+import MultiSelecctSearch from '../MultiSelectSearch';
 
 const FieldMap = {
   text: Text,
   datetime: Datetime,
   number: Text,
   textarea: TextArea,
+  multiselect: MultiSelecctSearch,
 };
 
 export interface BaseFormField {
   label: string;
   name: string;
-  type: 'text' | 'datetime' | 'number' | 'textarea';
+  type: 'text' | 'datetime' | 'number' | 'textarea' | 'multiselect';
 }
 
 export interface BaseFormProps {

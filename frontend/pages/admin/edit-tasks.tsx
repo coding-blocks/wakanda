@@ -12,6 +12,7 @@ export const EditTasks: React.FC<any> = () => {
     points: '',
     startDate: '',
     endDate: '',
+    userTask: [],
   });
   useEffect(() => {
     const getTask = async () => {
@@ -52,6 +53,11 @@ export const EditTasks: React.FC<any> = () => {
       label: 'End Date',
       type: 'datetime',
     },
+    {
+      name: 'users',
+      label: 'Assigned Users',
+      type: 'multiselect',
+    },
   ];
   return (
     <div className="">
@@ -61,6 +67,7 @@ export const EditTasks: React.FC<any> = () => {
       <div className="mt-4">
         <Form fields={fields} model={task} setModel={setTask} />
       </div>
+
       <div className="d-flex justify-content-end mt-4 ">
         <Button
           className="button-solid button-orange"

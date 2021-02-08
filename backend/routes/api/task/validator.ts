@@ -6,7 +6,7 @@ export default {
     Joi.object({
       description: Joi.string().required(),
       name: Joi.string().required(),
-      points: Joi.string().required(),
+      points: Joi.number().required(),
       startDate: Joi.date()
         .min(Date.now())
         .message('"date" cannot be earlier than today')

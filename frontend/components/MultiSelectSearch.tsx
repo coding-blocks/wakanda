@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import { client } from '../services/api';
 
-export const MultiSelecctSearch: React.FC = () => {
+export default (props) => {
+  const { value, onChange, field } = props;
+
   const [inputValue, setInputValue] = useState('');
 
   const loadOptions = (nameLike, callback) => {
@@ -15,23 +17,22 @@ export const MultiSelecctSearch: React.FC = () => {
       .then(({ data }) => callback(data.data));
   };
 
-  const handleChange = (selectedOptions) => {
-    console.log(selectedOptions);
-    // send change props
-  };
-
   return (
-    <div>
-      <pre>inputValue: "{inputValue}"</pre>
-      <AsyncSelect
-        isMulti
-        cacheOptions
-        loadOptions={loadOptions}
-        defaultOptions
-        onChange={handleChange}
-        onInputChange={setInputValue}
-        getOptionLabel={(option) => `${option.name}: ${option.oneauth_id}`}
-      />
+    <div className="row align-items-center p-4" style={{ background: 'transparent' }}>
+      <div className="col-4">
+        <label className="font-sm">{field.label}</label>
+      </div>
+      <div className="col-8">
+        <AsyncSelect
+          isMulti
+          cacheOptions
+          loadOptions={loadOptions}
+          defaultOptions
+          onChange={(e) => onChange(e)}
+          onInputChange={setInputValue}
+          getOptionLabel={(option) => `${option.name}: ${option.oneauth_id}`}
+        />
+      </div>
     </div>
   );
 };

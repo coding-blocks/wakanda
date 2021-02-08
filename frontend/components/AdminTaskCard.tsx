@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { dateFormater } from '../utils/datetime';
+import { Link } from 'react-router-dom';
 
 const TaskAccordian = (props) => {
   if (props.showContent) return <div>{props.children}</div>;
@@ -36,7 +37,12 @@ export const AllTaskCard: React.FC<any> = ({ task }) => {
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
-              <button className="button-solid button-orange"> Edit</button>
+              <Link
+                className="button-solid button-orange"
+                to={{ pathname: `/admin/tasks/${task.id}` }}
+              >
+                Edit
+              </Link>
             </div>
           </div>
         </div>
