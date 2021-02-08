@@ -12,16 +12,6 @@ class UserTaskRepository extends Repository<UserTask> {
     return this.findOne({ where: { taskId: id }, relations: ['task', 'submission'] });
   }
 
-  findAllUserTasks(id: number) {
-    return this.find({
-      where: {
-        taskId: id,
-        status: 'review',
-      },
-      relations: ['submission'],
-    });
-  }
-
   findBySubmissionId(id: number) {
     return this.findOne({
       where: {

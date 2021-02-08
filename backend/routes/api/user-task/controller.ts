@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 import AsyncHandler from '../../../decorators/async-handler';
+import { generatePaginationObject } from '../../../utils/pagination';
 
 class TaskController {
   @AsyncHandler()
@@ -11,9 +12,23 @@ class TaskController {
   }
 
   async handleGetTasks(req: Request, res: Response) {
-    const id = Number(req.params.id);
-    const userTask = await Repositories.userTask.findAllUserTasks(id);
-    res.json({ data: userTask });
+    const offset = Number(req.query.offset || 0);
+    const limit = Number(req.query.limit || 10);
+
+    const id = Number(req.query.taskId);
+    const [userTask, count] = await Repositories.userTask.findAndCount({
+      where: {
+        taskId: id,
+        status: 'review',
+      },
+      relations: ['submission', 'user'],
+    });
+    res.json({
+      data: userTask,
+      meta: {
+        pagination: generatePaginationObject(count, offset, limit),
+      },
+    });
   }
 }
 

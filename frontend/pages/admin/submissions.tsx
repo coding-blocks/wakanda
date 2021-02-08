@@ -10,8 +10,9 @@ const AdminPanel: React.FC = () => {
   const [query, setQuery] = React.useState('');
 
   const { isActive, trigger } = useTask(async () => {
-    const resp: any = await api.get(`user-task/${id}`, {
+    const resp: any = await api.get(`user-task`, {
       params: {
+        taskId: id,
         q: query,
       },
     });

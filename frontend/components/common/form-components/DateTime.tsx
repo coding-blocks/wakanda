@@ -1,5 +1,6 @@
 import React from 'react';
 import Datetime from 'react-datetime';
+import Moment from 'moment';
 
 export default (props) => {
   const { value, onChange, field } = props;
@@ -12,7 +13,7 @@ export default (props) => {
       <div className="col-8">
         <Datetime
           onChange={(e) => onChange(e)}
-          value={value}
+          value={Moment(value)}
           inputProps={{ className: 'underline-input pb-4 font-sm bold w-100' }}
         />
       </div>

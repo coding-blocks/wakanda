@@ -5,6 +5,6 @@ import controller from './controller';
 const router = Router();
 
 router.post('/', controller.handleCreate);
-router.get('/:id', controller.handleGetTasks);
+router.get('/', controller.handleGetTasks);
 
 export default router;
