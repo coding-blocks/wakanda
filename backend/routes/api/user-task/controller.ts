@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 import AsyncHandler from '../../../decorators/async-handler';
 import { generatePaginationObject } from '../../../utils/pagination';
+import { In } from 'typeorm';
 
 class TaskController {
   @AsyncHandler()
@@ -26,19 +27,23 @@ class TaskController {
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
     const query = req.query.q || '';
+    const status = req.query.status || null;
 
     const id = Number(req.query.taskId);
     const [userTask, count] = await Repositories.userTask.findAndCount({
       where: (qb) => {
         qb.where({
           taskId: id,
-          status: 'review',
-        }).andWhere(`"UserTask__user".name ilike :q or "UserTask__user".email ilike :q`, {
+          ...(status && {
+            status: In((status as string).split(',')),
+          }),
+        }).andWhere(`("UserTask__user".name ilike :q OR "UserTask__user".email ilike :q)`, {
           q: `%${query}%`,
         });
       },
       relations: ['submission', 'user'],
     });
+
     res.json({
       data: userTask,
       meta: {

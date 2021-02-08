@@ -12,6 +12,7 @@ export default {
   GET: toRequestValidator(
     Joi.object({
       taskId: Joi.string().required(),
+      status: Joi.string(),
     }),
     'query',
   ),

@@ -6,17 +6,18 @@ import AdminSubmissionCard from '../../../components/AdminSubmissionCard';
 
 const AdminPanel: React.FC = () => {
   const { id } = useParams();
-  const [tasks, setTasks] = React.useState([]);
+  const [userTasks, setUserTasks] = React.useState([]);
   const [query, setQuery] = React.useState('');
 
   const { isActive, trigger } = useTask(async () => {
     const resp: any = await api.get(`user-task`, {
       params: {
         taskId: id,
+        status: 'review,accepted,rejected',
         q: query,
       },
     });
-    setTasks(resp.data.data);
+    setUserTasks(resp.data.data);
   }, true);
 
   React.useEffect(() => {
@@ -37,9 +38,9 @@ const AdminPanel: React.FC = () => {
         />
       </div>
       <div>
-        {tasks.map((task, i) => (
+        {userTasks.map((userTask, i) => (
           <div key={i} className="mt-4">
-            <AdminSubmissionCard key={task.id} task={task} />
+            <AdminSubmissionCard key={userTask.id} userTask={userTask} />
           </div>
         ))}
       </div>
