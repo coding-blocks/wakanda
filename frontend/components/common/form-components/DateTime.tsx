@@ -10,11 +10,7 @@ export default (props) => {
         <label className="font-sm">{field.label}</label>
       </div>
       <div className="col-10">
-        <Datetime
-          className="underline-input pb-4 font-sm bold w-100"
-          onChange={(e) => onChange(e)}
-          value={value}
-        />
+        <Datetime onChange={(e) => onChange(e)} value={value} />
       </div>
     </div>
   );
