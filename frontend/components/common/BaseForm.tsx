@@ -1,15 +1,20 @@
 import React from 'react';
 
 import Text from './form-components/Text';
+import Datetime from './form-components/Datetime';
+import TextArea from './form-components/TextArea';
 
 const FieldMap = {
   text: Text,
+  datetime: Datetime,
+  number: Text,
+  textarea: TextArea,
 };
 
 export interface BaseFormField {
   label: string;
   name: string;
-  type: 'text';
+  type: 'text' | 'datetime' | 'number' | 'textarea';
 }
 
 export interface BaseFormProps {
@@ -20,7 +25,7 @@ export interface BaseFormProps {
 
 export default ({ fields, model, setModel }: BaseFormProps) => {
   return (
-    <div>
+    <div className="card br-10 bg-white p-0">
       {fields.map((field) => {
         const FormField = FieldMap[field.type];
         return (
@@ -28,6 +33,7 @@ export default ({ fields, model, setModel }: BaseFormProps) => {
             name={field.name}
             value={model[field.name]}
             field={field}
+            type={field.type}
             onChange={(value) =>
               setModel({
                 ...model,

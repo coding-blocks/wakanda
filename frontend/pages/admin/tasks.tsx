@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useTask } from '../../hooks/task';
 import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
 import AdminTaskCard from '../../components/AdminTaskCard';
 
 const AdminPanel: React.FC = () => {
@@ -10,6 +11,13 @@ const AdminPanel: React.FC = () => {
     const resp = await api.get('task/');
     setTasks(resp.data.data);
   }, true);
+
+  const history = useHistory();
+
+  const addTask = () => {
+    const path = `tasks/add`;
+    history.push(path);
+  };
 
   return (
     <div>
@@ -22,7 +30,10 @@ const AdminPanel: React.FC = () => {
             className="input-search bg-light-grey w-100 p-3"
           />
         </div>
-        <button className="button-solid button-orange"> Create New Task</button>
+        <button className="button-solid button-orange" onClick={addTask}>
+          {' '}
+          Create New Task
+        </button>
       </div>
       <div>
         {tasks.map((task, i) => (

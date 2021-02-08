@@ -1,7 +1,9 @@
 import React from 'react';
 import Form, { BaseFormField } from '../../components/common/BaseForm';
+import { useTask } from '../../hooks/task';
+import api from '../../services/api';
 
-export default () => {
+const CreateTask: React.FC = () => {
   const [task, setTask] = React.useState({
     name: '',
     description: '',
@@ -9,6 +11,12 @@ export default () => {
     startDate: '',
     endDate: '',
   });
+
+  const { isActive, trigger } = useTask(async () => {
+    const resp = await api.post('task/', task);
+    setTask(resp.data.data);
+  });
+
   const fields: BaseFormField[] = [
     {
       name: 'name',
@@ -18,24 +26,35 @@ export default () => {
     {
       name: 'description',
       label: 'Description',
-      type: 'text',
+      type: 'textarea',
     },
     {
       name: 'points',
       label: 'Points',
-      type: 'text',
+      type: 'number',
     },
     {
       name: 'startDate',
       label: 'Start Date',
-      type: 'text',
+      type: 'datetime',
     },
     {
       name: 'endDate',
       label: 'End Date',
-      type: 'text',
+      type: 'datetime',
     },
   ];
 
-  return <Form fields={fields} model={task} setModel={setTask} />;
+  return (
+    <div>
+      <Form fields={fields} model={task} setModel={setTask} />
+      <div className="d-flex justify-content-end mt-4 ">
+        <button className="button-solid button-orange" onClick={trigger} disabled={isActive}>
+          Save
+        </button>
+      </div>
+    </div>
+  );
 };
+
+export default CreateTask;

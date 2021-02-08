@@ -4,9 +4,9 @@ import Joi from 'joi';
 export default {
   POST: toRequestValidator(
     Joi.object({
-      description: Joi.object().required(),
-      name: Joi.object().required(),
-      points: Joi.object().required(),
+      description: Joi.string().required(),
+      name: Joi.string().required(),
+      points: Joi.string().required(),
       startDate: Joi.date()
         .min(Date.now())
         .message('"date" cannot be earlier than today')

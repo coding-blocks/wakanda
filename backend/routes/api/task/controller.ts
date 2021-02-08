@@ -30,9 +30,9 @@ class TaskController {
 
   @AsyncHandler()
   async handleCreateTask(req: Request, res: Response) {
-    const payload = req.body.data;
-
-    const task = await Repositories.task.save(payload);
+    const payload = req.body;
+    console.log(payload);
+    const task = await Repositories.task.create(payload);
 
     res.json({ data: task });
   }
