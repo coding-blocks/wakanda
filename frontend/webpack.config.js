@@ -3,13 +3,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
+const mode = process.env.NODE_ENV || 'development';
+
 module.exports = {
   entry: './frontend/index.tsx',
-  mode: 'development',
+  mode,
   output: {
     path: path.resolve(__dirname, '../dist/frontend'),
-    filename: 'bundle-[contenthash].js',
-    chunkFilename: '[id]-[chunkhash].js',
+    filename: mode === 'production' ? 'bundle-[contenthash].js' : 'bundle.js',
+    chunkFilename: mode === 'production' ? '[id]-[chunkhash].js' : '[id].js',
     publicPath: '/',
   },
   resolve: {
@@ -31,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
