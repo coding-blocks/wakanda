@@ -2,7 +2,7 @@ import React from 'react';
 import { useTask } from '../../hooks/task';
 import api from '../../services/api';
 import { Link, useParams } from 'react-router-dom';
-import AdminTaskCard from '../../components/AdminTaskCard';
+import AdminSubmissionCard from '../../components/AdminSubmissionCard';
 
 const AdminPanel: React.FC = () => {
   const { id } = useParams();
@@ -41,7 +41,7 @@ const AdminPanel: React.FC = () => {
       <div>
         {tasks.map((task, i) => (
           <div key={i} className="mt-4">
-            <AdminTaskCard key={task.id} task={task} />
+            <AdminSubmissionCard key={task.id} task={task} />
           </div>
         ))}
       </div>

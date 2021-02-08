@@ -60,15 +60,17 @@ export const EditTasks: React.FC<any> = () => {
     },
   ];
   return (
-    <div className="">
-      <Link
-        className="button-solid button-orange"
-        to={{ pathname: `/admin/tasks/${id}/submissions` }}
-      >
-        View Submissions
-      </Link>
-      <div className="">
-        <h3>Edit Task</h3>
+    <div>
+      <div className="d-flex justify-content-between align-items-center">
+        <div className="">
+          <h3>Edit Task</h3>
+        </div>
+        <Link
+          className="button-solid button-orange"
+          to={{ pathname: `/admin/tasks/${id}/submissions` }}
+        >
+          View Submissions
+        </Link>
       </div>
       <div className="mt-4">
         <Form fields={fields} model={task} setModel={setTask} />
