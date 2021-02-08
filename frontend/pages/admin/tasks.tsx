@@ -1,8 +1,7 @@
 import React from 'react';
-
 import { useTask } from '../../hooks/task';
 import api from '../../services/api';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AdminTaskCard from '../../components/AdminTaskCard';
 
 const AdminPanel: React.FC = () => {
@@ -12,28 +11,21 @@ const AdminPanel: React.FC = () => {
     setTasks(resp.data.data);
   }, true);
 
-  const history = useHistory();
-
-  const addTask = () => {
-    const path = `tasks/add`;
-    history.push(path);
-  };
-
   return (
     <div>
-      <div className="row justify-content-between">
+      <div className="row justify-content-between align-items-center">
         <div>
           <input
             placeholder="What do you want to learn?"
             type="text"
-            value=""
             className="input-search bg-light-grey w-100 p-3"
           />
         </div>
-        <button className="button-solid button-orange" onClick={addTask}>
-          {' '}
-          Create New Task
-        </button>
+        <div>
+          <Link className="button-solid button-orange" to="/admin/tasks/add">
+            Create New Task
+          </Link>
+        </div>
       </div>
       <div>
         {tasks.map((task, i) => (

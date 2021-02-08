@@ -6,11 +6,15 @@ export default (props) => {
 
   return (
     <div className="row align-items-center p-4" style={{ background: 'transparent' }}>
-      <div className="col-2">
+      <div className="col-4">
         <label className="font-sm">{field.label}</label>
       </div>
-      <div className="col-10">
-        <Datetime onChange={(e) => onChange(e)} value={value} />
+      <div className="col-8">
+        <Datetime
+          onChange={(e) => onChange(e)}
+          value={value}
+          inputProps={{ className: 'underline-input pb-4 font-sm bold w-100' }}
+        />
       </div>
     </div>
   );

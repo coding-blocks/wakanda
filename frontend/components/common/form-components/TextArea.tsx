@@ -10,7 +10,8 @@ export default (props) => {
       </div>
       <div className="col-8">
         <textarea
-          className=" underline-input pb-4 font-sm bold w-100"
+          style={{ border: 'solid 1px #f3f3f3' }}
+          className="underline-input pb-4 font-sm bold w-100"
           rows={field.rows}
           onChange={(e) => onChange(e.target.value)}
           value={value}

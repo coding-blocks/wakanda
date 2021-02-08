@@ -1,5 +1,6 @@
 import React from 'react';
 import Form, { BaseFormField } from '../../components/common/BaseForm';
+import Button from '../../components/common/Button';
 import { useTask } from '../../hooks/task';
 import api from '../../services/api';
 
@@ -12,10 +13,10 @@ const CreateTask: React.FC = () => {
     endDate: '',
   });
 
-  const { isActive, trigger } = useTask(async () => {
+  const onSave = async () => {
     const resp = await api.post('task/', task);
     setTask(resp.data.data);
-  });
+  };
 
   const fields: BaseFormField[] = [
     {
@@ -47,11 +48,19 @@ const CreateTask: React.FC = () => {
 
   return (
     <div>
-      <Form fields={fields} model={task} setModel={setTask} />
+      <div className="">
+        <h3>Create Task</h3>
+      </div>
+      <div className="mt-4">
+        <Form fields={fields} model={task} setModel={setTask} />
+      </div>
       <div className="d-flex justify-content-end mt-4 ">
-        <button className="button-solid button-orange" onClick={trigger} disabled={isActive}>
-          Save
-        </button>
+        <Button
+          className="button-solid button-orange"
+          action={onSave}
+          text="Save"
+          activeText="Saving"
+        />
       </div>
     </div>
   );

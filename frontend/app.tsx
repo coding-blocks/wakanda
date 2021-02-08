@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'react-datetime/css/react-datetime.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthenticatedRoute from './components/common/AuthenticatedRoute';
@@ -9,6 +8,7 @@ import { loadUser } from './store/currentUserSlice';
 import Dashboard from './pages/dashboard';
 import Admin from './pages/admin';
 import Index from './pages';
+import 'react-datetime/css/react-datetime.css';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
