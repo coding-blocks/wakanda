@@ -11,15 +11,31 @@ class TaskController {
     res.json({ data: userTask });
   }
 
+  @AsyncHandler()
+  async handleDelete(req: Request, res: Response) {
+    await Repositories.userTask.delete({
+      taskId: req.body.taskId,
+      userId: req.body.userId,
+    });
+
+    res.sendStatus(204);
+  }
+
+  @AsyncHandler()
   async handleGetTasks(req: Request, res: Response) {
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
+    const query = req.query.q || '';
 
     const id = Number(req.query.taskId);
     const [userTask, count] = await Repositories.userTask.findAndCount({
-      where: {
-        taskId: id,
-        status: 'review',
+      where: (qb) => {
+        qb.where({
+          taskId: id,
+          status: 'review',
+        }).andWhere(`"UserTask__user".name ilike :q or "UserTask__user".email ilike :q`, {
+          q: `%${query}%`,
+        });
       },
       relations: ['submission', 'user'],
     });

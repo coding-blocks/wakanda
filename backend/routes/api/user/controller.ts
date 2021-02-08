@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
-import { Like } from 'typeorm';
+import { ILike, Like } from 'typeorm';
 import AsyncHandler from '../../../decorators/async-handler';
 
 class UserController {
@@ -13,10 +13,18 @@ class UserController {
 
   @AsyncHandler()
   async handleGetUsers(req: Request, res: Response) {
-    const { name = '' } = req.query;
+    const query = req.query.q || '';
+
     res.json({
       data: await Repositories.user.find({
-        name: Like(`%${name}%`),
+        where: [
+          {
+            name: ILike(`%${query}%`),
+          },
+          {
+            email: ILike(`%${query}%`),
+          },
+        ],
       }),
     });
   }

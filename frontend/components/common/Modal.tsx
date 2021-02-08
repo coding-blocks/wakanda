@@ -1,7 +1,13 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-export default (props) => {
+export interface ModalProps {
+  show: boolean;
+  setShow: (boolean) => void;
+  children: React.ReactNode[];
+}
+
+export default (props: ModalProps) => {
   return (
     <Modal
       isOpen={props.show}
