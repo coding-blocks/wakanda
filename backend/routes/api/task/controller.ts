@@ -2,26 +2,42 @@ import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 import AsyncHandler from '../../../decorators/async-handler';
 import { ILike } from 'typeorm';
+import { generatePaginationObject } from '../../../utils/pagination';
 
 class TaskController {
   @AsyncHandler()
   async handleActiveTasks(req: Request, res: Response) {
     const userId = req.user.id;
+    const offset = Number(req.query.offset || 0);
+    const limit = Number(req.query.limit || 10);
+
+    const [tasks, count] = await Repositories.task.findUserTasks(userId);
+
     res.json({
-      data: await Repositories.task.findUserTasks(userId),
+      data: tasks,
+      meta: {
+        pagination: generatePaginationObject(count, offset, limit),
+      },
     });
   }
 
   @AsyncHandler()
   async handleAllTasks(req: Request, res: Response) {
     const query = req.query.q || '';
-
+    const offset = Number(req.query.offset || 0);
+    const limit = Number(req.query.limit || 10);
+    const [tasks, count] = await Repositories.task.findAndCount({
+      where: {
+        name: ILike(`%${query}%`),
+      },
+      take: limit,
+      skip: offset,
+    });
     res.json({
-      data: await Repositories.task.find({
-        where: {
-          name: ILike(`%${query}%`),
-        },
-      }),
+      data: tasks,
+      meta: {
+        pagination: generatePaginationObject(count, offset, limit),
+      },
     });
   }
 
