@@ -8,7 +8,7 @@ export const Pagination = (props: { meta; onChange }) => {
   function handleOnClick(pageNumber) {
     return recievedFunction(pageNumber);
   }
-  const pageNumbersToShow = _.range(currentPage, totalPages - currentPage + 2).slice(0, 4);
+  const pageNumbersToShow = _.range(currentPage, totalPages + 1).slice(0, 4);
 
   const renderNumbers = pageNumbersToShow.map((number) => {
     return (

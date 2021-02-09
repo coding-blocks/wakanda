@@ -3,23 +3,39 @@ import { useTask } from '../../hooks/task';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import AdminTaskCard from '../../components/AdminTaskCard';
+import PaginationPills from '../../components/common/Pagination';
 
 const AdminPanel: React.FC = () => {
   const [tasks, setTasks] = React.useState([]);
   const [query, setQuery] = React.useState('');
 
+  const [activePage, setActivePage] = React.useState(1);
+  const [paginationMeta, setPaginationMeta] = React.useState(null);
+
   const { isActive, trigger } = useTask(async () => {
-    const resp: any = await api.get('task/', {
+    const limit = 5;
+    const resp: any = await api.get('task', {
       params: {
         q: query,
+        limit,
+        offset: (activePage - 1) * limit,
       },
     });
     setTasks(resp.data.data);
+    setPaginationMeta(resp.data.meta.pagination);
   }, true);
 
   React.useEffect(() => {
     trigger();
-  }, [query]);
+  }, [query, activePage]);
+
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+  };
+
+  if (tasks === null || paginationMeta === null) {
+    return <div className="">loading....</div>;
+  }
 
   return (
     <div>
@@ -47,6 +63,9 @@ const AdminPanel: React.FC = () => {
             <AdminTaskCard key={task.id} task={task} />
           </div>
         ))}
+      </div>
+      <div className="d-flex justify-content-center mt-3">
+        <PaginationPills meta={paginationMeta} onChange={handlePageChange} />
       </div>
     </div>
   );
