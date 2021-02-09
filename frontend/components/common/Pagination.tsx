@@ -14,6 +14,7 @@ export const Pagination = (props: { meta; onChange }) => {
     return (
       <div className="d-inline-block px-2">
         <button
+          key={number}
           className={number === currentPage ? 'button button-solid button-orange round' : ''}
           onClick={() => handleOnClick(number)}
         >

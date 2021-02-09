@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import PaginationPills from '../../../components/common/Pagination';
 import AddUserModal from '../../../components/user-task/AddUserModal';
 import UserTaskUserRow from '../../../components/user-task/UserTaskUserRow';
 import { useTask } from '../../../hooks/task';
@@ -11,19 +12,34 @@ export default () => {
   const [userTasks, setUserTasks] = React.useState([]);
   const [showAddUserModal, setShowAddUserModal] = React.useState(false);
 
+  const [activePage, setActivePage] = React.useState(1);
+  const [paginationMeta, setPaginationMeta] = React.useState(null);
+
   const { isActive, trigger } = useTask(async () => {
+    const limit = 10;
     const response = await api.get('user-task', {
       params: {
         taskId: id,
         q: query,
+        limit,
+        offset: (activePage - 1) * limit,
       },
     });
     setUserTasks(response.data.data);
+    setPaginationMeta(response.data.meta.pagination);
   }, true);
 
   React.useEffect(() => {
     trigger();
-  }, [query]);
+  }, [query, activePage]);
+
+  const handleOnChange = (pageNumber) => {
+    setActivePage(pageNumber);
+  };
+
+  if (userTasks === null || paginationMeta === null) {
+    return <div className="">loading....</div>;
+  }
 
   return (
     <div>
@@ -51,6 +67,9 @@ export default () => {
             <UserTaskUserRow userTask={userTask} onAfterDelete={() => trigger()} />
           </div>
         ))}
+        <div className="d-flex justify-content-center mt-4">
+          <PaginationPills meta={paginationMeta} onChange={handleOnChange} />
+        </div>
       </div>
 
       <AddUserModal
