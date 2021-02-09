@@ -13,8 +13,8 @@ class TaskRepository extends Repository<Task> {
       .getOne();
   }
 
-  async findUserTasks(userId: number): Promise<Task[]> {
-    return await this.createQueryBuilder('task')
+  async findUserTasks(userId: number): Promise<[Task[], number]> {
+    const tasks = await this.createQueryBuilder('task')
       .innerJoinAndSelect('task.userTask', 'userTask')
       .leftJoinAndSelect('userTask.submission', 'submission')
       // Todo: Remove this from here
@@ -22,6 +22,16 @@ class TaskRepository extends Repository<Task> {
       .where('userTask.userId=:id', { id: userId })
       .where(`userTask.status in ('draft', 'review')`)
       .getMany();
+
+    const count = await this.count({
+      relations: ['userTask'],
+      where: (qb) => {
+        qb.andWhere('"Task__userTask"."userId" = :id', { id: userId }).andWhere(
+          `"Task__userTask".status in ('draft','review')`,
+        );
+      },
+    });
+    return [tasks, count];
   }
 }
 

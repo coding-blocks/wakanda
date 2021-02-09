@@ -59,8 +59,9 @@ const AdminPanel: React.FC = () => {
           </div>
         ))}
       </div>
-
-      <Pagination meta={paginationMeta} onChange={handlePageChange} />
+      <div className="d-flex justify-content-center">
+        <Pagination meta={paginationMeta} onChange={handlePageChange} />
+      </div>
     </div>
   );
 };

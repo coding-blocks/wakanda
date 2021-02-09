@@ -1,19 +1,24 @@
 import React from 'react';
 import _ from 'lodash';
 
-export const Pagination = (props) => {
+export const Pagination = (props: { meta; onChange }) => {
   const { count, currentPage, currentOffset, nextOffset, prevOffset, totalPages } = props.meta;
   const recievedFunction = props.onChange;
 
   function handleOnClick(pageNumber) {
     return recievedFunction(pageNumber);
   }
-  const pageNumbersToShow = _.range(currentPage, totalPages - currentPage).slice(4);
+  const pageNumbersToShow = _.range(currentPage, totalPages - currentPage + 2).slice(0, 4);
 
   const renderNumbers = pageNumbersToShow.map((number) => {
     return (
-      <div className="d-inline-block">
-        <button onClick={() => handleOnClick(number)}>{number}</button>
+      <div className="d-inline-block px-2">
+        <button
+          className={number === currentPage ? 'button button-solid button-orange round' : ''}
+          onClick={() => handleOnClick(number)}
+        >
+          {number}
+        </button>
       </div>
     );
   });
@@ -22,7 +27,7 @@ export const Pagination = (props) => {
     <div className="">
       <button
         id="prev-page"
-        className=""
+        className="button button-dashed button-primary mx-3 br-5"
         disabled={prevOffset === null}
         onClick={() => handleOnClick(currentPage - 1)}
       >
@@ -31,7 +36,7 @@ export const Pagination = (props) => {
       {renderNumbers}
       <button
         id="next-page"
-        className=""
+        className="button button-dashed button-primary mx-3 br-5"
         disabled={nextOffset === null}
         onClick={() => handleOnClick(currentPage + 1)}
       >
