@@ -24,8 +24,12 @@ export const TaskCard: React.FC<any> = ({ task }) => {
           </div>
 
           <div className="col-2">
-            <div className="d-flex justify-content-end">
-              <h3>{task.points}</h3>
+            <div className="d-flex justify-content-end mx-1">
+              <img
+                className="mx-3"
+                src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/star_filled.svg"
+              />
+              <h3 style={{ fontSize: '2rem' }}>{task.points}</h3>
             </div>
           </div>
         </div>
