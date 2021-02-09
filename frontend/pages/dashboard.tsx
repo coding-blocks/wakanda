@@ -33,8 +33,8 @@ const CAPortal: React.FC = () => {
     <div>
       <Useroverview />
       <div className="row">
-        <div className="col-8 my-4">{showActiveTasks}</div>
-        <div className="col-4 my-4">
+        <div className="col-lg-8 my-4">{showActiveTasks}</div>
+        <div className="col-lg-4 my-4">
           <div className="mb-4">
             <UserStats />
           </div>
