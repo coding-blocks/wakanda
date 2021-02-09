@@ -37,7 +37,7 @@ export default () => {
   }
 
   async function onSave(role, userId) {
-    const resp = await api.patch(`task/${userId}`, {
+    const resp = await api.patch(`user/${userId}`, {
       role: role === 'default' ? 'ambassador' : 'default',
     });
   }
