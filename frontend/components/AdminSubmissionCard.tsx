@@ -33,6 +33,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
+              <div className="my-auto mx-3">{userTask.status}</div>
               <button
                 className="button-solid button-orange"
                 onClick={() => setShowSubmitModal(true)}

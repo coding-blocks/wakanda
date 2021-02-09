@@ -28,7 +28,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
         <div className="col d-flex justify-content-around">
           <Button
             className="button-dashed button-orange"
-            action={() => handleSubmission('Accepted')}
+            action={() => handleSubmission('accepted')}
             activeText="Saving"
             text="Accept"
           />
