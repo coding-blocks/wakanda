@@ -41,6 +41,8 @@ class TaskController {
           q: `%${query}%`,
         });
       },
+      take: limit,
+      skip: offset,
       relations: ['submission', 'user'],
     });
 
