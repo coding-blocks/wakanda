@@ -47,6 +47,7 @@ const AdminPanel: React.FC = () => {
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
+              setActivePage(1);
             }}
             className="input-search w-100 p-3"
           />

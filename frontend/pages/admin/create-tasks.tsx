@@ -3,6 +3,7 @@ import Form, { BaseFormField } from '../../components/common/BaseForm';
 import Button from '../../components/common/Button';
 import { useTask } from '../../hooks/task';
 import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
 
 const CreateTask: React.FC = () => {
   const [task, setTask] = React.useState({
@@ -13,9 +14,12 @@ const CreateTask: React.FC = () => {
     endDate: '',
   });
 
+  const history = useHistory();
+
   const onSave = async () => {
     const resp = await api.post('task/', task);
     setTask(resp.data.data);
+    history.push(`/admin/tasks`);
   };
 
   const fields: BaseFormField[] = [

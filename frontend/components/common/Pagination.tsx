@@ -12,10 +12,10 @@ export const Pagination = (props: { meta; onChange }) => {
 
   const renderNumbers = pageNumbersToShow.map((number) => {
     return (
-      <div className="d-inline-block px-2">
+      <div className="d-inline-block px-2 d-flex">
         <button
           key={number}
-          className={number === currentPage ? 'button button-solid button-orange round' : ''}
+          className={number === currentPage ? 'button button-solid button-orange round' : 'my-auto'}
           onClick={() => handleOnClick(number)}
         >
           {number}
@@ -25,7 +25,7 @@ export const Pagination = (props: { meta; onChange }) => {
   });
 
   return (
-    <div className="">
+    <div className="d-flex justify-content-between flex-nowrap">
       <button
         id="prev-page"
         className="button button-dashed button-primary mx-3 br-5"
