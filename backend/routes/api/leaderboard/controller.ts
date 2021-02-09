@@ -13,7 +13,7 @@ class LeaderboardController {
     const [data, count] = await Repositories.user.findAndCount({
       skip: offset,
       take: limit,
-      order: { totalPoints: 'ASC' },
+      order: { totalPoints: 'DESC' },
     });
     res.json({
       data: generateSanitizeduser(data),

@@ -23,7 +23,7 @@ class UserRepository extends Repository<User> {
   async updateRole(id: number, role: string) {
     return await this.createQueryBuilder()
       .update(User)
-      .set({ role: () => role })
+      .set({ role: () => `${role}` })
       .where('id = :id', { id })
       .execute();
   }

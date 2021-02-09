@@ -14,9 +14,10 @@ class UserController {
 
   @AsyncHandler()
   async updateUserById(req: Request, res: Response) {
-    const [userId, role] = req.body;
+    const role = req.body.role;
+    const userId = Number(req.params.id);
     await Repositories.user.updateRole(userId, role);
-    res.status(204);
+    res.json('ok');
   }
 
   @AsyncHandler()
@@ -24,7 +25,7 @@ class UserController {
     const query = req.query.q || '';
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
-    const [tasks, count] = await Repositories.user.find({
+    const [tasks, count] = await Repositories.user.findAndCount({
       where: [
         {
           name: ILike(`%${query}%`),
@@ -37,7 +38,7 @@ class UserController {
       skip: offset,
     });
     res.json({
-      data: [tasks],
+      data: tasks,
       meta: {
         pagination: generatePaginationObject(count, offset, limit),
       },
