@@ -22,6 +22,9 @@ export default () => {
         <li className="nav-items pointer">
           <Link to="/admin/tasks">Tasks</Link>
         </li>
+        <li className="nav-items pointer">
+          <Link to="/admin/ambassadors">Ambassadors</Link>
+        </li>
         {isAuthenticated && <li className="nav-items pointer">Hi, {user.name}</li>}
         {isAuthenticated && (
           <li className="nav-items pointer">

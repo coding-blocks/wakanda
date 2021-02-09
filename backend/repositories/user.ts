@@ -20,6 +20,14 @@ class UserRepository extends Repository<User> {
       .execute();
   }
 
+  async updateRole(id: number, role: string) {
+    return await this.createQueryBuilder()
+      .update(User)
+      .set({ role: () => role })
+      .where('id = :id', { id })
+      .execute();
+  }
+
   async findAll(): Promise<User[]> {
     // TODO: handle pagination
     return await this.find();

@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { isAdmin, isAuthenticated } from '../../../middlewares/authentication';
+import { isAdmin } from '../../../middlewares/authentication';
 import controller from './controller';
 
 const router = Router();
 
-router.get('/me', isAuthenticated, controller.handleGetMe);
-router.get('/', isAuthenticated, isAdmin, controller.handleGetUsers);
+router.get('/me', controller.handleGetMe);
+router.get('/', isAdmin, controller.handleGetUsers);
+router.patch('/:id', isAdmin, controller.updateUserById);
 
 export default router;

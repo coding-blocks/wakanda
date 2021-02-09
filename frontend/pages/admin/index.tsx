@@ -5,6 +5,7 @@ import TasksPage from './tasks';
 import CreateTaskPage from './create-tasks';
 import HomePage from './home';
 import TaskView from './task-view';
+import AmbassadorPage from './ambassador';
 
 export default () => {
   const { path } = useRouteMatch();
@@ -12,6 +13,7 @@ export default () => {
   return (
     <Switch>
       <Route path={`${path}/tasks`} exact render={() => <TasksPage />} />
+      <Route path={`${path}/ambassadors`} exact render={() => <AmbassadorPage />} />
       <Route path={`${path}/tasks/add`} exact render={() => <CreateTaskPage />} />
       <Route path={path} exact render={() => <HomePage />} />
       <Route path={`${path}/tasks/:id`} exact render={() => <TaskView />} />
