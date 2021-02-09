@@ -59,15 +59,6 @@ const AdminPanel: React.FC = () => {
           </div>
         ))}
       </div>
-      {/* <Pagination 
-        itemClass="d-inline-block"
-        linkClass="m-2"
-        activePage={activePage}
-        itemsCountPerPage={1}
-        totalItemsCount={paginationMeta?.totalPages * 1}
-        pageRangeDisplayed={5}
-        onChange={()=>console.log("heelo")}
-        /> */}
 
       <Pagination meta={paginationMeta} onChange={handlePageChange} />
     </div>
