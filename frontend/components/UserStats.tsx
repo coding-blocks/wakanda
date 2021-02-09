@@ -15,14 +15,12 @@ export const UserStats: React.FC = () => {
             fontSize: 45,
           }}
         >
-          <div className="position-relative">
-            <img
-              className="position-absolute"
-              style={{ right: '3rem', height: '100%' }}
-              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/star_filled.svg"
-            />
-            {user.totalPoints}
-          </div>
+          <img
+            className="my-auto mx-2"
+            style={{ height: '25px' }}
+            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/star_filled.svg"
+          />
+          {user.totalPoints}
         </div>
       </div>
       <div className="divider-h"></div>
