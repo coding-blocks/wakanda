@@ -3,6 +3,8 @@ import Button from './common/Button';
 import Form, { BaseFormField } from '../components/common/BaseForm';
 import Modal from './common/Modal';
 import api from '../services/api';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../store/currentUserSlice';
 
 export interface AddUserModalProps {
   show: boolean;
@@ -11,6 +13,7 @@ export interface AddUserModalProps {
 }
 
 export default (props: AddUserModalProps) => {
+  const user = useSelector(selectUser());
   const [lastError, setLastError] = React.useState(null);
   const [lastMessage, setLastMessage] = React.useState(null);
   const [workshop, setWorkshop] = React.useState({
@@ -21,7 +24,7 @@ export default (props: AddUserModalProps) => {
     endDate: null,
     monetary: '',
     accomodation: '',
-    caId: '',
+    caId: user.oneauth_id,
     request: '',
   });
 
