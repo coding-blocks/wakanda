@@ -6,6 +6,7 @@ import { Useroverview } from '../components/UserOverview';
 import { TaskCard } from '../components/TaskCard';
 import { UserStats } from '../components/UserStats';
 import { LeaderBoard } from '../components/LeaderBoard';
+import InactiveTasks from '../components/InactiveTasks';
 
 const ArchivedTasksAccordian = (props) => {
   if (props.showContent) return <div className="">{props.children}</div>;
@@ -43,11 +44,17 @@ const CAPortal: React.FC = () => {
         <div className="col-lg-8 my-4">
           <div className="">{showActiveTasks}</div>
 
-          <div className="mt-4 bg-white" onClick={() => setShowArchivedTasks(!showArchivedTasks)}>
-            <ArchivedTasksAccordian showContent={showArchivedTasks}>
-              {/* ADD inactive Tasks */}
-            </ArchivedTasksAccordian>
+          <div
+            className="mt-4 bg-white card br-10"
+            onClick={() => setShowArchivedTasks(!showArchivedTasks)}
+          >
+            <div className="grey">View Task History</div>
           </div>
+          <ArchivedTasksAccordian showContent={showArchivedTasks}>
+            <div className="mt-2">
+              <InactiveTasks />
+            </div>
+          </ArchivedTasksAccordian>
         </div>
         <div className="col-lg-4 my-4">
           <div className="mb-4">
