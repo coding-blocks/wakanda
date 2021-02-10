@@ -4,7 +4,7 @@ export default (props) => {
   const { value, onChange, field } = props;
 
   return (
-    <div className="row align-items-center p-4 " style={{ background: 'transparent' }}>
+    <div className="row align-items-center p-2" style={{ background: 'transparent' }}>
       <div className="col-4">
         <label className="font-sm">{field.label}</label>
       </div>

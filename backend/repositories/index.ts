@@ -3,6 +3,7 @@ import UserRepository from './user';
 import TaskRepository from './task';
 import SubmissionRepository from './submission';
 import UserTaskRepository from './user-task';
+import WorkshopRepository from './workshop';
 
 class Repositories {
   private connection: Connection;
@@ -24,6 +25,10 @@ class Repositories {
 
   get submission(): SubmissionRepository {
     return this.connection.getCustomRepository(SubmissionRepository);
+  }
+
+  get workshop(): WorkshopRepository {
+    return this.connection.getCustomRepository(WorkshopRepository);
   }
 
   static getInstance(): Repositories {
