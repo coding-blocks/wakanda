@@ -2,11 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import RequestWorkshopModal from '../components/RequestWorkshopModal';
 
 export const Useroverview: React.FC = () => {
   const user = useSelector((state: any) => state.currentUser.user);
-  const [showWorkshopModal, setShowWorkshopModal] = React.useState(false);
 
   const copyCaCode = () => {
     // TODO
@@ -23,11 +21,6 @@ export const Useroverview: React.FC = () => {
               <span className="font-sm med-grey">{user.college}</span>
             </div>
           </div>
-        </div>
-        <div className="ml-3">
-          <button className="button-solid button-orange" onClick={() => setShowWorkshopModal(true)}>
-            Request Workshop
-          </button>
         </div>
         {!!user.caCode && (
           <div className="my-auto">
@@ -47,15 +40,6 @@ export const Useroverview: React.FC = () => {
           </div>
         )}
       </div>
-      <RequestWorkshopModal
-        show={showWorkshopModal}
-        setShow={setShowWorkshopModal}
-        onAfterAdd={() => {
-          setTimeout(() => {
-            setShowWorkshopModal(false);
-          }, 1000);
-        }}
-      />
     </div>
   );
 };
