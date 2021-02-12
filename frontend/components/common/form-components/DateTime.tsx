@@ -12,6 +12,7 @@ export default (props) => {
       </div>
       <div className="col-8">
         <Datetime
+          dateFormat="DD/MM/YYYY"
           onChange={(e) => onChange(e)}
           value={Moment(value)}
           inputProps={{ className: 'underline-input pb-4 font-sm bold w-100' }}

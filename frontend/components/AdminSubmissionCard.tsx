@@ -49,6 +49,11 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
         setShow={setShowSubmitModal}
         show={showSubmitModal}
         id={userTask.submission.id}
+        onAfterAdd={() => {
+          setTimeout(() => {
+            setShowSubmitModal(false);
+          }, 1000);
+        }}
       />
     </div>
   );

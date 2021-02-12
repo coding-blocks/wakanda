@@ -50,10 +50,10 @@ export const Navbar: React.FC = () => {
       <RequestWorkshopModal
         show={showWorkshopModal}
         setShow={setShowWorkshopModal}
-        onAfterAdd={() => {
+        onAfterAdd={(time = 1000) => {
           setTimeout(() => {
             setShowWorkshopModal(false);
-          }, 1000);
+          }, time);
         }}
       />
     </div>

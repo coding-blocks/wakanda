@@ -9,7 +9,7 @@ import { selectUser } from '../store/currentUserSlice';
 export interface AddUserModalProps {
   show: boolean;
   setShow: (boolean) => void;
-  onAfterAdd?: () => void;
+  onAfterAdd?: (time) => void;
 }
 
 export default (props: AddUserModalProps) => {
@@ -31,7 +31,7 @@ export default (props: AddUserModalProps) => {
   const fields: BaseFormField[] = [
     {
       name: 'collegeName',
-      label: 'College Namee',
+      label: 'College Name',
       type: 'text',
     },
     {
@@ -78,7 +78,7 @@ export default (props: AddUserModalProps) => {
       setLastMessage(`Requstest Workshop`);
 
       if (props.onAfterAdd) {
-        props.onAfterAdd();
+        props.onAfterAdd(1000);
       }
     } catch (err) {
       setLastError(err.response.data.errors[0].detail);
@@ -107,6 +107,12 @@ export default (props: AddUserModalProps) => {
         )}
       </div>
       <div className="d-flex justify-content-end m-4 ">
+        <Button
+          className="button-solid button-orange mr-2"
+          action={() => props.onAfterAdd(0)}
+          activeText="Closing"
+          text="Cancel"
+        />
         <Button
           className="button-solid button-orange"
           action={requestWorkshop}

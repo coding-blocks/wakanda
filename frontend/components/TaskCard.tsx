@@ -77,7 +77,16 @@ export const TaskCard: React.FC<any> = ({ task }) => {
         </TaskAccordian>
       </div>
 
-      <SubmissionModal setShow={setShowSubmitModal} show={showSubmitModal} task={task} />
+      <SubmissionModal
+        setShow={setShowSubmitModal}
+        show={showSubmitModal}
+        task={task}
+        onAfterAdd={(time = 1000) => {
+          setTimeout(() => {
+            setShowSubmitModal(false);
+          }, time);
+        }}
+      />
     </div>
   );
 };

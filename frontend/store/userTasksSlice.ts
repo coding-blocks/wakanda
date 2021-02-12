@@ -67,7 +67,19 @@ export const saveSubmission: any = createAsyncThunk(
 
 export const submitForReview: any = createAsyncThunk(
   'task/creatandSubmitSubmisionForReview',
-  async ({ submission }: any) => {
+  async ({ taskId, submission }: any) => {
+    if (!submission.id) {
+      const createSubmission = await client.post(`/submission`, {
+        scope: {
+          model: 'task',
+          id: taskId,
+        },
+        data: {
+          ...submission,
+        },
+      });
+      submission = createSubmission.data.data;
+    }
     const submissionForReview = await client.post(`/submission/${submission.id}/status`, {
       status: 'review',
     });
