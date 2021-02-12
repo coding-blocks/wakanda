@@ -38,7 +38,7 @@ export class User {
   role: UserRole;
 
   @Column({
-    nullable: false,
+    nullable: true,
     default:
       'https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png',
   })
