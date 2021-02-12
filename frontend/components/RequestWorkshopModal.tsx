@@ -9,7 +9,7 @@ import { selectUser } from '../store/currentUserSlice';
 export interface AddUserModalProps {
   show: boolean;
   setShow: (boolean) => void;
-  onAfterAdd?: (time) => void;
+  onAfterAdd?: () => void;
 }
 
 export default (props: AddUserModalProps) => {
@@ -24,7 +24,7 @@ export default (props: AddUserModalProps) => {
     endDate: null,
     monetary: '',
     accomodation: '',
-    caId: user.oneauth_id,
+    caId: user?.oneauth_id,
     request: '',
   });
 
@@ -78,7 +78,7 @@ export default (props: AddUserModalProps) => {
       setLastMessage(`Requstest Workshop`);
 
       if (props.onAfterAdd) {
-        props.onAfterAdd(1000);
+        props.onAfterAdd();
       }
     } catch (err) {
       setLastError(err.response.data.errors[0].detail);
@@ -109,7 +109,7 @@ export default (props: AddUserModalProps) => {
       <div className="d-flex justify-content-end m-4 ">
         <Button
           className="button-solid button-orange mr-2"
-          action={() => props.onAfterAdd(0)}
+          action={() => props.setShow(false)}
           activeText="Closing"
           text="Cancel"
         />

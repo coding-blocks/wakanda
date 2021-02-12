@@ -47,15 +47,17 @@ export const Navbar: React.FC = () => {
           )}
         </ul>
       </nav>
-      <RequestWorkshopModal
-        show={showWorkshopModal}
-        setShow={setShowWorkshopModal}
-        onAfterAdd={(time = 1000) => {
-          setTimeout(() => {
-            setShowWorkshopModal(false);
-          }, time);
-        }}
-      />
+      {isAuthenticated && (
+        <RequestWorkshopModal
+          show={showWorkshopModal}
+          setShow={setShowWorkshopModal}
+          onAfterAdd={() => {
+            setTimeout(() => {
+              setShowWorkshopModal(false);
+            }, 1000);
+          }}
+        />
+      )}
     </div>
   );
 };
