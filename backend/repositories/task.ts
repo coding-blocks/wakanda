@@ -14,24 +14,16 @@ class TaskRepository extends Repository<Task> {
   }
 
   async findUserTasks(userId: number): Promise<[Task[], number]> {
-    const tasks = await this.createQueryBuilder('task')
+    return await this.createQueryBuilder('task')
       .innerJoinAndSelect('task.userTask', 'userTask')
       .leftJoinAndSelect('userTask.submission', 'submission')
       // Todo: Remove this from here
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('userTask.userId=:id', { id: userId })
       .where(`userTask.status in ('draft', 'review')`)
-      .getMany();
-
-    const count = await this.count({
-      relations: ['userTask'],
-      where: (qb) => {
-        qb.andWhere('"Task__userTask"."userId" = :id', { id: userId }).andWhere(
-          `"Task__userTask".status in ('draft','review')`,
-        );
-      },
-    });
-    return [tasks, count];
+      .where('task.startDate > :start_at', { start_at: new Date() })
+      .where('task.endDate < :date', { date: new Date() })
+      .getManyAndCount();
   }
 }
 

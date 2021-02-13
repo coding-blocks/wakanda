@@ -39,6 +39,9 @@ export class Workshop {
   @Column({ nullable: true })
   request: string;
 
+  @Column({ nullable: true })
+  mobile: string;
+
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 

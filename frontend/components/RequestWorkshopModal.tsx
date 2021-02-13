@@ -26,6 +26,7 @@ export default (props: AddUserModalProps) => {
     accomodation: '',
     caId: user?.oneauth_id,
     request: '',
+    mobile: '',
   });
 
   const fields: BaseFormField[] = [
@@ -68,6 +69,11 @@ export default (props: AddUserModalProps) => {
       name: 'request',
       label: 'Any Special Requests',
       type: 'textarea',
+    },
+    {
+      name: 'mobile',
+      label: 'Contact Info',
+      type: 'text',
     },
   ];
 

@@ -86,3 +86,4 @@ dist/
 
 # tmp files
 backend/tmp/
+backend/seed/
