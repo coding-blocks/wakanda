@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
         </span>
         <ul className="nav-list">
           {isAuthenticated && (
-            <li className="" onClick={() => setShowWorkshopModal(true)}>
+            <li className="nav-items pointer" onClick={() => setShowWorkshopModal(true)}>
               Request Workshop
             </li>
           )}
