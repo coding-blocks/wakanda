@@ -16,7 +16,7 @@ export const TaskCard: React.FC<any> = ({ task }) => {
 
   return (
     <div className="card br-10 bg-white p-0">
-      <div className="px-5 py-4">
+      <div className="p-30">
         <div className="row">
           <div className="col-10">
             <div className="font-sm med-grey mb-2">Task</div>
@@ -28,6 +28,7 @@ export const TaskCard: React.FC<any> = ({ task }) => {
               <img
                 className="mx-3"
                 src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/star_filled.svg"
+                style={{ height: '30px' }}
               />
               <h3 style={{ fontSize: '2rem' }}>{task.points}</h3>
             </div>
@@ -36,8 +37,8 @@ export const TaskCard: React.FC<any> = ({ task }) => {
 
         <div className="row mt-4">
           <div className="col">
-            <div className="font-5">Duration</div>
-            <div className="font-mds orange">{`${dateFormater(task.startDate)} - ${dateFormater(
+            <div className="font-2 grey">Duration</div>
+            <div className="font-mds blue-text">{`${dateFormater(task.startDate)} - ${dateFormater(
               task.endDate,
             )}`}</div>
           </div>
@@ -64,7 +65,7 @@ export const TaskCard: React.FC<any> = ({ task }) => {
 
       <div className="divider-h"></div>
 
-      <div className="px-5 py-4">
+      <div className="p-30">
         <div className="row" onClick={handleAccordianClick}>
           <div className="col bold dark-grey pointer">Details and Instruction</div>
         </div>
