@@ -30,6 +30,7 @@ class TaskController {
       where: {
         name: ILike(`%${query}%`),
       },
+      order: { updatedAt: 'DESC' },
       take: limit,
       skip: offset,
     });
@@ -70,10 +71,8 @@ class TaskController {
     const payload = req.body.data;
 
     const task = await Repositories.task.findOne(id);
-    Repositories.task.merge(task, payload);
-    await Repositories.task.save(task);
 
-    res.json({ data: task });
+    res.json({ data: Repositories.task.merge(task, payload) });
   }
 
   @AsyncHandler()

@@ -21,8 +21,8 @@ class TaskRepository extends Repository<Task> {
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('userTask.userId=:id', { id: userId })
       .where(`userTask.status in ('draft', 'review')`)
-      // .where('task.startDate > :start_at', { start_at: new Date() })
-      // .where('task.endDate < :date', { date: new Date() })
+      .where('task.startDate < :start_at', { start_at: new Date(new Date().setHours(0, 0, 0, 0)) })
+      .where('task.endDate > :date', { date: new Date(new Date().setHours(24, 0, 0, 0)) })
       .getManyAndCount();
   }
 }
