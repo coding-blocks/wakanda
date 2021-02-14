@@ -37,10 +37,7 @@ export const AllTaskCard: React.FC<any> = ({ task }) => {
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
-              <Link
-                className="button-solid button-orange"
-                to={{ pathname: `/admin/tasks/${task.id}` }}
-              >
+              <Link className="button-primary" to={{ pathname: `/admin/tasks/${task.id}` }}>
                 Edit
               </Link>
             </div>

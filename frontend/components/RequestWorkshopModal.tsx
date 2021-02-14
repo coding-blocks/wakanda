@@ -114,13 +114,13 @@ export default (props: AddUserModalProps) => {
       </div>
       <div className="d-flex justify-content-end m-4 ">
         <Button
-          className="button-solid button-orange mr-2"
+          className="button-primary mr-2"
           action={() => props.setShow(false)}
           activeText="Closing"
           text="Cancel"
         />
         <Button
-          className="button-solid button-orange"
+          className="button-primary"
           action={requestWorkshop}
           text="Save"
           activeText="Saving"

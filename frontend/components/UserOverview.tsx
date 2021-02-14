@@ -12,8 +12,8 @@ export const Useroverview: React.FC = () => {
 
   return (
     <div>
-      <div className="d-flex my-2 py-5 bg-white card br-10 justify-content-between">
-        <div className="my-auto">
+      <div className="row no-gutters bg-white card justify-content-between align-items-center">
+        <div>
           <div className="d-flex">
             <img className="s-80X80 round my-auto mx-2" src={user.photo} />
             <div className="ml-4 my-auto">
@@ -23,7 +23,7 @@ export const Useroverview: React.FC = () => {
           </div>
         </div>
         {!!user.caCode && (
-          <div className="my-auto">
+          <div>
             <div className="">
               <div className="d-flex justify-content-end mb-2">
                 <span className="align-self-end font-sm med-grey">CA code</span>

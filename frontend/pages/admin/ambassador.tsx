@@ -66,7 +66,7 @@ export default () => {
               </div>
               <Button
                 action={() => onSave(user.role, user.id)}
-                className="button-solid button-orange"
+                className="button-primary"
                 text={user.role === 'ambassador' ? 'Remove CA' : 'Make CA'}
                 activeText="Updating"
               />

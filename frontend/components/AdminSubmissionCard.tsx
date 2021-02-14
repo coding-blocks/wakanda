@@ -36,7 +36,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
               <div className="my-auto mx-3">{userTask.status}</div>
               <button
                 disabled={userTask.status === 'accepted' || userTask.status === 'rejected'}
-                className="button-solid button-orange"
+                className="button-primary"
                 onClick={() => setShowSubmitModal(true)}
               >
                 Open Submission

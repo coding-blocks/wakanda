@@ -19,7 +19,7 @@ const UserRow = ({ user, onAdd }) => (
     </div>
     <div>
       <Button
-        className="button-solid button-orange"
+        className="button-primary"
         action={() => onAdd(user)}
         text="Add"
         activeText="Adding"
