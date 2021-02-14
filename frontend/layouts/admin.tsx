@@ -3,7 +3,7 @@ import AdminNavbar from '../components/AdminNavbar';
 
 export const Baselayout: React.FC = (props) => {
   return (
-    <div className="pt-5">
+    <div className="pt-5 a-cbm">
       <AdminNavbar />
       <div className="container">
         <div className="mx-5">{props.children}</div>
