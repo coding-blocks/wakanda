@@ -59,6 +59,18 @@ export const RedirectToLogin: React.FC = () => {
               <div className="t-align-sm-l t-align-c">
                 <div className="heading-1 bold">What you do?</div>
                 <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_welcome.svg" />
+                <div className="mt-60">
+                  <div className="mb-40 heading-5 text-grey">
+                    Organise and manage various Coding Blocks Event (online and offline)
+                  </div>
+                  <div className="mb-40 heading-5 text-grey">
+                    Promote Coding Blocks among your peers
+                  </div>
+                  <div className="mb-40 heading-5 text-grey">Conduct Seminars</div>
+                  <div className="mb-40 heading-5 text-grey">
+                    Inform peers about latest CB offers and help them learn new skills
+                  </div>
+                </div>
               </div>
             </div>
             <div className="divider-h d-lg-none d-block my-50 bg-grey-light-1"></div>
