@@ -37,8 +37,9 @@ export const RedirectToLogin: React.FC = () => {
         <div className="width-limiter">
           <div className="row no-gutters justify-content-between align-items-center">
             <div className="col-6">
-              <div className="heading-1 bold mb-60">About the Programme</div>
-              <div className="heading-5 text-grey">
+              <div className="heading-1 bold">About the Programme</div>
+              <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_welcome.svg" />
+              <div className="heading-5 text-grey mt-60">
                 The Campus Ambassador program at Coding Blocks is aimed at identifying energetic,
                 passionate, brilliant, like minded College Superheroes (and this term Superhero
                 includes all the Supermen &amp; Wonderwomen) who have the zeal to take initiative
@@ -54,7 +55,12 @@ export const RedirectToLogin: React.FC = () => {
       <div className="landing-page__section landing-page__section--divided-section">
         <div className="width-limiter">
           <div className="row">
-            <div className="col-lg-6 col-12 landing-page__section--divided-section__left-section"></div>
+            <div className="col-lg-6 col-12 landing-page__section--divided-section__left-section">
+              <div className="t-align-sm-l t-align-c">
+                <div className="heading-1 bold">What you do?</div>
+                <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_welcome.svg" />
+              </div>
+            </div>
             <div className="divider-h d-lg-none d-block my-50 bg-grey-light-1"></div>
             <div className="col-lg-6 col-12 landing-page__section--divided-section__right-section"></div>
           </div>
