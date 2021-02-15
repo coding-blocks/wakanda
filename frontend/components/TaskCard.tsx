@@ -69,7 +69,7 @@ export const TaskCard: React.FC<any> = ({ task }) => {
 
       <div className="p-30 med-grey">
         <div className="row no-gutters" onClick={handleAccordianClick}>
-          <div className="pointer">Details and Instructions</div>
+          <div className="pointer bold">Details and Instructions</div>
         </div>
 
         <TaskAccordian showContent={showContent}>
