@@ -7,6 +7,7 @@ import { useTask } from '../hooks/task';
 
 export const SubmissionModal: React.FC<any> = (props) => {
   const { id } = props;
+  const { status } = props;
   const [submission, setSubmission] = useState();
   const { isActive, trigger } = useTask(async () => {
     const resp: any = await client.get(`submission/${id}`);
@@ -27,12 +28,14 @@ export const SubmissionModal: React.FC<any> = (props) => {
       <div className="row mt-5 px-5 py-4">
         <div className="col d-flex justify-content-around">
           <Button
+            disabled={status === 'accepted' || status === 'rejected'}
             className="button-primary button-primary--accepted"
             action={() => handleSubmission('accepted')}
             activeText="Saving"
             text="Accept"
           />
           <Button
+            disabled={status === 'accepted' || status === 'rejected'}
             className="button-primary button-primary--rejected"
             action={() => handleSubmission('rejected')}
             activeText="Submitting"
