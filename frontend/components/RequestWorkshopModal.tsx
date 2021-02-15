@@ -96,7 +96,7 @@ export default (props: AddUserModalProps) => {
     <Modal show={props.show} setShow={props.setShow}>
       <div className="p-4" style={{ minWidth: 600 }}>
         <div>
-          <div className="font-md">Request Workshop</div>
+          <div className="heading-6">Request Workshop</div>
         </div>
         <div className="mt-4">
           <Form fields={fields} model={workshop} setModel={setWorkshop} />

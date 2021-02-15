@@ -42,7 +42,7 @@ export const LeaderBoard = () => {
   return (
     <div className="card br-10 p-0 bg-white">
       <div className="p-4">
-        <div className="font-md bold orange mb-4">Leaderboard</div>
+        <div className="heading-6 bold orange mb-4">Leaderboard</div>
         {loading ? (
           <div>Loading...</div>
         ) : (
