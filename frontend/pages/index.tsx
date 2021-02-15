@@ -15,7 +15,7 @@ export const RedirectToLogin: React.FC = () => {
             <div className="flex-1">
               <div className="heading-font stroke-font">BECOME A</div>
               <div className="heading-font">SUPERHERO</div>
-              <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_welcome.svg" />
+              <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
 
               <div className="my-50">
                 <div className="text-grey heading-4 bold">Networking. Bonding. Learning</div>
@@ -38,7 +38,7 @@ export const RedirectToLogin: React.FC = () => {
           <div className="row no-gutters justify-content-between align-items-center">
             <div className="col-6">
               <div className="heading-1 bold">About the Programme</div>
-              <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_welcome.svg" />
+              <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
               <div className="heading-5 text-grey mt-60">
                 The Campus Ambassador program at Coding Blocks is aimed at identifying energetic,
                 passionate, brilliant, like minded College Superheroes (and this term Superhero
@@ -58,7 +58,7 @@ export const RedirectToLogin: React.FC = () => {
             <div className="col-lg-6 col-12 landing-page__section--divided-section__left-section">
               <div className="t-align-sm-l t-align-c">
                 <div className="heading-1 bold">What you do?</div>
-                <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_welcome.svg" />
+                <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
                 <div className="mt-60">
                   <div className="mb-40 heading-5 text-grey">
                     Organise and manage various Coding Blocks Event (online and offline)
@@ -74,7 +74,40 @@ export const RedirectToLogin: React.FC = () => {
               </div>
             </div>
             <div className="divider-h d-lg-none d-block my-50 bg-grey-light-1"></div>
-            <div className="col-lg-6 col-12 landing-page__section--divided-section__right-section"></div>
+            <div className="col-lg-6 col-12 landing-page__section--divided-section__right-section">
+              <div className="t-align-sm-l t-align-c">
+                <div className="heading-1 bold">What you get?</div>
+                <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
+                <div className="mt-60">
+                  <div className="mb-40 heading-5 text-grey">
+                    Access to exclusive CB swags and goodies
+                  </div>
+                  <div className="mb-40 heading-5 text-grey">
+                    Performance based financial incentives
+                  </div>
+                  <div className="mb-40 heading-5 text-grey">Letter of recommendation</div>
+                  <div className="mb-40 heading-5 text-grey">
+                    Internship and placement opportunities
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-20">
+            <div className="card bg-gradient-blue">
+              <div className="row no-gutters align-items-center">
+                <img
+                  src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/superhero-vector-wakanda.svg"
+                  style={{ marginLeft: '-30px' }}
+                />
+                <div className="flex-1 white">
+                  <div className="heading-1 bold">Apply Now!</div>
+                  <div className="font-5 my-15">
+                    Provide us with your Email ID and we will get in touch with you!
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
