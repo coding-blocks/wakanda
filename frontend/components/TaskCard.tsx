@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { dateFormater } from '../utils/datetime';
 import { SubmissionModal } from './SubmissionModal';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TaskAccordian = (props) => {
   if (props.showContent) return <div>{props.children}</div>;
@@ -51,6 +53,11 @@ export const TaskCard: React.FC<any> = ({ task }) => {
                 }`}
                 onClick={() => setShowSubmitModal(true)}
               >
+                {status !== 'draft' && (
+                  <div className="mr-2">
+                    <FontAwesomeIcon icon={status === 'rejected' ? faTimesCircle : faCheckCircle} />
+                  </div>
+                )}
                 {getStatusText(status)}
               </button>
             </div>
