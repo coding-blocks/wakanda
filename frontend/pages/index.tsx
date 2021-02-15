@@ -28,7 +28,10 @@ export const RedirectToLogin: React.FC = () => {
                 </div>
               </div>
             </div>
-            <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-main.png" />
+            <img
+              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-main.png"
+              style={{ boxShadow: '7px 7px 15px 0px rgb(0 0 0 / 15%)' }}
+            />
           </div>
         </div>
       </div>
@@ -100,11 +103,13 @@ export const RedirectToLogin: React.FC = () => {
                   src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/superhero-vector-wakanda.svg"
                   style={{ marginLeft: '-30px' }}
                 />
-                <div className="flex-1 white">
+                <div className="flex-1 white pl-30">
                   <div className="heading-1 bold">Apply Now!</div>
-                  <div className="font-5 my-15">
+                  <div className="font-5 mt-15">
                     Provide us with your Email ID and we will get in touch with you!
                   </div>
+                  <button className="button-primary button-primary--white mt-30">Apply Now</button>
+                  <div className="mt-10 font-2">Note : You must be a college student</div>
                 </div>
               </div>
             </div>
