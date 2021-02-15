@@ -8,10 +8,10 @@ export default ({ row, i }: { row: Leaderboard; i: number }) => {
       <td className="py-3">
         <div className="img-desc align-items-center">
           <img className="round s-30x30" src={row.photo} alt="" />
-          <div className={`description ml-3 bold ${i <= 3 ? 'bold' : ''}`}>{row.name}</div>
+          <div className={`description ml-3 ${i <= 3 ? 'bold' : ''}`}>{row.name}</div>
         </div>
       </td>
-      <td className={`py-3 t-align-c bold ${i <= 3 ? 'bold' : ''}`}>{row.totalPoints}</td>
+      <td className={`py-3 t-align-c ${i <= 3 ? 'bold' : ''}`}>{row.totalPoints}</td>
     </tr>
   );
 };
