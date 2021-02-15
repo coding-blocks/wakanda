@@ -15,7 +15,7 @@ export default (props: ModalProps) => {
         props.setShow(false);
       }}
       className="d-flex flex-col justify-content-center"
-      overlayClassName="d-flex justify-content-center"
+      overlayClassName="d-flex justify-content-center align-items-center a-cbm"
       style={{
         overlay: {
           position: 'fixed',
@@ -24,7 +24,7 @@ export default (props: ModalProps) => {
         },
       }}
     >
-      <div className="card br-10 bg-white container">{...props.children}</div>
+      <div className="card br-10 bg-white p-0">{...props.children}</div>
     </Modal>
   );
 };

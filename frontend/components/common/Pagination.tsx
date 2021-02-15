@@ -12,10 +12,14 @@ export const Pagination = (props: { meta; onChange }) => {
 
   const renderNumbers = pageNumbersToShow.map((number) => {
     return (
-      <div className="d-inline-block px-2 d-flex">
+      <div className="all-center">
         <button
           key={number}
-          className={number === currentPage ? 'button button-primary round' : 'my-auto'}
+          className={
+            number === currentPage
+              ? 'pagination-number pagination-number--current'
+              : 'pagination-number'
+          }
           onClick={() => handleOnClick(number)}
         >
           {number}
@@ -25,10 +29,10 @@ export const Pagination = (props: { meta; onChange }) => {
   });
 
   return (
-    <div className="d-flex justify-content-between flex-nowrap">
+    <div className="row no-gutters align-items-center justify-content-center mt-20">
       <button
         id="prev-page"
-        className="button button-dashed button-primary mx-3 br-5"
+        className="pagination-button-prev"
         disabled={prevOffset === null}
         onClick={() => handleOnClick(currentPage - 1)}
       >
@@ -37,7 +41,7 @@ export const Pagination = (props: { meta; onChange }) => {
       {renderNumbers}
       <button
         id="next-page"
-        className="button button-dashed button-primary mx-3 br-5"
+        className="pagination-button-next"
         disabled={nextOffset === null}
         onClick={() => handleOnClick(currentPage + 1)}
       >

@@ -39,7 +39,7 @@ export const SubmissionEditor: React.FC<any> = (props) => {
 
   return (
     <div className="">
-      <div className="px-5 py-4">
+      <div className="p-30">
         <div className="row">
           <div className="col">
             <label>Describe what you did in the task</label>
