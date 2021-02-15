@@ -34,11 +34,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
           <div className="col">
             <div className="d-flex justify-content-end">
               <div className="my-auto mx-3">{userTask.status}</div>
-              <button
-                disabled={userTask.status === 'accepted' || userTask.status === 'rejected'}
-                className="button-primary"
-                onClick={() => setShowSubmitModal(true)}
-              >
+              <button className="button-primary" onClick={() => setShowSubmitModal(true)}>
                 Open Submission
               </button>
             </div>
@@ -48,6 +44,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
       <SubmissionModal
         setShow={setShowSubmitModal}
         show={showSubmitModal}
+        disabled={userTask.status === 'accepted' || userTask.status === 'rejected'}
         id={userTask.submission.id}
         onAfterAdd={() => {
           setTimeout(() => {

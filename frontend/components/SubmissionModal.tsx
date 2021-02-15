@@ -82,7 +82,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
       <div className="row no-gutters align-items-center mt-30 p-30">
         <div className="col d-flex justify-content-between">
           <Button
-            className="button-tertiary"
+            className="button-primary button-primary--rejected"
             action={() => props.onAfterAdd(0)}
             activeText="Closing"
             text="Cancel"
@@ -96,7 +96,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
             text="Save"
           />
           <Button
-            className="button-tertiary"
+            className="button-primary button-primary--accepted"
             action={handleSubmitForReview}
             disabled={props.task.userTask[0].status !== 'draft'}
             activeText="Submitting"
