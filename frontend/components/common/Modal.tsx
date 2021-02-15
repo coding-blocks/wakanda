@@ -14,7 +14,7 @@ export default (props: ModalProps) => {
       onRequestClose={() => {
         props.setShow(false);
       }}
-      className="d-flex flex-col justify-content-center"
+      className="d-flex flex-col justify-content-center wakanda"
       overlayClassName="d-flex justify-content-center align-items-center a-cbm"
       style={{
         overlay: {

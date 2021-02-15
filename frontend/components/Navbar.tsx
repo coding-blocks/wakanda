@@ -33,14 +33,14 @@ export const Navbar: React.FC = () => {
           {isAuthenticated && <li className="nav-items pointer">Hi, {user.name}</li>}
           {isAuthenticated && (
             <li className="nav-items pointer">
-              <a className="button-primary white" href="/pages/logout">
+              <a className="button-primary" href="/pages/logout">
                 Logout
               </a>
             </li>
           )}
           {!isAuthenticated && (
             <li className="nav-items pointer">
-              <a className="button-primary white" href="/pages/login">
+              <a className="button-primary" href="/pages/login">
                 Login
               </a>
             </li>
