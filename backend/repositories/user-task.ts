@@ -8,8 +8,11 @@ class UserTaskRepository extends Repository<UserTask> {
     return this.findOne({ where: { userId: id } });
   }
 
-  findByTaskId(id: number) {
-    return this.findOne({ where: { taskId: id }, relations: ['task', 'submission'] });
+  findByTaskId(id: number, userId: number) {
+    return this.findOne({
+      where: { taskId: id, userId },
+      relations: ['task', 'submission'],
+    });
   }
 
   findBySubmissionId(id: number) {
@@ -45,7 +48,7 @@ class UserTaskRepository extends Repository<UserTask> {
     });
   }
 
-  createSubmissionForTask(id: number, submission: Submission) {
+  createSubmissionForTask(id: number, submission: Submission, userId: number) {
     return this.manager.transaction(async (entityManager: EntityManager) => {
       const submissionRepository = entityManager.getRepository(Submission);
       const userTaskRepository = entityManager.getCustomRepository(UserTaskRepository);
@@ -54,7 +57,7 @@ class UserTaskRepository extends Repository<UserTask> {
         ...submission,
         submittedAt: new Date(),
       });
-      const userTask = await userTaskRepository.findByTaskId(id);
+      const userTask = await userTaskRepository.findByTaskId(id, userId);
       userTask.submission = userSubmission;
 
       await userTaskRepository.save(userTask);

@@ -8,8 +8,8 @@ class SubmissionController {
   async handleCreateSubmission(req: Request, res: Response) {
     const payload = req.body.data;
     const scope: any = req.body.scope;
-
-    const userTask = await Repositories.userTask.createSubmissionForTask(scope.id, payload);
+    const userId = req.user.id;
+    const userTask = await Repositories.userTask.createSubmissionForTask(scope.id, payload, userId);
 
     res.json({
       data: await Repositories.submission.findById(userTask.submission.id),
