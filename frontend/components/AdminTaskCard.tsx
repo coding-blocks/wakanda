@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { dateFormater } from '../utils/datetime';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const TaskAccordian = (props) => {
   if (props.showContent) return <div>{props.children}</div>;
@@ -49,7 +51,10 @@ export const AllTaskCard: React.FC<any> = ({ task }) => {
 
       <div className="p-30 med-grey">
         <div className="row no-gutters align-items-center" onClick={handleAccordianClick}>
-          <div className="col bold pointer">Details and Instruction</div>
+          <div className="bold pointer v-align-ma">
+            Details and Instruction
+            <FontAwesomeIcon icon={faAngleDown} size="sm" className="ml-2" />
+          </div>
         </div>
 
         <TaskAccordian showContent={showContent}>
