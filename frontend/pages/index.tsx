@@ -55,10 +55,10 @@ export const RedirectToLogin: React.FC = () => {
       <div className="landing-page__section position-relative overflow-visible">
         <div className="width-limiter">
           <div className="row no-gutters justify-content-between align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 t-align-lg-l t-align-c">
               <div className="heading-1 bold">About the Programme</div>
               <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
-              <div className="heading-5 text-grey mt-60">
+              <div className="heading-5 text-grey mt-lg-60 mt-30">
                 The Campus Ambassador program at Coding Blocks is aimed at identifying energetic,
                 passionate, brilliant, like minded College Superheroes (and this term Superhero
                 includes all the Supermen &amp; Wonderwomen) who have the zeal to take initiative
@@ -80,6 +80,30 @@ export const RedirectToLogin: React.FC = () => {
               className="image-absolute-3 d-lg-block d-none"
               style={{ bottom: '-25px' }}
             />
+
+            <div className="d-lg-none d-block mt-30 w-100">
+              <div className="row no-gutters justify-content-center">
+                <img
+                  src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-1.png"
+                  className="mb-30 mx-auto"
+                  style={{ transform: 'translateX(-30px)' }}
+                />
+              </div>
+              <div className="row no-gutters justify-content-center">
+                <img
+                  src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-2.png"
+                  className="mb-30 mx-auto"
+                  style={{ transform: 'translateX(10px)' }}
+                />
+              </div>
+              <div className="row no-gutters justify-content-center">
+                <img
+                  src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-3.png"
+                  className="mb-30 mx-auto"
+                  style={{ transform: 'translateX(-10px)' }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -99,7 +123,7 @@ export const RedirectToLogin: React.FC = () => {
                     Promote Coding Blocks among your peers
                   </div>
                   <div className="mb-40 heading-5 text-grey">Conduct Seminars</div>
-                  <div className="mb-40 heading-5 text-grey">
+                  <div className="heading-5 text-grey">
                     Inform peers about latest CB offers and help them learn new skills
                   </div>
                 </div>
@@ -155,17 +179,17 @@ export const RedirectToLogin: React.FC = () => {
                   <div className="flex-col justify-content-between h-100">
                     <div className="font-4 bold w-100">PRODUCTS</div>
                     <div className="w-100 mt-50">
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://online.codingblocks.com/" className="font-4">
                           Online Coding Blocks
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://hack.codingblocks.com/" className="font-4">
                           Hacker Blocks
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://hire.codingblocks.com/" className="font-4">
                           Hiring Blocks
                         </a>
@@ -182,22 +206,22 @@ export const RedirectToLogin: React.FC = () => {
                   <div className="flex-col justify-content-between h-100">
                     <div className="font-4 bold w-100">COMPANY</div>
                     <div className="w-100 mt-50">
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://codingblocks.com/about.html" className="font-4">
                           About Us
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://codingblocks.com/team.html" className="font-4">
                           Meet the Team
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://codingblocks.com/success-stories.html" className="font-4">
                           Success Stories
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://codingblocks.com/signup/job.html" className="font-4">
                           Become a TA/Mentor
                         </a>
@@ -214,7 +238,7 @@ export const RedirectToLogin: React.FC = () => {
                   <div className="flex-col justify-content-between h-100">
                     <div className="font-4 bold w-100">RESOURCES</div>
                     <div className="w-100 mt-50">
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a
                           href="https://www.youtube.com/channel/UCICWIYEx2mo4wYZzLwJ7wVw"
                           className="font-4"
@@ -222,17 +246,17 @@ export const RedirectToLogin: React.FC = () => {
                           Watch Youtube Videos
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://blog.codingblocks.com/" className="font-4">
                           Blogs
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="#" className="font-4">
                           Telegram Channel
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="#" className="font-4">
                           Study Material
                         </a>
@@ -249,7 +273,7 @@ export const RedirectToLogin: React.FC = () => {
                   <div className="flex-col justify-content-between h-100">
                     <div className="font-4 bold w-100">COMMUNITY</div>
                     <div className="w-100 mt-50">
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a
                           href="https://codingblocks.com/campus-ambassador-program.html"
                           className="font-4"
@@ -257,12 +281,12 @@ export const RedirectToLogin: React.FC = () => {
                           Campus Ambassador
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="https://codingblocks.com/events" className="font-4">
                           Events and Workshops
                         </a>
                       </div>
-                      <div className="mb-30">
+                      <div className="mb-30 mx-auto">
                         <a href="#" className="font-4">
                           BOSS 2021
                         </a>
@@ -280,12 +304,12 @@ export const RedirectToLogin: React.FC = () => {
             <div className="col-lg-3 col-12 mt-lg-none mt-50 pl-xl-70 pl-lg-50">
               <div className="row no-gutters">
                 <div className="col-lg-12 col-sm-6 col-12 mb-lg-50">
-                  <div className="bold font-4 mb-sm-40 mb-30">CONTACT</div>
+                  <div className="bold font-4 mb-sm-40 mb-30 mx-auto">CONTACT</div>
                   <div className="font-4 mb-lg-30 mb-sm-20 mb-15">admissionscodingblocks.com</div>
                   <div className="font-4">1800 274 4504</div>
                 </div>
                 <div className="col-lg-12 col-sm-6 col-12 mt-sm-none mt-50">
-                  <div className="bold font-4 mb-sm-40 mb-30">TECHNICAL SUPPORT</div>
+                  <div className="bold font-4 mb-sm-40 mb-30 mx-auto">TECHNICAL SUPPORT</div>
                   <div className="font-4 mb-lg-30 mb-sm-20 mb-15">supportcodingblocks.com</div>
                   <div className="font-4">+91 964 333 9747</div>
                 </div>
