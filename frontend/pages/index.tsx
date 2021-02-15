@@ -12,34 +12,50 @@ export const RedirectToLogin: React.FC = () => {
       <div className="landing-page__section">
         <div className="width-limiter">
           <div className="row no-gutters justify-content-between align-items-center">
-            <div className="flex-1">
+            <div className="flex-1 t-align-lg-l t-align-c">
               <div className="heading-font stroke-font">BECOME A</div>
               <div className="heading-font">SUPERHERO</div>
               <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
 
-              <div className="my-50">
+              <div className="my-30 d-lg-none d-block">
+                <img
+                  src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-main.png"
+                  style={{ boxShadow: '7px 7px 15px 0px rgb(0 0 0 / 15%)' }}
+                />
+              </div>
+
+              <div className="my-lg-50 my-30">
                 <div className="text-grey heading-4 bold">Networking. Bonding. Learning</div>
               </div>
 
-              <div className="row no-gutters align-items-center">
-                <button className="button-primary">Apply Now</button>
-                <div className="flex-1 pl-25 text-grey-light-1 heading-6">
+              <div className="row no-gutters align-items-center justify-content-lg-start justify-content-center">
+                <div>
+                  <button className="button-primary">Apply Now</button>
+                  <div className="mt-10 d-lg-none d-block">
+                    <div className="text-grey-light-1 heading-6">
+                      Join our Campus Ambassador Program
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 pl-25 text-grey-light-1 heading-6 d-lg-block d-none">
                   Join our Campus Ambassador Program
                 </div>
               </div>
             </div>
-            <img
-              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-main.png"
-              style={{ boxShadow: '7px 7px 15px 0px rgb(0 0 0 / 15%)' }}
-            />
+            <div className="col-6 d-lg-block d-none">
+              <img
+                src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-main.png"
+                style={{ boxShadow: '7px 7px 15px 0px rgb(0 0 0 / 15%)' }}
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="landing-page__section">
+      <div className="landing-page__section position-relative overflow-visible">
         <div className="width-limiter">
           <div className="row no-gutters justify-content-between align-items-center">
-            <div className="col-6">
+            <div className="col-lg-6">
               <div className="heading-1 bold">About the Programme</div>
               <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/underline_learn.svg" />
               <div className="heading-5 text-grey mt-60">
@@ -51,11 +67,24 @@ export const RedirectToLogin: React.FC = () => {
                 place for you.
               </div>
             </div>
+            <img
+              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-1.png"
+              className="image-absolute-1 d-lg-block d-none"
+            />
+            <img
+              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-2.png"
+              className="image-absolute-2 d-lg-block d-none"
+            />
+            <img
+              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-3.png"
+              className="image-absolute-3 d-lg-block d-none"
+              style={{ bottom: '-25px' }}
+            />
           </div>
         </div>
       </div>
 
-      <div className="landing-page__section landing-page__section--divided-section">
+      <div className="landing-page__section landing-page__section--divided-section z-neg">
         <div className="width-limiter">
           <div className="row">
             <div className="col-lg-6 col-12 landing-page__section--divided-section__left-section">
