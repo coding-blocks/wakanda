@@ -19,7 +19,7 @@ export const UserStats: React.FC = () => {
           <img
             className="mx-2"
             style={{ height: '50px' }}
-            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/star_filled.svg"
+            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
           />
           {user.totalPoints}
         </div>
