@@ -42,17 +42,17 @@ export const SubmissionEditor: React.FC<any> = (props) => {
       <div className="p-30">
         <div className="row">
           <div className="col">
-            <label>Describe what you did in the task</label>
+            <label className="font-4">Describe what you did in the task</label>
             <textarea
               placeholder="Add a Note"
-              className="underline-input w-100 mt-3 bg-light-grey br-5 p-4"
+              className="underline-input w-100 mt-20 bg-light-grey br-10 p-30"
               value={props.submission.description}
               onChange={onDescriptionChange}
               disabled={props.disabled}
             ></textarea>
           </div>
         </div>
-        <div className="row mt-3">
+        <div className="row mt-30">
           <div className="col">
             <FilesUploader />
           </div>
