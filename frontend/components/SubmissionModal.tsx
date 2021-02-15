@@ -76,7 +76,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
         taskId={props.task.id}
         submission={submission}
         setSubmission={setSubmission}
-        disabled={props.task.userTask[0].status === 'review'}
+        disabled={props.task.userTask[0].status !== 'draft'}
       />
 
       <div className="row no-gutters align-items-center mt-30 p-30">
