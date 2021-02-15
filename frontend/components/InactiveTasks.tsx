@@ -8,7 +8,12 @@ export const InactiveTasks: React.FC = () => {
 
   // TODO : change this to incative when endpoint is created
   const { trigger, isActive } = useTask(async () => {
-    const response = await client.get('/task/active', {});
+    const request = {
+      params: {
+        status: ['rejected', 'accepted'],
+      },
+    };
+    const response = await client.get('/task/active', request);
     setTasks(response.data.data);
   }, true);
 
