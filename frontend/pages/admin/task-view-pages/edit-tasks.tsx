@@ -59,12 +59,7 @@ export const EditTasks: React.FC<any> = () => {
       <Form fields={fields} model={task} setModel={setTask} />
 
       <div className="d-flex justify-content-end mt-4 ">
-        <Button
-          className="button-solid button-orange"
-          action={onSave}
-          text="Save"
-          activeText="Saving"
-        />
+        <Button className="button-primary" action={onSave} text="Save" activeText="Saving" />
       </div>
     </div>
   );

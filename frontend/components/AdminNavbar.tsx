@@ -28,14 +28,14 @@ export default () => {
         {isAuthenticated && <li className="nav-items pointer">Hi, {user.name}</li>}
         {isAuthenticated && (
           <li className="nav-items pointer">
-            <a className="button-solid button-orange white" href="/pages/logout">
+            <a className="button-primary white" href="/pages/logout">
               Logout
             </a>
           </li>
         )}
         {!isAuthenticated && (
           <li className="nav-items pointer">
-            <a className="button-solid button-orange white" href="/pages/login">
+            <a className="button-primary white" href="/pages/login">
               Login
             </a>
           </li>

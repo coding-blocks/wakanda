@@ -96,7 +96,7 @@ export default (props: AddUserModalProps) => {
     <Modal show={props.show} setShow={props.setShow}>
       <div className="p-4" style={{ minWidth: 600 }}>
         <div>
-          <div className="font-md">Request Workshop</div>
+          <div className="heading-6">Request Workshop</div>
         </div>
         <div className="mt-4">
           <Form fields={fields} model={workshop} setModel={setWorkshop} />
@@ -114,13 +114,13 @@ export default (props: AddUserModalProps) => {
       </div>
       <div className="d-flex justify-content-end m-4 ">
         <Button
-          className="button-solid button-orange mr-2"
+          className="button-primary mr-2"
           action={() => props.setShow(false)}
           activeText="Closing"
           text="Cancel"
         />
         <Button
-          className="button-solid button-orange"
+          className="button-primary"
           action={requestWorkshop}
           text="Save"
           activeText="Saving"

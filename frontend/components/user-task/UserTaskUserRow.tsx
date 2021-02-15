@@ -40,7 +40,7 @@ export default ({ userTask, onAfterDelete }: UserTaskUserRowProps) => {
         </div>
         <div>
           <Button
-            className="button-solid button-orange"
+            className="button-primary"
             action={deleteUserTask}
             text="Remove"
             activeText="Removing"

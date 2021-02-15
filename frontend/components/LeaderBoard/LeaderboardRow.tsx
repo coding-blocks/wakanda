@@ -11,7 +11,7 @@ export default ({ row, i }: { row: Leaderboard; i: number }) => {
           <div className="description ml-3">{row.name}</div>
         </div>
       </td>
-      <td className="py-3">{row.totalPoints}</td>
+      <td className="py-3 t-align-c">{row.totalPoints}</td>
     </tr>
   );
 };

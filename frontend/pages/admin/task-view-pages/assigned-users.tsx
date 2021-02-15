@@ -56,7 +56,7 @@ export default () => {
           />
         </div>
         <div className="ml-3">
-          <button className="button-solid button-orange" onClick={() => setShowAddUserModal(true)}>
+          <button className="button-primary" onClick={() => setShowAddUserModal(true)}>
             Add User
           </button>
         </div>

@@ -33,7 +33,7 @@ export const SubmissionModal: React.FC<any> = (props) => {
             text="Accept"
           />
           <Button
-            className="button-solid button-orange"
+            className="button-primary"
             action={() => handleSubmission('rejected')}
             activeText="Submitting"
             text="Reject"

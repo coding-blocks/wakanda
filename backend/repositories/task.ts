@@ -20,9 +20,11 @@ class TaskRepository extends Repository<Task> {
       // Todo: Remove this from here
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('userTask.userId=:id', { id: userId })
-      .where(`userTask.status in ('draft', 'review')`)
-      .where('task.startDate < :start_at', { start_at: new Date(new Date().setHours(0, 0, 0, 0)) })
-      .where('task.endDate > :date', { date: new Date(new Date().setHours(24, 0, 0, 0)) })
+      .andWhere(`userTask.status in (:...status)`, { status: ['draft', 'review'] })
+      .andWhere('task.startDate < :start_at', {
+        start_at: new Date(new Date().setHours(0, 0, 0, 0)),
+      })
+      .andWhere('task.endDate > :date', { date: new Date(new Date().setHours(24, 0, 0, 0)) })
       .getManyAndCount();
   }
 
@@ -33,7 +35,7 @@ class TaskRepository extends Repository<Task> {
       // Todo: Remove this from here
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
       .where('userTask.userId=:id', { id: userId })
-      .where(`userTask.status in (:...status)`, { status })
+      .andWhere(`userTask.status in (:...status)`, { status })
       .getManyAndCount();
   }
 }

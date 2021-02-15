@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
         </span>
         <ul className="nav-list">
           {isAuthenticated && (
-            <li className="" onClick={() => setShowWorkshopModal(true)}>
+            <li className="nav-items pointer" onClick={() => setShowWorkshopModal(true)}>
               Request Workshop
             </li>
           )}
@@ -33,14 +33,14 @@ export const Navbar: React.FC = () => {
           {isAuthenticated && <li className="nav-items pointer">Hi, {user.name}</li>}
           {isAuthenticated && (
             <li className="nav-items pointer">
-              <a className="button-solid button-orange white" href="/pages/logout">
+              <a className="button-primary" href="/pages/logout">
                 Logout
               </a>
             </li>
           )}
           {!isAuthenticated && (
             <li className="nav-items pointer">
-              <a className="button-solid button-orange white" href="/pages/login">
+              <a className="button-primary" href="/pages/login">
                 Login
               </a>
             </li>

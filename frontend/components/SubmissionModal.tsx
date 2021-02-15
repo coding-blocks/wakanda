@@ -41,7 +41,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
 
   return (
     <Modal show={props.show} setShow={props.setShow}>
-      <div className="px-5 py-4">
+      <div className="p-30">
         <div className="row">
           <div className="col-10">
             <div className="font-sm med-grey mb-2">Task</div>
@@ -58,7 +58,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
         <div className="row mt-4">
           <div className="col">
             <div className="font-5">Duration</div>
-            <div className="font-mds orange">{`${dateFormater(
+            <div className="font-5 blue-text">{`${dateFormater(
               props.task.startDate,
             )} - ${dateFormater(props.task.endDate)}`}</div>
           </div>
@@ -74,23 +74,24 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
         disabled={props.task.userTask[0].status === 'review'}
       />
 
-      <div className="row mt-5 px-5 py-4">
-        <div className="col d-flex justify-content-around">
+      <div className="row mt-30 p-30">
+        <div className="col d-flex justify-content-between">
           <Button
-            className="button-solid button-orange"
+            className="button-tertiary"
             action={() => props.onAfterAdd(0)}
             activeText="Closing"
             text="Cancel"
           />
+          {console.log(props.task.userTask[0].status)}
           <Button
-            className="button-dashed button-orange"
+            className="button-primary"
             action={handleSave}
             disabled={props.task.userTask[0].status !== 'draft'}
             activeText="Saving"
             text="Save"
           />
           <Button
-            className="button-solid button-orange"
+            className="button-tertiary"
             action={handleSubmitForReview}
             disabled={props.task.userTask[0].status !== 'draft'}
             activeText="Submitting"

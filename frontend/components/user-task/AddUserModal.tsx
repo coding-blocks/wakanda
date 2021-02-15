@@ -19,7 +19,7 @@ const UserRow = ({ user, onAdd }) => (
     </div>
     <div>
       <Button
-        className="button-solid button-orange"
+        className="button-primary"
         action={() => onAdd(user)}
         text="Add"
         activeText="Adding"
@@ -69,7 +69,7 @@ export default (props: AddUserModalProps) => {
     <Modal show={props.show} setShow={props.setShow}>
       <div className="p-4" style={{ minWidth: 600 }}>
         <div>
-          <div className="font-md">Add User</div>
+          <div className="heading-6">Add User</div>
         </div>
         <div className="mt-4">
           <div className="flex-1 bg-light-grey br-25">

@@ -53,7 +53,7 @@ const AdminPanel: React.FC = () => {
           />
         </div>
         <div className="ml-4">
-          <Link className="button-solid button-orange" to="/admin/tasks/add">
+          <Link className="button-primary" to="/admin/tasks/add">
             Create New Task
           </Link>
         </div>

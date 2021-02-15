@@ -7,10 +7,7 @@ export default {
       description: Joi.string().required(),
       name: Joi.string().required(),
       points: Joi.number().required(),
-      startDate: Joi.date()
-        .min(Date.now())
-        .message('"date" cannot be earlier than today')
-        .required(),
+      startDate: Joi.date().required(),
       endDate: Joi.date().greater(Joi.ref('startDate')).required(),
     }),
     'body',
