@@ -31,7 +31,7 @@ export const AllTaskCard: React.FC<any> = ({ task }) => {
         <div className="row mt-4">
           <div className="col">
             <div className="font-5">Duration</div>
-            <div className="font-5 orange">{`${dateFormater(task.startDate)} - ${dateFormater(
+            <div className="font-5 blue-text">{`${dateFormater(task.startDate)} - ${dateFormater(
               task.endDate,
             )}`}</div>
           </div>

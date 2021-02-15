@@ -27,13 +27,13 @@ export const SubmissionModal: React.FC<any> = (props) => {
       <div className="row mt-5 px-5 py-4">
         <div className="col d-flex justify-content-around">
           <Button
-            className="button-dashed button-orange"
+            className="button-primary button-primary--accepted"
             action={() => handleSubmission('accepted')}
             activeText="Saving"
             text="Accept"
           />
           <Button
-            className="button-primary"
+            className="button-primary button-primary--rejected"
             action={() => handleSubmission('rejected')}
             activeText="Submitting"
             text="Reject"

@@ -29,7 +29,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
         <div className="row mt-4">
           <div className="col">
             <div className="font-5">Description</div>
-            <div className="font-5 orange">{userTask.submission.description}</div>
+            <div className="font-5 blue-text">{userTask.submission.description}</div>
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
