@@ -43,7 +43,7 @@ const AdminPanel: React.FC = () => {
     <div>
       <div className="flex-1 bg-light-grey br-25">
         <input
-          placeholder="What do you want to learn?"
+          placeholder="Search for submissions!"
           type="text"
           value={query}
           onChange={(e) => {

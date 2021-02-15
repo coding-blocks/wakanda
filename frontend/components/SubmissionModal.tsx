@@ -42,15 +42,20 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
   return (
     <Modal show={props.show} setShow={props.setShow}>
       <div className="p-30">
-        <div className="row no-gutters align-items-center">
+        <div className="row no-gutters">
           <div className="flex-1">
-            <div className="font-sm med-grey mb-2">Task</div>
-            <h3 className="font-xl">{props.task.name}</h3>
+            <div className="font-4 wakanda-grey mb-2">Task</div>
+            <h3 className="heading-5">{props.task.name}</h3>
           </div>
 
           <div className="">
             <div className="row no-gutters align-items-center justify-content-end">
-              <h3>{props.task.points}</h3>
+              <img
+                className="mx-3"
+                src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
+                style={{ height: '30px' }}
+              />
+              <div className="heading-5 wakanda-grey bold">{props.task.points}</div>
             </div>
           </div>
         </div>

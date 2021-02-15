@@ -21,10 +21,16 @@ export default (props: ModalProps) => {
           position: 'fixed',
           inset: 0,
           backgroundColor: 'rgba(171, 171, 171, 0.75)',
+          top: '70px',
         },
       }}
     >
-      <div className="card br-10 bg-white p-0">{...props.children}</div>
+      <div
+        className="card br-10 bg-white p-0 overflow-auto"
+        style={{ maxHeight: 'calc(100vh - 120px)' }}
+      >
+        {...props.children}
+      </div>
     </Modal>
   );
 };

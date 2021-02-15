@@ -8,22 +8,22 @@ export default () => {
 
   return (
     <div>
-      <div className="card py-0 px-4">
-        <div className="tab-nav-underline">
+      <div className="card">
+        <div className="tabs-primary">
           <div
-            className={`tab py-4 pointer ${activeTab === 'edit' && 'active'}`}
+            className={`tab ${activeTab === 'edit' && 'active'}`}
             onClick={() => setActiveTab('edit')}
           >
             Edit
           </div>
           <div
-            className={`tab py-4 pointer ${activeTab === 'assigned' && 'active'}`}
+            className={`tab ${activeTab === 'assigned' && 'active'}`}
             onClick={() => setActiveTab('assigned')}
           >
             Assigned Users
           </div>
           <div
-            className={`tab py-4 pointer ${activeTab === 'submissions' && 'active'}`}
+            className={`tab ${activeTab === 'submissions' && 'active'}`}
             onClick={() => setActiveTab('submissions')}
           >
             Submissions

@@ -26,11 +26,9 @@ export default {
         'string.empty':
           'Please clarify whether college will be giving giving accomodation for this workshop.',
       }),
-      request: Joi.string()
-        .required()
-        .messages({
-          'string.empty': 'Please clarify whether you have any special requests or not.',
-        }),
+      request: Joi.string().required().messages({
+        'string.empty': 'Please clarify whether you have any special requests or not.',
+      }),
       mobile: Joi.string()
         .required()
         .messages({ 'string.empty': 'Please specify contact number.' }),
