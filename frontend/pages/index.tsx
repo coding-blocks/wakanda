@@ -8,11 +8,12 @@ export const RedirectToLogin: React.FC = () => {
   return isAuthenticated ? (
     <Redirect to="/dashboard" />
   ) : (
-    <div className="a-cbm">
-      <div className="wakanda">
-        <div className="landing-page">
-          <div className="width-limiter">
-            <div className="landing-page__section"></div>
+    <div className="wakanda">
+      <div className="landing-page">
+        <div className="landing-page__section">
+          <div className="row no-gutters justify-content-between align-items-center">
+            <div className="flex-1"></div>
+            <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/team-image-main.png" />
           </div>
         </div>
       </div>
