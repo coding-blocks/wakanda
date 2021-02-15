@@ -19,12 +19,13 @@ class TaskRepository extends Repository<Task> {
       .leftJoinAndSelect('userTask.submission', 'submission')
       // Todo: Remove this from here
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
-      .where('userTask.userId=:id', { id: userId })
-      .andWhere(`userTask.status in (:...status)`, { status: ['draft', 'review'] })
+      .andWhere('userTask.userId=:id', { id: userId })
+      .andWhere('userTask.status=:status', { status: 'draft' })
       .andWhere('task.startDate < :start_at', {
         start_at: new Date(new Date().setHours(0, 0, 0, 0)),
       })
       .andWhere('task.endDate > :date', { date: new Date(new Date().setHours(24, 0, 0, 0)) })
+      .where('userTask.status=:status', { status: 'review' })
       .getManyAndCount();
   }
 
