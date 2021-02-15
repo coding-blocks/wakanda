@@ -8,25 +8,31 @@ export const UserStats: React.FC = () => {
   return (
     <div className="card br-10 p-0 bg-white">
       <div className="p-30">
-        <div className="d-flex heading-6 bold"> Total Stars </div>
+        <div className="row no-gutters heading-6 bold">Total Stars</div>
         <div
-          className="d-flex mt-4 align-items-center"
+          className="row no-gutters mt-30 align-items-center wakanda-grey"
           style={{
             fontSize: 45,
             fontWeight: 'bold',
           }}
         >
           <img
-            className="mx-2"
-            style={{ height: '50px' }}
+            className="mr-10"
+            style={{ height: '45px' }}
             src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
           />
           {user.totalPoints}
         </div>
       </div>
       <div className="divider-h"></div>
-      <div className="p-30">
-        Collect more stars to win exciting <strong>Goodies</strong>
+      <div className="p-30 v-align-ba font-4 wakanda-grey">
+        Get <strong>CB Goodies </strong>
+        on <strong>100</strong>
+        <img
+          className="ml-2"
+          style={{ height: '20px' }}
+          src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
+        />
       </div>
     </div>
   );

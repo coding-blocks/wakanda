@@ -1,7 +1,9 @@
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { dateFormater } from '../utils/datetime';
 import { SubmissionModal } from './SubmissionModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TaskAccordian = (props) => {
   if (props.showContent) return <div>{props.children}</div>;
@@ -18,27 +20,27 @@ export const TaskCard: React.FC<any> = ({ task }) => {
   return (
     <div className="card br-10 bg-white p-0">
       <div className="p-30">
-        <div className="row no-gutters align-items-center">
+        <div className="row no-gutters">
           <div className="flex-1">
-            <div className="font-sm med-grey mb-2">Task</div>
-            <h3 className="font-xl">{task.name}</h3>
+            <div className="font-4 wakanda-grey mb-10">Task</div>
+            <h3 className="heading-5">{task.name}</h3>
           </div>
 
           <div className="">
-            <div className="row no-gutters align-items-center justify-content-end mx-1">
+            <div className="row no-gutters align-items-center justify-content-end">
               <img
                 className="mx-3"
                 src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
                 style={{ height: '30px' }}
               />
-              <h3 style={{ fontSize: '2rem' }}>{task.points}</h3>
+              <div className="heading-5 wakanda-grey bold">{task.points}</div>
             </div>
           </div>
         </div>
 
         <div className="row no-gutters mt-4">
           <div className="col">
-            <div className="font-2 grey">Duration</div>
+            <div className="font-2 wakanda-grey">Duration</div>
             <div className="blue-text mt-1">{`${dateFormater(task.startDate)} - ${dateFormater(
               task.endDate,
             )}`}</div>
@@ -67,13 +69,16 @@ export const TaskCard: React.FC<any> = ({ task }) => {
 
       <div className="divider-h"></div>
 
-      <div className="p-30 med-grey">
+      <div className="p-30 wakanda-grey">
         <div className="row no-gutters" onClick={handleAccordianClick}>
-          <div className="pointer bold">Details and Instructions</div>
+          <div className="pointer bold v-align-ma">
+            Details and Instructions
+            <FontAwesomeIcon icon={faAngleDown} size="sm" className="ml-2" />
+          </div>
         </div>
 
         <TaskAccordian showContent={showContent}>
-          <ReactMarkdown>{task.description}</ReactMarkdown>
+          <ReactMarkdown className="mt-25">{task.description}</ReactMarkdown>
         </TaskAccordian>
       </div>
 
