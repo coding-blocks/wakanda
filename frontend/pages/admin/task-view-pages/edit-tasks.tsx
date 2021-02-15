@@ -55,7 +55,7 @@ export const EditTasks: React.FC<any> = () => {
     },
   ];
   return (
-    <div>
+    <div className="card">
       <Form fields={fields} model={task} setModel={setTask} />
 
       <div className="d-flex justify-content-end mt-4 ">
