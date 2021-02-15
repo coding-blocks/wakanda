@@ -18,23 +18,25 @@ export default () => {
           />
         </Link>
       </span>
-      <ul className="nav-list">
-        <li className="nav-items pointer">
+      <ul className="nav-list t-align-r">
+        <li className="nav-items pointer ml-sm-25 ml-10">
           <Link to="/admin/tasks">Tasks</Link>
         </li>
-        <li className="nav-items pointer">
+        <li className="nav-items pointer ml-sm-25 ml-10">
           <Link to="/admin/ambassadors">Ambassadors</Link>
         </li>
-        {isAuthenticated && <li className="nav-items pointer">Hi, {user.name}</li>}
         {isAuthenticated && (
-          <li className="nav-items pointer">
+          <li className="nav-items ml-sm-25 ml-10 d-sm-block d-none">Hi, {user.name}</li>
+        )}
+        {isAuthenticated && (
+          <li className="nav-items pointer ml-sm-25 ml-10">
             <a className="button-primary" href="/pages/logout">
               Logout
             </a>
           </li>
         )}
         {!isAuthenticated && (
-          <li className="nav-items pointer">
+          <li className="nav-items pointer ml-sm-25 ml-10">
             <a className="button-primary" href="/pages/login">
               Login
             </a>
