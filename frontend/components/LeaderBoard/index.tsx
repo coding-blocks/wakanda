@@ -42,17 +42,17 @@ export const LeaderBoard = () => {
   return (
     <div className="card br-10 p-0 bg-white">
       <div className="p-4">
-        <div className="heading-6 bold orange mb-4">Leaderboard</div>
+        <div className="heading-6 bold mb-4">Leaderboard</div>
         {loading ? (
           <div>Loading...</div>
         ) : (
           <div className="">
             <table className="w-100">
-              <thead className="font-sm bold">
-                <tr>
-                  <th className="pb-3">Rank</th>
-                  <th className="pb-3">User</th>
-                  <th className="pb-3">Star</th>
+              <thead className="font-4 mb-30">
+                <tr className="med-grey">
+                  <th className="pb-4 t-align-l">RANK</th>
+                  <th className="pb-4 t-align-l">NAME</th>
+                  <th className="pb-4">STAR</th>
                 </tr>
               </thead>
               <tbody>
