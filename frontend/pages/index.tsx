@@ -9,10 +9,10 @@ export const RedirectToLogin: React.FC = () => {
     <Redirect to="/dashboard" />
   ) : (
     <div className="a-cbm">
-      <div className="d-flex justify-content-center">
-        <div className="my-auto">
-          <div className="heading-3 mb-4">
-            Hey Campus Ambassador you are currently not logged in. Please login to continue.
+      <div className="wakanda">
+        <div className="landing-page">
+          <div className="width-limiter">
+            <div className="landing-page__section"></div>
           </div>
         </div>
       </div>
