@@ -58,7 +58,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
         <div className="row mt-4">
           <div className="col">
             <div className="font-5">Duration</div>
-            <div className="font-5 blue-text">{`${dateFormater(
+            <div className="blue-text mt-1">{`${dateFormater(
               props.task.startDate,
             )} - ${dateFormater(props.task.endDate)}`}</div>
           </div>

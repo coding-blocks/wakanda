@@ -23,13 +23,13 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
           </div>
           <div>
             <div className="font-5">Last Updated</div>
-            <div className="font-5 blue-text">{`${dateFormater(userTask.updatedAt)}`}</div>
+            <div className="blue-text mt-1">{`${dateFormater(userTask.updatedAt)}`}</div>
           </div>
         </div>
         <div className="row mt-4">
           <div className="col">
             <div className="font-5">Description</div>
-            <div className="font-5 blue-text">{userTask.submission.description}</div>
+            <div className="blue-text mt-1">{userTask.submission.description}</div>
           </div>
           <div className="col">
             <div className="d-flex justify-content-end">
