@@ -43,7 +43,7 @@ export default () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center">
+      <div className="row no-gutters justify-content-between align-items-center">
         <div className="flex-1 bg-light-grey br-25">
           <input
             placeholder="Search using user email or name"

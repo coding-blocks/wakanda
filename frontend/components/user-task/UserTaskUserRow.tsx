@@ -33,8 +33,8 @@ export default ({ userTask, onAfterDelete }: UserTaskUserRowProps) => {
   };
 
   return (
-    <div className="py-4 px-3 border-bottom">
-      <div className="d-flex justify-content-between align-items-center">
+    <div className="py-4 border-bottom">
+      <div className="row no-gutters justify-content-between align-items-center">
         <div className="font-sm">
           <span className="bold mr-2">{userTask.user.name}</span>({userTask.user.email})
         </div>
