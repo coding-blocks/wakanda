@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { dateFormater } from '../utils/datetime';
 import { SubmissionModal } from './SubmissionModal';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TaskAccordian = (props) => {
@@ -47,20 +48,18 @@ export const TaskCard: React.FC<any> = ({ task }) => {
           </div>
           <div className="col">
             <div className="row no-gutters align-items-center justify-content-end">
-              <div className="my-auto mx-3">
-                {task.userTask[0].status
-                  ? task.userTask[0].status === 'review'
-                    ? 'Under Review'
-                    : null
-                  : null}
-              </div>
               <button
                 className={`button-primary ${
                   status === 'draft' ? '' : `button-primary--${status}`
                 }`}
                 onClick={() => setShowSubmitModal(true)}
               >
-                {status ? (status === 'draft' ? 'Submit' : status) : status}
+                {status !== 'draft' && (
+                  <div className="mr-2">
+                    <FontAwesomeIcon icon={status === 'rejected' ? faTimesCircle : faCheckCircle} />
+                  </div>
+                )}
+                {getStatusText(status)}
               </button>
             </div>
           </div>
@@ -95,5 +94,17 @@ export const TaskCard: React.FC<any> = ({ task }) => {
     </div>
   );
 };
+
+function getStatusText(string) {
+  if (string === 'draft') {
+    return 'Submit';
+  } else if (string === 'review') {
+    return 'Submitted for Review';
+  } else return capitalizeFirstLetter(string);
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export default TaskCard;

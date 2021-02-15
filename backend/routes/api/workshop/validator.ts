@@ -4,9 +4,13 @@ import Joi from 'joi';
 export default {
   POST: toRequestValidator(
     Joi.object({
-      collegeName: Joi.string().required().label('College Name'),
-      collegeAddress: Joi.string().required().label('College Address'),
-      topic: Joi.string().required().label('Topic'),
+      collegeName: Joi.string().required().messages({
+        'string.empty': `College Name cannot be an empty`,
+      }),
+      collegeAddress: Joi.string()
+        .required()
+        .messages({ 'string.empty': 'College Address cannot be empty.' }),
+      topic: Joi.string().required().messages({ 'string.empty': 'Topic cannot be empty.' }),
       startDate: Joi.date()
         .min(Date.now())
         .message('Date cannot be earlier than today.')
@@ -15,10 +19,19 @@ export default {
         Joi.date().greater(Joi.ref('startDate')),
         Joi.required().valid(null),
       ),
-      monetary: Joi.string().required().label('Will College Pay?'),
-      accomodation: Joi.string().required().label('Will College Porvide Accomodation?'),
-      request: Joi.string().required().label('Any Special Requests?'),
-      mobile: Joi.string().required().label('Contact'),
+      monetary: Joi.string().required().messages({
+        'string.empty': 'Please clarify whether college will be giving paying for this workshop.',
+      }),
+      accomodation: Joi.string().required().messages({
+        'string.empty':
+          'Please clarify whether college will be giving giving accomodation for this workshop.',
+      }),
+      request: Joi.string().required().messages({
+        'string.empty': 'Please clarify whether you have any special requests or not.',
+      }),
+      mobile: Joi.string()
+        .required()
+        .messages({ 'string.empty': 'Please specify contact number.' }),
     }),
     'body',
   ),

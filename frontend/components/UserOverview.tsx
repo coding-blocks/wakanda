@@ -7,7 +7,12 @@ export const Useroverview: React.FC = () => {
   const user = useSelector((state: any) => state.currentUser.user);
 
   const copyCaCode = () => {
-    // TODO
+    const range = document.createRange();
+    range.selectNode(document.getElementById('ca-code'));
+    window.getSelection().removeAllRanges(); // clear current selection
+    window.getSelection().addRange(range); // to select text
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges(); // to deselect
   };
 
   return (

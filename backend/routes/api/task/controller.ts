@@ -11,7 +11,6 @@ class TaskController {
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
     const status = req.query.status as any;
-    console.log(status);
 
     const [tasks, count] = status
       ? await Repositories.task.findArchivedUserTasks(userId, status)
@@ -64,7 +63,7 @@ class TaskController {
 
   @AsyncHandler()
   async handleCreateTask(req: Request, res: Response) {
-    const payload = req.body;
+    const payload = req.body.data;
     const task = await Repositories.task.save(payload);
     res.json({ data: task });
   }
@@ -73,10 +72,10 @@ class TaskController {
   async handleUpdateById(req: Request, res: Response) {
     const id = Number(req.params.id);
     const payload = req.body.data;
-
     const task = await Repositories.task.findOne(id);
+    Repositories.task.merge(task, payload); // Merges entity with payload
 
-    res.json({ data: Repositories.task.merge(task, payload) });
+    res.json({ data: await Repositories.task.save(task) });
   }
 
   @AsyncHandler()

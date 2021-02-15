@@ -24,7 +24,7 @@ export const EditTasks: React.FC<any> = () => {
   }, []);
 
   const onSave = async () => {
-    const resp = await client.patch(`task/${id}`, task);
+    const resp = await client.patch(`task/${id}`, { data: task });
     setTask(resp.data.data);
   };
   const fields: BaseFormField[] = [
