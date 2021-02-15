@@ -13,27 +13,30 @@ export const Useroverview: React.FC = () => {
   return (
     <div>
       <div className="row no-gutters bg-white card justify-content-between align-items-center">
-        <div>
-          <div className="row n-gutters">
+        <div className="col-sm-8 col-12 mb-sm-none mb-20">
+          <div className="row no-gutters align-items-center">
             <img className="s-80X80 round my-auto mx-2" src={user.photo} />
-            <div className="ml-4 my-auto flex-1">
-              <h4 className="mx-auto extra-bold heading-3 mb-2">{user.name}</h4>
-              <span className="font-sm med-grey">{user.college}</span>
+            <div className="ml-25 flex-1">
+              <h4 className="bold heading-3 mb-10">{user.name}</h4>
+              <span className="font-4 med-grey">{user.college}</span>
             </div>
           </div>
         </div>
         {!!user.caCode && (
-          <div>
-            <div className="">
-              <div className="row n-gutters justify-content-end mb-2">
-                <span className="align-self-end font-sm med-grey">CA code</span>
-              </div>
-              <div className="row n-gutters justify-content-between align-items-center">
-                <h4 className="extra-bold heading-3 mr-3" id="ca-code">
-                  {user.caCode}
-                </h4>
-                <div className="pointer" onClick={() => copyCaCode()}>
-                  <FontAwesomeIcon icon={faCopy} size="lg" />
+          <div className="flex-1">
+            <div className="row no-gutters align-items-center justify-content-end">
+              <div>
+                <div className="t-align-r mb-10">
+                  <span className="font-4 med-grey">CA Code</span>
+                </div>
+                <div className="row no-gutters justify-content-between align-items-center">
+                  <div className="pointer" onClick={() => copyCaCode()}>
+                    <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/copycacode.svg" />
+                    {/* <FontAwesomeIcon icon={faCopy} size="lg" /> */}
+                  </div>
+                  <h4 className="bold heading-4 ml-25" id="ca-code">
+                    {user.caCode}
+                  </h4>
                 </div>
               </div>
             </div>
