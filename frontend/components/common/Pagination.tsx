@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 export const Pagination = (props: { meta; onChange }) => {
   const { count, currentPage, currentOffset, nextOffset, prevOffset, totalPages } = props.meta;
@@ -8,7 +7,7 @@ export const Pagination = (props: { meta; onChange }) => {
   function handleOnClick(pageNumber) {
     return recievedFunction(pageNumber);
   }
-  const pageNumbersToShow = _.range(currentPage, totalPages + 1).slice(0, 4);
+  const pageNumbersToShow = [...new Array(totalPages)].map((_, i) => i + 1);
 
   const renderNumbers = pageNumbersToShow.map((number) => {
     return (

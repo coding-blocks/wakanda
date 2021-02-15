@@ -1,5 +1,6 @@
 import { Task } from '../entity';
 import { EntityRepository, Repository } from 'typeorm';
+import moment from 'moment';
 
 @EntityRepository(Task)
 class TaskRepository extends Repository<Task> {
@@ -19,13 +20,14 @@ class TaskRepository extends Repository<Task> {
       .leftJoinAndSelect('userTask.submission', 'submission')
       // Todo: Remove this from here
       .leftJoinAndSelect('submission.submissionAssets', 'submissionAssets')
-      .andWhere('userTask.userId=:id', { id: userId })
-      .andWhere('userTask.status=:status', { status: 'draft' })
-      .andWhere('task.startDate < :start_at', {
-        start_at: new Date(new Date().setHours(0, 0, 0, 0)),
-      })
-      .andWhere('task.endDate > :date', { date: new Date(new Date().setHours(24, 0, 0, 0)) })
-      .where('userTask.status=:status', { status: 'review' })
+      .where(
+        `userTask.userId=:id AND ((userTask.status='review') OR (userTask.status='draft' AND task.startDate < :startdate AND task.endDate > :enddate))`,
+        {
+          id: userId,
+          startdate: moment().toISOString(),
+          enddate: moment().toISOString(),
+        },
+      )
       .getManyAndCount();
   }
 

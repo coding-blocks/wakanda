@@ -4,11 +4,13 @@ import Joi from 'joi';
 export default {
   POST: toRequestValidator(
     Joi.object({
-      description: Joi.string().required(),
-      name: Joi.string().required(),
-      points: Joi.number().required(),
-      startDate: Joi.date().required(),
-      endDate: Joi.date().greater(Joi.ref('startDate')).required(),
+      data: Joi.object({
+        description: Joi.string().required(),
+        name: Joi.string().required(),
+        points: Joi.number().required(),
+        startDate: Joi.date().required(),
+        endDate: Joi.date().greater(Joi.ref('startDate')).required(),
+      }),
     }),
     'body',
   ),

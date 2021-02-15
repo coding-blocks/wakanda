@@ -82,7 +82,6 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
             activeText="Closing"
             text="Cancel"
           />
-          {console.log(props.task.userTask[0].status)}
           <Button
             className="button-primary"
             action={handleSave}

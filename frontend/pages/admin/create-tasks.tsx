@@ -17,7 +17,7 @@ const CreateTask: React.FC = () => {
   const history = useHistory();
 
   const onSave = async () => {
-    const resp = await api.post('task/', task);
+    const resp = await api.post('task/', { data: task });
     setTask(resp.data.data);
     history.push(`/admin/tasks`);
   };

@@ -57,7 +57,7 @@ export const LeaderBoard = () => {
               </thead>
               <tbody>
                 {leaderboard.map((row, i) => (
-                  <LeaderboardRow row={row} i={i} key={i} />
+                  <LeaderboardRow row={row} i={i + 1} key={i} />
                 ))}
               </tbody>
             </table>
