@@ -7,7 +7,7 @@ export const UserStats: React.FC = () => {
 
   return (
     <div className="card br-10 p-0 bg-white">
-      <div className="p-4">
+      <div className="p-30">
         <div className="d-flex heading-6 bold"> Total Stars </div>
         <div
           className="d-flex mt-4 align-items-center"
@@ -19,13 +19,13 @@ export const UserStats: React.FC = () => {
           <img
             className="mx-2"
             style={{ height: '50px' }}
-            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/star_filled.svg"
+            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
           />
           {user.totalPoints}
         </div>
       </div>
       <div className="divider-h"></div>
-      <div className="p-4">
+      <div className="p-30">
         Collect more stars to win exciting <strong>Goodies</strong>
       </div>
     </div>

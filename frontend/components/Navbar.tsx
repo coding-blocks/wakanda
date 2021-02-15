@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className="">
       <nav className="main-nav">
-        <span className="logo-parent">
+        <div className="logo-parent">
           <Link to="/">
             <img
               src="https://codingblocks.com/assets/images/cb/cblogo.png"
@@ -20,26 +20,31 @@ export const Navbar: React.FC = () => {
               className="nav-logo pointer"
             />
           </Link>
-        </span>
-        <ul className="nav-list">
+        </div>
+        <ul className="nav-list t-align-r">
           {isAuthenticated && (
-            <li className="nav-items pointer" onClick={() => setShowWorkshopModal(true)}>
+            <li
+              className="nav-items pointer ml-sm-25 ml-10"
+              onClick={() => setShowWorkshopModal(true)}
+            >
               Request Workshop
             </li>
           )}
-          <li className="nav-items pointer">
+          <li className="nav-items pointer ml-sm-25 ml-10">
             <Link to="/dashboard">Dashboard</Link>
           </li>
-          {isAuthenticated && <li className="nav-items pointer">Hi, {user.name}</li>}
           {isAuthenticated && (
-            <li className="nav-items pointer">
+            <li className="nav-items ml-sm-25 ml-10 d-sm-block d-none">Hi, {user.name}</li>
+          )}
+          {isAuthenticated && (
+            <li className="nav-items pointer ml-sm-25 ml-10">
               <a className="button-primary" href="/pages/logout">
                 Logout
               </a>
             </li>
           )}
           {!isAuthenticated && (
-            <li className="nav-items pointer">
+            <li className="nav-items pointer ml-sm-25 ml-10">
               <a className="button-primary" href="/pages/login">
                 Login
               </a>

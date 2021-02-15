@@ -42,23 +42,23 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
   return (
     <Modal show={props.show} setShow={props.setShow}>
       <div className="p-30">
-        <div className="row">
-          <div className="col-10">
+        <div className="row no-gutters align-items-center">
+          <div className="flex-1">
             <div className="font-sm med-grey mb-2">Task</div>
             <h3 className="font-xl">{props.task.name}</h3>
           </div>
 
-          <div className="col-2">
-            <div className="d-flex justify-content-end">
+          <div className="">
+            <div className="row no-gutters align-items-center justify-content-end">
               <h3>{props.task.points}</h3>
             </div>
           </div>
         </div>
 
-        <div className="row mt-4">
+        <div className="row no-gutters align-items-center mt-4">
           <div className="col">
             <div className="font-5">Duration</div>
-            <div className="font-5 blue-text">{`${dateFormater(
+            <div className="blue-text mt-1">{`${dateFormater(
               props.task.startDate,
             )} - ${dateFormater(props.task.endDate)}`}</div>
           </div>
@@ -74,7 +74,7 @@ export const SubmissionModal: React.FC<any> = (props: SubmissionModalProps) => {
         disabled={props.task.userTask[0].status === 'review'}
       />
 
-      <div className="row mt-30 p-30">
+      <div className="row no-gutters align-items-center mt-30 p-30">
         <div className="col d-flex justify-content-between">
           <Button
             className="button-tertiary"

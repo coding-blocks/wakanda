@@ -15,23 +15,23 @@ export const AllTaskCard: React.FC<any> = ({ task }) => {
   return (
     <div className="card br-10 bg-white p-0">
       <div className="px-5 py-4">
-        <div className="row">
-          <div className="col-10">
+        <div className="row no-gutters align-items-center">
+          <div className="flex-1">
             <div className="font-sm med-grey mb-2">Task</div>
             <h3 className="font-xl">{task.name}</h3>
           </div>
 
-          <div className="col-2">
+          <div className="">
             <div className="d-flex justify-content-end">
               <h3>{task.points}</h3>
             </div>
           </div>
         </div>
 
-        <div className="row mt-4">
+        <div className="row no-gutters align-items-center mt-4">
           <div className="col">
             <div className="font-5">Duration</div>
-            <div className="font-5 orange">{`${dateFormater(task.startDate)} - ${dateFormater(
+            <div className="blue-text mt-1">{`${dateFormater(task.startDate)} - ${dateFormater(
               task.endDate,
             )}`}</div>
           </div>
@@ -47,9 +47,9 @@ export const AllTaskCard: React.FC<any> = ({ task }) => {
 
       <div className="divider-h"></div>
 
-      <div className="px-5 py-4">
-        <div className="row" onClick={handleAccordianClick}>
-          <div className="col bold dark-grey pointer">Details and Instruction</div>
+      <div className="p-30 med-grey">
+        <div className="row no-gutters align-items-center" onClick={handleAccordianClick}>
+          <div className="col bold pointer">Details and Instruction</div>
         </div>
 
         <TaskAccordian showContent={showContent}>

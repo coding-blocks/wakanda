@@ -25,7 +25,7 @@ export interface BaseFormProps {
 
 export default ({ fields, model, setModel }: BaseFormProps) => {
   return (
-    <div className="card br-10 bg-white p-0">
+    <div className="">
       {fields.map((field, i) => {
         const FormField = FieldMap[field.type];
         return (

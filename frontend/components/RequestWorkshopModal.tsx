@@ -94,7 +94,7 @@ export default (props: AddUserModalProps) => {
 
   return (
     <Modal show={props.show} setShow={props.setShow}>
-      <div className="p-4" style={{ minWidth: 600 }}>
+      <div className="p-30">
         <div>
           <div className="heading-6">Request Workshop</div>
         </div>
@@ -112,15 +112,15 @@ export default (props: AddUserModalProps) => {
           </div>
         )}
       </div>
-      <div className="d-flex justify-content-end m-4 ">
+      <div className="d-flex justify-content-end align-items-center m-4 ">
         <Button
-          className="button-primary mr-2"
+          className="button-primary button-primary--rejected mr-2"
           action={() => props.setShow(false)}
           activeText="Closing"
           text="Cancel"
         />
         <Button
-          className="button-primary"
+          className="button-primary button-primary--accepted"
           action={requestWorkshop}
           text="Save"
           activeText="Saving"
