@@ -10,8 +10,12 @@ class TaskController {
     const userId = req.user.id;
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
+    const status = req.query.status as any;
+    console.log(status);
 
-    const [tasks, count] = await Repositories.task.findUserTasks(userId);
+    const [tasks, count] = status
+      ? await Repositories.task.findArchivedUserTasks(userId, status)
+      : await Repositories.task.findUserTasks(userId);
 
     res.json({
       data: tasks,
