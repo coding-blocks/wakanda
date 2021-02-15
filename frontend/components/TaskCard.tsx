@@ -13,6 +13,7 @@ export const TaskCard: React.FC<any> = ({ task }) => {
   const handleAccordianClick = () => setShowContent(!showContent);
 
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const status = task.userTask[0].status;
 
   return (
     <div className="card br-10 bg-white p-0">
@@ -51,12 +52,13 @@ export const TaskCard: React.FC<any> = ({ task }) => {
                     : null
                   : null}
               </div>
-              <button className="button-primary" onClick={() => setShowSubmitModal(true)}>
-                {task.userTask[0].status
-                  ? task.userTask[0].status === 'review'
-                    ? 'View Submission'
-                    : 'Submit'
-                  : 'Submit'}
+              <button
+                className={`button-primary ${
+                  status === 'draft' ? '' : `button-primary--${status}`
+                }`}
+                onClick={() => setShowSubmitModal(true)}
+              >
+                {status ? (status === 'draft' ? 'Submit' : status) : status}
               </button>
             </div>
           </div>

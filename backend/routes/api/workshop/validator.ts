@@ -5,8 +5,8 @@ export default {
   POST: toRequestValidator(
     Joi.object({
       collegeName: Joi.string().required().label('College Name'),
-      collegeAddress: Joi.string().required(),
-      topic: Joi.string().required(),
+      collegeAddress: Joi.string().required().label('College Address'),
+      topic: Joi.string().required().label('Topic'),
       startDate: Joi.date()
         .min(Date.now())
         .message('Date cannot be earlier than today.')
@@ -15,10 +15,10 @@ export default {
         Joi.date().greater(Joi.ref('startDate')),
         Joi.required().valid(null),
       ),
-      monetary: Joi.string().required(),
-      accomodation: Joi.string().required(),
-      request: Joi.string().required(),
-      mobile: Joi.string().required(),
+      monetary: Joi.string().required().label('Will College Pay?'),
+      accomodation: Joi.string().required().label('Will College Porvide Accomodation?'),
+      request: Joi.string().required().label('Any Special Requests?'),
+      mobile: Joi.string().required().label('Contact'),
     }),
     'body',
   ),
