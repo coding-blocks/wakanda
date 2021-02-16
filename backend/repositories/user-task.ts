@@ -1,7 +1,8 @@
 import { UserTask, Submission } from '../entity';
-import { EntityManager, EntityRepository, getRepository, Repository, Transaction } from 'typeorm';
+import { EntityManager, EntityRepository, getRepository, Repository } from 'typeorm';
 import { object } from 'joi';
 import UserRepository from './user';
+import { Transaction } from '../entity/transaction-logs';
 @EntityRepository(UserTask)
 class UserTaskRepository extends Repository<UserTask> {
   findByUserId(id: number) {
@@ -34,12 +35,23 @@ class UserTaskRepository extends Repository<UserTask> {
     return userTask;
   }
 
-  saveSubmissionStatus(userTask: UserTask) {
+  saveSubmissionStatus(userTask: UserTask, adminId: number) {
     return this.manager.transaction(async (entityManager: EntityManager) => {
       const userTaskRepository = entityManager.getCustomRepository(UserTaskRepository);
       const userRepository = entityManager.getCustomRepository(UserRepository);
       if (userTask.status === 'accepted') {
         userRepository.updatePoints(userTask.assignedPoints, userTask.userId);
+        await entityManager
+          .createQueryBuilder()
+          .insert()
+          .into(Transaction)
+          .values({
+            user: { id: userTask.userId },
+            task: { id: userTask.taskId },
+            points: userTask.assignedPoints,
+            grantedBy: { id: adminId },
+          })
+          .execute();
         userTaskRepository.save(userTask);
       } else {
         userTaskRepository.save(userTask);

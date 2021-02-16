@@ -47,11 +47,12 @@ class SubmissionController {
   async handleUpdateSubmissionStatus(req: Request, res: Response) {
     const status = req.body.status;
     const id = Number(req.params.id); // submissionId
+    const adminId = req.user.id;
 
     const userTask = await Repositories.userTask.findBySubmissionId(id);
     userTask.status = status;
     userTask.assignedPoints = req.body.points || 0;
-    await Repositories.userTask.saveSubmissionStatus(userTask);
+    await Repositories.userTask.saveSubmissionStatus(userTask, adminId);
 
     // return submission
     res.json({
