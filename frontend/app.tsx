@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AuthenticatedRoute from './components/common/AuthenticatedRoute';
 import { Baselayout } from './layouts/base';
+import { WithoutContainer } from './layouts/without-container';
 import AdminLayout from './layouts/admin';
 import { loadUser } from './store/currentUserSlice';
 import Dashboard from './pages/dashboard';
@@ -40,9 +41,9 @@ export const App: React.FC = () => {
         </AuthenticatedRoute>
 
         <Route exact path="/">
-          <Baselayout>
+          <WithoutContainer>
             <Index />
-          </Baselayout>
+          </WithoutContainer>
         </Route>
       </Switch>
     </Router>
