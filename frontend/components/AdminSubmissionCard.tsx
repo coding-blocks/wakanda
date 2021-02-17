@@ -44,6 +44,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
       <SubmissionModal
         setShow={setShowSubmitModal}
         show={showSubmitModal}
+        status={userTask.status}
         disabled={userTask.status === 'accepted' || userTask.status === 'rejected'}
         id={userTask.submission.id}
         onAfterAdd={() => {
