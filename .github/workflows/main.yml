@@ -34,4 +34,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          script: cd ~/servers/wakanda && docker-compose pull && docker-compose up -d --no-deps --build
+          script: cd ~/servers/wakanda && docker-compose pull && docker-compose up -d --no-deps --build && docker image prune -f
