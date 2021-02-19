@@ -149,6 +149,11 @@ export const RedirectToLogin: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="landing-page__section bg-white pt-0">
+        <div className="width-limiter">
           <div className="mt-20">
             <div className="card bg-gradient-blue">
               <div className="row no-gutters align-items-center">
@@ -161,7 +166,7 @@ export const RedirectToLogin: React.FC = () => {
                   <div className="font-5 mt-15">
                     Provide us with your Email ID and we will get in touch with you!
                   </div>
-                  <button className="button-primary button-primary--white mt-30">Apply Now</button>
+                  <button className="button-primary mt-30">Apply Now</button>
                   <div className="mt-10 font-2">Note : You must be a college student</div>
                 </div>
               </div>
