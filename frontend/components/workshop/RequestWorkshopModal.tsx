@@ -1,18 +1,18 @@
 import React from 'react';
-import Button from './common/Button';
-import Form, { BaseFormField } from '../components/common/BaseForm';
-import Modal from './common/Modal';
-import api from '../services/api';
+import Button from '../common/Button';
+import Form, { BaseFormField } from '../common/BaseForm';
+import Modal from '../common/Modal';
+import api from '../../services/api';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../store/currentUserSlice';
+import { selectUser } from '../../store/currentUserSlice';
 
-export interface AddUserModalProps {
+export interface RequstWorkshopModalProps {
   show: boolean;
   setShow: (boolean) => void;
   onAfterAdd?: () => void;
 }
 
-export default (props: AddUserModalProps) => {
+export default (props: RequstWorkshopModalProps) => {
   const user = useSelector(selectUser());
   const [lastError, setLastError] = React.useState(null);
   const [lastMessage, setLastMessage] = React.useState(null);

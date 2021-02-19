@@ -15,6 +15,7 @@ export interface BaseFormField {
   label: string;
   name: string;
   type: 'text' | 'datetime' | 'number' | 'textarea';
+  disabled?: boolean;
 }
 
 export interface BaseFormProps {

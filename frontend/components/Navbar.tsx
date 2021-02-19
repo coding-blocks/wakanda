@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated, selectUser } from '../store/currentUserSlice';
-import RequestWorkshopModal from './RequestWorkshopModal';
+import RequestWorkshopModal from './workshop/RequestWorkshopModal';
 
 export const Navbar: React.FC = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated());
