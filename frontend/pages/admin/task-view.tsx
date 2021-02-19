@@ -2,6 +2,7 @@ import React from 'react';
 import EditTask from './task-view-pages/edit-tasks';
 import Submissions from './task-view-pages/submissions';
 import AssignedUsers from './task-view-pages/assigned-users';
+import TabNav from '../../components/common/tab-nav';
 
 export default () => {
   const [activeTab, setActiveTab] = React.useState('edit');
@@ -9,30 +10,14 @@ export default () => {
   return (
     <div>
       <div className="card">
-        <div className="tabs-primary">
-          <div
-            className={`tab ${activeTab === 'edit' && 'active'}`}
-            onClick={() => setActiveTab('edit')}
-          >
-            Edit
-          </div>
-          <div
-            className={`tab ${activeTab === 'assigned' && 'active'}`}
-            onClick={() => setActiveTab('assigned')}
-          >
-            Assigned Users
-          </div>
-          <div
-            className={`tab ${activeTab === 'submissions' && 'active'}`}
-            onClick={() => setActiveTab('submissions')}
-          >
-            Submissions
-          </div>
-        </div>
-        <div className="py-4">
-          {activeTab === 'edit' && <EditTask />}
-          {activeTab === 'assigned' && <AssignedUsers />}
-          {activeTab === 'submissions' && <Submissions />}
+        <div>
+          <TabNav
+            tabs={[
+              { title: 'Edit', component: () => <EditTask /> },
+              { title: 'Assigned', component: () => <AssignedUsers /> },
+              { title: 'Submissions', component: () => <Submissions /> },
+            ]}
+          />
         </div>
       </div>
     </div>

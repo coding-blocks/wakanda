@@ -4,7 +4,7 @@ import { ILike, Like } from 'typeorm';
 import AsyncHandler from '../../../decorators/async-handler';
 import { generatePaginationObject } from '../../../utils/pagination';
 
-class UserController {
+class WorkshopController {
   @AsyncHandler()
   async handleCreate(req: Request, res: Response) {
     const workshop = req.body;
@@ -20,7 +20,7 @@ class UserController {
     const [workshops, count] = await Repositories.workshop.findAndCount({
       where: [
         {
-          name: ILike(`%${query}%`),
+          topic: ILike(`%${query}%`),
         },
       ],
       take: limit,
@@ -35,4 +35,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default new WorkshopController();

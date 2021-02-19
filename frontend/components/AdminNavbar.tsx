@@ -23,6 +23,9 @@ export default () => {
           <Link to="/admin/tasks">Tasks</Link>
         </li>
         <li className="nav-items pointer ml-sm-25 ml-10">
+          <Link to="/admin/workshops">Workshops</Link>
+        </li>
+        <li className="nav-items pointer ml-sm-25 ml-10">
           <Link to="/admin/ambassadors">Ambassadors</Link>
         </li>
         {isAuthenticated && (

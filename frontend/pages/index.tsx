@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { selectIsAuthenticated, selectIsNotCa } from '../store/currentUserSlice';
 
 export const RedirectToLogin: React.FC = () => {
-  const isAuthenticated = useSelector((state: any) => state.currentUser.isAuthenticated);
+  const isAuthenticated = useSelector(selectIsAuthenticated());
+  const isNotCa = useSelector(selectIsNotCa());
 
-  return isAuthenticated ? (
+  return isAuthenticated && isNotCa ? (
     <Redirect to="/dashboard" />
   ) : (
     <div className="landing-page">
