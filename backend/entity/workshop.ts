@@ -47,4 +47,7 @@ export class Workshop {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
+
+  @Column({ default: false })
+  isDone: boolean;
 }

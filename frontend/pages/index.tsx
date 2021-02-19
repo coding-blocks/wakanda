@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { selectIsAuthenticated, selectIsNotCa } from '../store/currentUserSlice';
+import CARequestModal from '../components/CARequestForm';
 
 export const RedirectToLogin: React.FC = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated());
   const isNotCa = useSelector(selectIsNotCa());
+  const [showCARequestModal, setShowCARequestModal] = useState(false);
 
   return isAuthenticated && isNotCa ? (
     <Redirect to="/dashboard" />
@@ -32,7 +34,9 @@ export const RedirectToLogin: React.FC = () => {
 
               <div className="row no-gutters align-items-center justify-content-lg-start justify-content-center">
                 <div>
-                  <button className="button-primary">Apply Now</button>
+                  <button className="button-primary" onClick={() => setShowCARequestModal(true)}>
+                    Apply Now
+                  </button>
                   <div className="mt-10 d-lg-none d-block">
                     <div className="text-grey-light-1 heading-6">
                       Join our Campus Ambassador Program
@@ -341,6 +345,15 @@ export const RedirectToLogin: React.FC = () => {
           </div>
         </div>
       </div>
+      <CARequestModal
+        show={showCARequestModal}
+        setShow={setShowCARequestModal}
+        onAfterAdd={() => {
+          setTimeout(() => {
+            setShowCARequestModal(false);
+          }, 1000);
+        }}
+      />
     </div>
   );
 };

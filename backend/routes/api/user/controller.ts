@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
-import { ILike, Like } from 'typeorm';
+import { ILike, Not } from 'typeorm';
 import AsyncHandler from '../../../decorators/async-handler';
 import { generatePaginationObject } from '../../../utils/pagination';
 
@@ -29,9 +29,11 @@ class UserController {
       where: [
         {
           name: ILike(`%${query}%`),
+          role: Not('admin'),
         },
         {
           email: ILike(`%${query}%`),
+          role: Not('admin'),
         },
       ],
       take: limit,

@@ -68,7 +68,7 @@ export default (props) => {
           <div className="heading-6">Workshop Details</div>
         </div>
         <div className="mt-4">
-          <Form fields={fields} model={props.workshop} setModel={props.workshops} />
+          <Form fields={fields} model={props.workshop} setModel={() => null} />
         </div>
       </div>
       <div className="d-flex justify-content-end align-items-center m-4 ">

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTask } from '../../../hooks/task';
 import api from '../../../services/api';
 import { Link, useParams } from 'react-router-dom';
-import AdminSubmissionCard from '../../../components/AdminSubmissionCard';
+import AdminSubmissionCard from '../../../components/admin/AdminSubmissionCard';
 import { Pagination } from '../../../components/common/Pagination';
 
 const AdminPanel: React.FC = () => {

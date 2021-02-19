@@ -17,17 +17,14 @@ export interface Workshop {
 
 export interface WorkshopRowProps {
   workshop: Workshop;
+  hideDone: boolean;
 }
 
-export default ({ workshop }: WorkshopRowProps) => {
+export default ({ workshop, hideDone }: WorkshopRowProps) => {
   const [showWorkshopModal, setShowWorkshopModal] = useState(false);
 
   const markDone = async () => {
-    await api.delete('workshop', {
-      data: {
-        id: workshop.id,
-      },
-    });
+    await api.patch(`workshop/${workshop.id}`, { data: { isDone: true } });
   };
   return (
     <div className="py-4 border-bottom">
@@ -40,13 +37,14 @@ export default ({ workshop }: WorkshopRowProps) => {
         </div>
         <div className="d-flex justify-content-end">
           <div className="my-auto mx-3">
-            {' '}
-            <Button
-              className="button-primary"
-              action={markDone}
-              text="Mark Done"
-              activeText="Doing"
-            />
+            {!hideDone && (
+              <Button
+                className="button-primary"
+                action={markDone}
+                text="Mark Done"
+                activeText="Doing"
+              />
+            )}
           </div>
           <button className="button-primary" onClick={() => setShowWorkshopModal(true)}>
             Open

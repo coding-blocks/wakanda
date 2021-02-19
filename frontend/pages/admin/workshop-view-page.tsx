@@ -4,7 +4,7 @@ import WorkshopRow from '../../components/workshop/WorkshopRow';
 import { useTask } from '../../hooks/task';
 import api from '../../services/api';
 
-export default (archived) => {
+export default (props) => {
   const [query, setQuery] = React.useState('');
   const [workshops, setWorkshops] = React.useState([]);
 
@@ -16,6 +16,7 @@ export default (archived) => {
     const response = await api.get('workshop', {
       params: {
         q: query,
+        archived: props.archived,
         limit,
         offset: (activePage - 1) * limit,
       },
@@ -54,7 +55,7 @@ export default (archived) => {
       <div>
         {workshops.map((workshop, i) => (
           <div key={i}>
-            <WorkshopRow workshop={workshop} />
+            <WorkshopRow hideDone={props.archived} workshop={workshop} />
           </div>
         ))}
         <div className="d-flex justify-content-center mt-4">
