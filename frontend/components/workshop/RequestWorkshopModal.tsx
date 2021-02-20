@@ -122,8 +122,8 @@ export default (props: RequstWorkshopModalProps) => {
         <Button
           className="button-primary button-primary--accepted"
           action={requestWorkshop}
-          text="Save"
-          activeText="Saving"
+          text="Request"
+          activeText="Requesting"
         />
       </div>
     </Modal>

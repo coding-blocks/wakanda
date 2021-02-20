@@ -4,6 +4,7 @@ import TaskRepository from './task';
 import SubmissionRepository from './submission';
 import UserTaskRepository from './user-task';
 import WorkshopRepository from './workshop';
+import RequestRepository from './ca-request';
 
 class Repositories {
   private connection: Connection;
@@ -29,6 +30,10 @@ class Repositories {
 
   get workshop(): WorkshopRepository {
     return this.connection.getCustomRepository(WorkshopRepository);
+  }
+
+  get caRequest(): RequestRepository {
+    return this.connection.getCustomRepository(RequestRepository);
   }
 
   static getInstance(): Repositories {

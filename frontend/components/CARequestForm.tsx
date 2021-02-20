@@ -16,72 +16,91 @@ export default (props: RequstWorkshopModalProps) => {
   const user = useSelector(selectUser());
   const [lastError, setLastError] = React.useState(null);
   const [lastMessage, setLastMessage] = React.useState(null);
-  const [workshop, setWorkshop] = React.useState({
-    collegeName: '',
-    collegeAddress: '',
-    topic: '',
-    startDate: '',
-    endDate: null,
-    monetary: '',
-    accomodation: '',
-    caId: user?.oneauth_id,
-    request: '',
-    mobile: '',
+  const [request, setRequest] = React.useState({
+    name: '',
+    number: '',
+    email: '',
+    college: '',
+    city: '',
+    branch: '',
+    graduationYear: '',
+    fbLink: '',
+    profiles: '',
+    criteria: '',
+    uniqueIdea: '',
+    additionalInfo: '',
   });
 
   const fields: BaseFormField[] = [
     {
-      name: 'collegeName',
-      label: 'College Name',
+      name: 'name',
+      label: 'Name',
       type: 'text',
     },
     {
-      name: 'collegeAddress',
-      label: 'College Address',
+      name: 'number',
+      label: 'Phone Number',
       type: 'text',
     },
     {
-      name: 'topic',
-      label: 'Topic',
-      type: 'textarea',
-    },
-    {
-      name: 'startDate',
-      label: 'Start Date',
-      type: 'datetime',
-    },
-    {
-      name: 'endDate',
-      label: 'End Date(If multiple dates)',
-      type: 'datetime',
-    },
-    {
-      name: 'monetary',
-      label: 'Will College Pay? Share Details if Yes',
-      type: 'textarea',
-    },
-    {
-      name: 'accomodation',
-      label: 'Will College Provide Accomodation? Share Details if Yes',
-      type: 'textarea',
-    },
-    {
-      name: 'request',
-      label: 'Any Special Requests',
-      type: 'textarea',
-    },
-    {
-      name: 'mobile',
-      label: 'Contact Info',
+      name: 'email',
+      label: 'Email',
       type: 'text',
+    },
+    {
+      name: 'college',
+      label: 'College',
+      type: 'text',
+    },
+    {
+      name: 'city',
+      label: 'City',
+      type: 'text',
+    },
+    {
+      name: 'branch',
+      label: 'Branch',
+      type: 'text',
+    },
+    {
+      name: 'graduationYear',
+      label: 'Graduation Year',
+      type: 'text',
+    },
+    {
+      name: 'fbLink',
+      label: 'Link to your facebook profile',
+      type: 'text',
+    },
+    {
+      name: 'profiles',
+      label: 'Any other profiles? (Github/LinkedIn/Twitter)',
+      type: 'textarea',
+    },
+    {
+      name: 'criteria',
+      label:
+        'Why do you think you will be a better fit for this opportunity, as compared to your college mates?',
+      type: 'textarea',
+    },
+    {
+      name: 'uniqueIdea',
+      label:
+        'Suggest one unique idea to spread the presence of Coding Blocks in your college, apart from the ones mentioned above.',
+      type: 'textarea',
+    },
+    {
+      name: 'additionalInfo',
+      label: 'Any additonal information about yourself?',
+      type: 'textarea',
     },
   ];
 
-  const requestWorkshop = async () => {
+  const requestCA = async () => {
     try {
-      await api.post('workshop', workshop);
+      await api.post('ca-request', request);
       setLastError(null);
-      setLastMessage(`Requstest Workshop`);
+      setLastMessage(`Application Submitted Successfully`);
 
       if (props.onAfterAdd) {
         props.onAfterAdd();
@@ -96,10 +115,10 @@ export default (props: RequstWorkshopModalProps) => {
     <Modal show={props.show} setShow={props.setShow}>
       <div className="p-30">
         <div>
-          <div className="heading-6">Request Workshop</div>
+          <div className="heading-6">Apply for Campus Ambassador</div>
         </div>
         <div className="mt-4">
-          <Form fields={fields} model={workshop} setModel={setWorkshop} />
+          <Form fields={fields} model={request} setModel={setRequest} />
         </div>
         {lastError && (
           <div className="mt-3">
@@ -121,8 +140,8 @@ export default (props: RequstWorkshopModalProps) => {
         />
         <Button
           className="button-primary button-primary--accepted"
-          action={requestWorkshop}
-          text="Save"
+          action={requestCA}
+          text="Apply"
           activeText="Saving"
         />
       </div>

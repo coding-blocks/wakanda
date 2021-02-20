@@ -1,0 +1,54 @@
+import { Request, Response } from 'express';
+import Repositories from '../../../repositories/index';
+import { ILike, Like } from 'typeorm';
+import AsyncHandler from '../../../decorators/async-handler';
+import { generatePaginationObject } from '../../../utils/pagination';
+
+class WorkshopController {
+  @AsyncHandler()
+  async handleCreate(req: Request, res: Response) {
+    const caRequest = req.body;
+    await Repositories.caRequest.save({ ...caRequest, userId: req.user.id });
+    res.json('ok');
+  }
+
+  @AsyncHandler()
+  async handleUpdateById(req: Request, res: Response) {
+    const id = Number(req.params.id);
+    const payload = req.body.data;
+
+    const caRequest = await Repositories.caRequest.findOne(id);
+    Repositories.caRequest.merge(caRequest, payload);
+    await Repositories.caRequest.save(caRequest);
+
+    res.json({
+      data: caRequest,
+    });
+  }
+
+  @AsyncHandler()
+  async handleGetRequests(req: Request, res: Response) {
+    const query = req.query.q || '';
+    const archived = req.query.archived || false;
+    const offset = Number(req.query.offset || 0);
+    const limit = Number(req.query.limit || 10);
+    const [workshops, count] = await Repositories.caRequest.findAndCount({
+      where: [
+        {
+          name: ILike(`%${query}%`),
+          isDone: archived,
+        },
+      ],
+      take: limit,
+      skip: offset,
+    });
+    res.json({
+      data: workshops,
+      meta: {
+        pagination: generatePaginationObject(count, offset, limit),
+      },
+    });
+  }
+}
+
+export default new WorkshopController();
