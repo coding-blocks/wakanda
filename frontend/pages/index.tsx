@@ -171,6 +171,11 @@ export const RedirectToLogin: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="landing-page__section bg-white pt-0">
+        <div className="width-limiter">
           <div className="mt-20">
             <div className="card bg-gradient-blue">
               <div className="row no-gutters align-items-center">
