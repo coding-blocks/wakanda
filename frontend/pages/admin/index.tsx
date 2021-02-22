@@ -5,7 +5,7 @@ import TasksPage from './tasks';
 import CreateTaskPage from './create-tasks';
 import HomePage from './home';
 import TaskView from './task-view';
-import AmbassadorPage from './ambassador';
+import AmbassadorPage from './ambassador-view';
 import WorkshopPage from './workshops';
 
 export default () => {

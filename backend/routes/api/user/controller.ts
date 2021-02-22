@@ -16,7 +16,7 @@ class UserController {
   async updateUserById(req: Request, res: Response) {
     const role = req.body.role;
     const userId = Number(req.params.id);
-    await Repositories.user.updateRole(userId, role);
+    await Repositories.user.updateRole(userId, role, 'CBCA');
     res.json('ok');
   }
 

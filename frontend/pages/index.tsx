@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { selectIsAuthenticated, selectIsNotCa } from '../store/currentUserSlice';
-import CARequestModal from '../components/CARequestForm';
+import CARequestModal from '../components/ca-request/CARequestModal';
 
 export const RedirectToLogin: React.FC = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated());

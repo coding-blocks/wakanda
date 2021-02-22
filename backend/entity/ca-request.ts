@@ -15,7 +15,7 @@ export class Request {
   id: number;
 
   @Column()
-  namee: string;
+  name: string;
 
   @Column()
   number: string;
@@ -53,6 +53,9 @@ export class Request {
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
+
+  @Column({ default: false })
+  isApproved: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

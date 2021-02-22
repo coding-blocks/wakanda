@@ -1,8 +1,8 @@
 import React from 'react';
-import PaginationPills from '../../components/common/Pagination';
-import { useTask } from '../../hooks/task';
-import api from '../../services/api';
-import Button from '../../components/common/Button';
+import PaginationPills from '../../../components/common/Pagination';
+import { useTask } from '../../../hooks/task';
+import api from '../../../services/api';
+import Button from '../../../components/common/Button';
 
 export default () => {
   const [query, setQuery] = React.useState('');

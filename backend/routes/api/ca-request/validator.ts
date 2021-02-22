@@ -35,4 +35,14 @@ export default {
     }),
     'body',
   ),
+  UPDATE: toRequestValidator(
+    Joi.object({
+      data: Joi.object({
+        caCode: Joi.string()
+          .required()
+          .messages({ 'string.empty': 'Please specify valid CA Code.' }),
+      }),
+    }),
+    'body',
+  ),
 };

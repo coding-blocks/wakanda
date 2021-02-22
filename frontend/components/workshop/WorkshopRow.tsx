@@ -55,6 +55,11 @@ export default ({ workshop, hideDone }: WorkshopRowProps) => {
         show={showWorkshopModal}
         setShow={setShowWorkshopModal}
         workshop={workshop}
+        onAfterAdd={() => {
+          setTimeout(() => {
+            setShowWorkshopModal(false);
+          }, 1000);
+        }}
       />
     </div>
   );

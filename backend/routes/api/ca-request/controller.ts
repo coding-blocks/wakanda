@@ -8,7 +8,7 @@ class WorkshopController {
   @AsyncHandler()
   async handleCreate(req: Request, res: Response) {
     const caRequest = req.body;
-    await Repositories.caRequest.save({ ...caRequest, userId: req.user.id });
+    await Repositories.caRequest.save(caRequest);
     res.json('ok');
   }
 
@@ -17,10 +17,7 @@ class WorkshopController {
     const id = Number(req.params.id);
     const payload = req.body.data;
 
-    const caRequest = await Repositories.caRequest.findOne(id);
-    Repositories.caRequest.merge(caRequest, payload);
-    await Repositories.caRequest.save(caRequest);
-
+    const caRequest = await Repositories.caRequest.updateCARole(payload, id);
     res.json({
       data: caRequest,
     });
@@ -29,14 +26,13 @@ class WorkshopController {
   @AsyncHandler()
   async handleGetRequests(req: Request, res: Response) {
     const query = req.query.q || '';
-    const archived = req.query.archived || false;
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
     const [workshops, count] = await Repositories.caRequest.findAndCount({
       where: [
         {
           name: ILike(`%${query}%`),
-          isDone: archived,
+          isApproved: false,
         },
       ],
       take: limit,
