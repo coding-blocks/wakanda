@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Modal from './common/Modal';
-import { SubmissionEditor } from './forms/SubmissionEditor';
-import client from '../services/api';
-import Button from './common/Button';
-import { useTask } from '../hooks/task';
+import Modal from '../common/Modal';
+import { SubmissionEditor } from '../forms/SubmissionEditor';
+import client from '../../services/api';
+import Button from '../common/Button';
+import { useTask } from '../../hooks/task';
 
 export const SubmissionModal: React.FC<any> = (props) => {
   const { id } = props;

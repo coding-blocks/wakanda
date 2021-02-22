@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { selectIsAuthenticated, selectIsNotCa } from '../store/currentUserSlice';
+import CARequestModal from '../components/ca-request/CARequestModal';
 
 export const RedirectToLogin: React.FC = () => {
-  const isAuthenticated = useSelector((state: any) => state.currentUser.isAuthenticated);
+  const isAuthenticated = useSelector(selectIsAuthenticated());
+  const isNotCa = useSelector(selectIsNotCa());
+  const [showCARequestModal, setShowCARequestModal] = useState(false);
 
-  return isAuthenticated ? (
+  const ApplyNowButton: React.FC = () => {
+    return (
+      <div>
+        {isAuthenticated && (
+          <button className="button-primary" onClick={() => setShowCARequestModal(true)}>
+            Apply Now
+          </button>
+        )}
+
+        {!isAuthenticated && (
+          <a className="button-primary" href="/pages/login">
+            Login to apply now
+          </a>
+        )}
+      </div>
+    );
+  };
+
+  return isAuthenticated && isNotCa ? (
     <Redirect to="/dashboard" />
   ) : (
     <div className="landing-page">
@@ -30,7 +52,7 @@ export const RedirectToLogin: React.FC = () => {
 
               <div className="row no-gutters align-items-center justify-content-lg-start justify-content-center">
                 <div>
-                  <button className="button-primary">Apply Now</button>
+                  <ApplyNowButton />
                   <div className="mt-10 d-lg-none d-block">
                     <div className="text-grey-light-1 heading-6">
                       Join our Campus Ambassador Program
@@ -166,7 +188,7 @@ export const RedirectToLogin: React.FC = () => {
                   <div className="font-5 mt-15">
                     Provide us with your Email ID and we will get in touch with you!
                   </div>
-                  <button className="button-primary mt-30">Apply Now</button>
+                  <ApplyNowButton />
                   <div className="mt-10 font-2">Note : You must be a college student</div>
                 </div>
               </div>
@@ -344,6 +366,15 @@ export const RedirectToLogin: React.FC = () => {
           </div>
         </div>
       </div>
+      <CARequestModal
+        show={showCARequestModal}
+        setShow={setShowCARequestModal}
+        onAfterAdd={() => {
+          setTimeout(() => {
+            setShowCARequestModal(false);
+          }, 1000);
+        }}
+      />
     </div>
   );
 };

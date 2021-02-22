@@ -3,7 +3,7 @@ import Datetime from 'react-datetime';
 import Moment from 'moment';
 
 export default (props) => {
-  const { value, onChange, field } = props;
+  const { value, onChange, field, disabled = false } = props;
 
   return (
     <div className="row align-items-center p-2" style={{ background: 'transparent' }}>
@@ -15,7 +15,7 @@ export default (props) => {
           dateFormat="DD/MM/YYYY"
           onChange={(e) => onChange(e)}
           value={Moment(value)}
-          inputProps={{ className: 'underline-input pb-4 font-sm bold w-100' }}
+          inputProps={{ className: 'underline-input pb-4 font-sm bold w-100', disabled }}
         />
       </div>
     </div>

@@ -15,6 +15,7 @@ export interface BaseFormField {
   label: string;
   name: string;
   type: 'text' | 'datetime' | 'number' | 'textarea';
+  disabled?: boolean;
 }
 
 export interface BaseFormProps {
@@ -34,6 +35,7 @@ export default ({ fields, model, setModel }: BaseFormProps) => {
             name={field.name}
             value={model[field.name]}
             field={field}
+            disabled={field.disabled}
             type={field.type}
             onChange={(value) =>
               setModel({

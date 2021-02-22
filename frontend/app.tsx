@@ -10,6 +10,7 @@ import Dashboard from './pages/dashboard';
 import Admin from './pages/admin';
 import Index from './pages';
 import 'react-datetime/css/react-datetime.css';
+import { Redirect } from 'react-router-dom';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export const App: React.FC = () => {
             <Index />
           </WithoutContainer>
         </Route>
+        <Route render={() => <Redirect to={{ pathname: '/' }} />} />
       </Switch>
     </Router>
   );

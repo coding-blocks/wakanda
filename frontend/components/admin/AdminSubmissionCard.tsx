@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dateFormater } from '../utils/datetime';
+import { dateFormater } from '../../utils/datetime';
 import { Link } from 'react-router-dom';
 import { SubmissionModal } from './AdminSubmissionModal';
 

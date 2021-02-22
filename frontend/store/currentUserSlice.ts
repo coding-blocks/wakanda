@@ -28,5 +28,6 @@ export const loadUser = createAsyncThunk('currentUser/load', async () => {
 
 export const selectUser = () => (state) => state.currentUser.user;
 export const selectIsAuthenticated = () => (state) => state.currentUser.isAuthenticated;
+export const selectIsNotCa = () => (state) => state.currentUser.role === 'default';
 
 export default currentUserSlice.reducer;
