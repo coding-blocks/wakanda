@@ -9,16 +9,24 @@ export const SubmissionModal: React.FC<any> = (props) => {
   const { id } = props;
   const { status } = props;
   const [submission, setSubmission] = useState();
+  const [task, setTask] = useState();
   const { isActive, trigger } = useTask(async () => {
     const resp: any = await client.get(`submission/${id}`);
     setSubmission(resp.data.data);
+    const { data: response } = await client.get(`/task/${id}`);
+    const taskFetched = response.data;
+    setTask(taskFetched);
   }, true);
 
   async function handleSubmission(value) {
-    const resp = await client.post(`submission/${id}/status`, {
+    await client.post(`submission/${id}/status`, {
       status: value,
-      points: 100,
+      points: (task as any).points,
     });
+
+    if (props.onAfterAdd) {
+      props.onAfterAdd();
+    }
   }
 
   return (

@@ -55,7 +55,15 @@ const AdminPanel: React.FC = () => {
       <div>
         {userTasks.map((userTask, i) => (
           <div key={i} className="mt-4">
-            <AdminSubmissionCard key={userTask.id} userTask={userTask} />
+            <AdminSubmissionCard
+              key={userTask.id}
+              userTask={userTask}
+              onAfterUpdate={() => {
+                setTimeout(() => {
+                  trigger();
+                }, 1000);
+              }}
+            />
           </div>
         ))}
       </div>

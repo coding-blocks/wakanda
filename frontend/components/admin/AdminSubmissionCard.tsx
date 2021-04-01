@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { dateFormater } from '../../utils/datetime';
-import { Link } from 'react-router-dom';
 import { SubmissionModal } from './AdminSubmissionModal';
 
-export interface AdminSubmissionCardProps {
-  userTask: any;
-}
-
-export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmissionCardProps) => {
+export const AdminSubmissionCard: React.FC<any> = (props) => {
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+
+  const { userTask } = props.userTask;
 
   return (
     <div className="card br-10 bg-white p-0">
@@ -50,6 +47,7 @@ export const AdminSubmissionCard: React.FC<any> = ({ userTask }: AdminSubmission
         onAfterAdd={() => {
           setTimeout(() => {
             setShowSubmitModal(false);
+            props.onAfterUpdate();
           }, 1000);
         }}
       />
