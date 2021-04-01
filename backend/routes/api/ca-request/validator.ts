@@ -41,6 +41,9 @@ export default {
         caCode: Joi.string()
           .required()
           .messages({ 'string.empty': 'Please specify valid CA Code.' }),
+        manager: Joi.string()
+          .required()
+          .messages({ 'string.empty': 'Please specify valid manager.' }),
       }),
     }),
     'body',

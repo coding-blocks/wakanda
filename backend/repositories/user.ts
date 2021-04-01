@@ -20,10 +20,10 @@ class UserRepository extends Repository<User> {
       .execute();
   }
 
-  async updateRole(id: number, role: string, caCode: string) {
+  async updateRole(id: number, role: string, payload: any) {
     return await this.createQueryBuilder()
       .update(User)
-      .set({ caCode: `${caCode}`, role: () => `${role}` })
+      .set({ caCode: `${payload.caCode}`, manager: `${payload.manager}`, role: () => `${role}` })
       .where('id = :id', { id })
       .execute();
   }

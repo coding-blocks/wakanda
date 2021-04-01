@@ -65,4 +65,9 @@ export class User {
     nullable: true,
   })
   college: string;
+
+  @Column({
+    nullable: true,
+  })
+  manager: string;
 }

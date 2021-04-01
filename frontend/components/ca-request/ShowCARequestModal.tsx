@@ -32,6 +32,7 @@ export default (props: RequstWorkshopModalProps) => {
     uniqueIdea: '',
     additionalInfo: '',
     caCode: '',
+    manager: '',
   });
 
   const fields: BaseFormField[] = [
@@ -114,12 +115,17 @@ export default (props: RequstWorkshopModalProps) => {
       label: 'Enter Unique CA Code for Ambassador',
       type: 'text',
     },
+    {
+      name: 'manager',
+      label: 'Enter Manager Info',
+      type: 'text',
+    },
   ];
 
   const requestCA = async () => {
     try {
       await api.patch(`ca-request/${props.caRequest.id}`, {
-        data: { isApproved: true, caCode: request.caCode },
+        data: { isApproved: true, caCode: request.caCode, manager: request.manager },
       });
       setLastError(null);
       setLastMessage(`Application Approved Successfully`);

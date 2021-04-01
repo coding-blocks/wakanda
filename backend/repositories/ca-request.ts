@@ -18,7 +18,7 @@ class RequestRepository extends Repository<Request> {
         relations: ['user'],
       });
       console.log(payload);
-      await userRepo.updateRole(request.user.id, 'ambassador', payload.caCode);
+      await userRepo.updateRole(request.user.id, 'ambassador', payload);
       await this.update(id, { isApproved: true });
       return request;
     });
