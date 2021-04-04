@@ -5,7 +5,7 @@ import { SubmissionModal } from './AdminSubmissionModal';
 export const AdminSubmissionCard: React.FC<any> = (props) => {
   const [showSubmitModal, setShowSubmitModal] = useState(false);
 
-  const { userTask } = props.userTask;
+  const { userTask } = props;
 
   return (
     <div className="card br-10 bg-white p-0">
