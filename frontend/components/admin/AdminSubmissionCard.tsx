@@ -39,6 +39,8 @@ export const AdminSubmissionCard: React.FC<any> = (props) => {
         </div>
       </div>
       <SubmissionModal
+        task={userTask.task}
+        submission={userTask.submission}
         setShow={setShowSubmitModal}
         show={showSubmitModal}
         status={userTask.status}

@@ -59,9 +59,7 @@ const AdminPanel: React.FC = () => {
               key={userTask.id}
               userTask={userTask}
               onAfterUpdate={() => {
-                setTimeout(() => {
-                  trigger();
-                }, 1000);
+                trigger();
               }}
             />
           </div>

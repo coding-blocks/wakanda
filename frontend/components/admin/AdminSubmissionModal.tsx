@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '../common/Modal';
 import { SubmissionEditor } from '../forms/SubmissionEditor';
 import client from '../../services/api';
 import Button from '../common/Button';
-import { useTask } from '../../hooks/task';
 
 export const SubmissionModal: React.FC<any> = (props) => {
-  const { id } = props;
-  const { status } = props;
-  const [submission, setSubmission] = useState();
-  const [task, setTask] = useState();
-  const { isActive, trigger } = useTask(async () => {
-    const resp: any = await client.get(`submission/${id}`);
-    setSubmission(resp.data.data);
-    const { data: response } = await client.get(`/task/${id}`);
-    const taskFetched = response.data;
-    setTask(taskFetched);
-  }, true);
+  const { id, task, submission, status } = props;
 
   async function handleSubmission(value) {
     await client.post(`submission/${id}/status`, {

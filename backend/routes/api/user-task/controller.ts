@@ -43,7 +43,7 @@ class TaskController {
       },
       take: limit,
       skip: offset,
-      relations: ['submission', 'user'],
+      relations: ['submission', 'user', 'task'],
     });
 
     res.json({
