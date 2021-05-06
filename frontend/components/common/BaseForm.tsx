@@ -38,10 +38,10 @@ export default ({ fields, model, setModel }: BaseFormProps) => {
             disabled={field.disabled}
             type={field.type}
             onChange={(value) =>
-              setModel({
-                ...model,
+              setModel((prev) => ({
+                ...prev,
                 [field.name]: value,
-              })
+              }))
             }
           />
         );
