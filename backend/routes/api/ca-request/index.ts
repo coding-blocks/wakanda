@@ -5,7 +5,7 @@ import validator from './validator';
 
 const router = Router();
 
-router.post('/', controller.handleCreate);
+router.post('/',validator.POST, controller.handleCreate);
 router.patch('/:id', isAdmin, validator.UPDATE, controller.handleUpdateById);
 router.get('/', isAdmin, controller.handleGetRequests);
 
