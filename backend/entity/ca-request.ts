@@ -50,7 +50,7 @@ export class Request {
   @Column('text')
   additionalInfo: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: false })
   @JoinColumn()
   user: User;
 

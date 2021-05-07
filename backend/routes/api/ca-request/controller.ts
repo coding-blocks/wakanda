@@ -3,11 +3,15 @@ import Repositories from '../../../repositories/index';
 import { ILike, Like } from 'typeorm';
 import AsyncHandler from '../../../decorators/async-handler';
 import { generatePaginationObject } from '../../../utils/pagination';
+import { Request as CARequest } from '../../../entity';
 
 class WorkshopController {
   @AsyncHandler()
   async handleCreate(req: Request, res: Response) {
-    const caRequest = req.body;
+    const caRequest = new CARequest();
+    Repositories.caRequest.merge(caRequest, req.body);
+    const currentUser = await Repositories.user.findById(req.user.id);
+    caRequest.user = currentUser;
     await Repositories.caRequest.save(caRequest);
     res.json('ok');
   }
