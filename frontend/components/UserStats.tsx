@@ -27,7 +27,7 @@ export const UserStats: React.FC = () => {
       <div className="divider-h"></div>
       <div className="p-30 v-align-ba font-4 wakanda-grey">
         Get <strong>CB Goodies </strong>
-        on <strong>100</strong>
+        on <strong>1000</strong>
         <img
           className="ml-2"
           style={{ height: '20px' }}
