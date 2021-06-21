@@ -29,6 +29,17 @@ export default () => {
     setPaginationMeta(response.data.meta.pagination);
   }, true);
 
+  const addAllUsers = async () => {
+    try {
+      const userTask = await api.post('user-task/all', {
+        taskId: id,
+      });
+      trigger();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   React.useEffect(() => {
     trigger();
   }, [query, activePage]);
@@ -58,6 +69,12 @@ export default () => {
         <div className="ml-3">
           <button className="button-primary" onClick={() => setShowAddUserModal(true)}>
             Add User
+          </button>
+        </div>
+
+        <div className="ml-3">
+          <button className="button-primary" onClick={() => addAllUsers()}>
+            Add All User
           </button>
         </div>
       </div>

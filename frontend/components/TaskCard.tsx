@@ -34,7 +34,11 @@ export const TaskCard: React.FC<any> = ({ task }) => {
                 src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/wakanda-star.svg"
                 style={{ height: '30px' }}
               />
-              <div className="heading-5 wakanda-grey bold">{task.points}</div>
+              <div className="heading-5 wakanda-grey bold">
+                {status === 'draft'
+                  ? task.points
+                  : `${task.userTask[0].assignedPoints}/${task.points}`}
+              </div>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { TaskCard } from '../components/TaskCard';
 import { UserStats } from '../components/UserStats';
 import { LeaderBoard } from '../components/LeaderBoard';
 import InactiveTasks from '../components/InactiveTasks';
+import MonthlyLeaderboard from '../components/LeaderBoard/MonthlyLeaderboard';
 
 const ArchivedTasksAccordian = (props) => {
   if (props.showContent) return <div className="">{props.children}</div>;
@@ -60,7 +61,10 @@ const CAPortal: React.FC = () => {
           <div className="mb-4">
             <UserStats />
           </div>
-          <LeaderBoard />
+          <div className="mb-4">
+            <MonthlyLeaderboard url="leaderboard/monthly"></MonthlyLeaderboard>
+          </div>
+          <LeaderBoard url="leaderboard" />
         </div>
       </div>
     </div>

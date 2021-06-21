@@ -16,7 +16,7 @@ export const Pagination = (props: { meta; onChange }) => {
           key={number}
           className={
             number === currentPage
-              ? 'pagination-number pagination-number--current'
+              ? 'pagination-number pagination-number--current bg-blue'
               : 'pagination-number'
           }
           onClick={() => handleOnClick(number)}
