@@ -1,4 +1,4 @@
-import { User } from 'entity';
+import { User, UserTask } from 'entity';
 import { use } from 'passport';
 
 export const generateSanitizeduser = (data: User[]) => {
@@ -8,5 +8,14 @@ export const generateSanitizeduser = (data: User[]) => {
     username,
     totalPoints,
   }));
+  return newData;
+};
+
+export const generateSanitizedUserFromUserTask = (data: UserTask[]) => {
+  const newData = data.map((currentUser) => {
+    const { name, photo, username } = currentUser.user;
+    const totalPoints = currentUser.assignedPoints;
+    return { name, photo, username, totalPoints };
+  });
   return newData;
 };

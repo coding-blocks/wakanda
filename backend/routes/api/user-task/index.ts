@@ -6,6 +6,7 @@ import validator from './validator';
 const router = Router();
 
 router.post('/', validator.POST, controller.handleCreate);
+router.post('/all', controller.handleBulkCreate);
 router.get('/', validator.GET, controller.handleGetTasks);
 router.delete('/', validator.DELETE, controller.handleDelete);
 

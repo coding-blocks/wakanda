@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Repositories from '../../../repositories/index';
 import AsyncHandler from '../../../decorators/async-handler';
 import { generatePaginationObject } from '../../../utils/pagination';
-import { In } from 'typeorm';
+import { In, Not } from 'typeorm';
 
 class TaskController {
   @AsyncHandler()
@@ -10,6 +10,41 @@ class TaskController {
     const payload = req.body;
     const userTask = await Repositories.userTask.save(payload);
     res.json({ data: userTask });
+  }
+
+  @AsyncHandler()
+  async handleBulkCreate(req: Request, res: Response) {
+    const { taskId } = req.body;
+    const users = await Repositories.user.find({
+      where: { role: Not('admin') },
+    }); // where role is not admin
+
+    const usersWithSameTask = await Repositories.userTask.find({
+      where: { taskId },
+    });
+
+    const idsToRemove = usersWithSameTask.map((userTask) => userTask.userId);
+    const userIds = users.map((user) => user.id);
+
+    for (const i in idsToRemove) {
+      if (true) {
+        const index = userIds.indexOf(idsToRemove[i]);
+        if (index !== -1) {
+          userIds.splice(index, 1);
+        }
+      }
+    }
+
+    const builkInsert = userIds.map((id) => {
+      return { userId: id, taskId };
+    });
+    try {
+      const userTasks = await Repositories.userTask.save(builkInsert);
+    } catch (err) {
+      console.error(err);
+    }
+
+    res.send({ msg: 'Successfully assigned the tasks to all users' });
   }
 
   @AsyncHandler()
